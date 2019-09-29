@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: 'Product Sans', sans-serif;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-BoldItalic.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Bold.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Regular.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Italic.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+.Link{
+    color: white;
+}
+.Link:link{
+    text-decoration: none;
+    color: white;
+}
+
+button{
+    border: none;
+}
+
+button.submiter{
+    background-color: transparent;
+}
