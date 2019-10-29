@@ -8,9 +8,6 @@ import welcomePharse from '../../assets/images/welcomePharse.svg';
 import { Container, Pharse, Enter, Form } from './style';
 
 class Login extends Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         return(
             <Container>

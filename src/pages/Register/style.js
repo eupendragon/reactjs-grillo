@@ -27,7 +27,9 @@ export const Logo = styled.div`
     }
 `;
 
-export const Content = styled.div`
+export const Content = styled.form.attrs(props => ({
+    autoComplete: "off",
+}))`
     padding: 50px;
     background-color: white;
     border-radius: 10px 10px 0px 0px;
@@ -50,8 +52,12 @@ export const Stage = styled.div`
         transition: 0.2s;
         filter: opacity(1);
     }
-    button{
-        cursor: pointer;
+
+`;
+export const Submit = styled.button.attrs(props => ({
+    type: "submit",
+}))`
+ cursor: pointer;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -71,7 +77,6 @@ export const Stage = styled.div`
             display: flex;
             align-self: center;
         }
-    }
 `;
 
 export const FormAll = styled.div`

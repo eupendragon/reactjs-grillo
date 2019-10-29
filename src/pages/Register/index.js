@@ -1,5 +1,6 @@
 // Dependencies
 import React, { Component } from 'react';
+import api from '../../service/api';
 // Styles
 import {
     Container,
@@ -13,6 +14,7 @@ import {
     Image,
     Terms,
     Contract,
+    Submit,
     Space
 } from './style';
 // Images
@@ -29,38 +31,258 @@ import Local from '../../assets/images/img_registerLocal.svg';
 import Musica from '../../assets/images/img_registerMusica.svg';
 import Entrar from '../../assets/images/img_registerEntrar.svg';
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
+
     state = {
-        visible: false
+        nome: '',
+        estado: '',
+        instrumento: '',
+        outroInstrum: '',
+        estilo: '',
+        outroEstilo: '',
+        login: '',
+        email: '',
+        cpf: '',
+        senha: '',
     };
+
+    handleInputChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = async e => {
+        e.preventDefault();
+
+        const data = new FormData();
+
+        data.append('nome',this.state.nome);
+        data.append('estado',this.state.estado);
+        data.append('instrumento',this.state.instrumento);
+        data.append('outroInstrum',this.state.outroInstrum);
+        data.append('estilo',this.state.estado);
+        data.append('outroEstilo',this.state.outroEstilo);
+        data.append('login',this.state.login);
+        data.append('email',this.state.email);
+        data.append('cpf',this.state.cpf);
+        data.append('senha',this.state.senha);
+
+
+        await api.post('cadastro', data)
+
+        this.props.history.push('/');
+
+    }
+
     render() {
-    const Ola = this.setState.visible
         return (
             <Container>
                 <Logo>
                     <h1>Grillo</h1>
                     <h3>CADASTRAR</h3>
                 </Logo>
-                <Content>
+                <Content onSubmit={this.handleSubmit}>
                     <Stage>
                         <h3>Olá</h3>
 
                         <h3>Local</h3>
                         <h3>Você</h3>
                         <h3>Entrar</h3>
-                        <Link to="./main"className="Link">
-                        <button>
+                        <Submit>
                             <span>PRÓXIMO</span>
                             <img src={Icon} />
-                        </button>
-                        </Link>
+                        </Submit>
                     </Stage>
-                    <FormOla/>
-                    <FormPlace />
-                    <FormVoce />
-                    <FormEntrar />
+
+                    <FormAll>
+                        <Photo>
+                            <img src={Cam} />
+                        </Photo>
+                        <Form>
+                            <input
+                                name="nome"
+                                placeholder="Nome artístico "
+                                onChange={this.handleInputChange}
+                                value={this.state.nome}
+                            />
+                            <h3>EU SOU UM(A)</h3>
+                        </Form>
+                        <Type>
+                            <div>
+                                <img src={IconMusico} />
+                                <span>Musico</span>
+                            </div>
+                            <div>
+                                <img src={IconBanda} />
+                                <span>Banda</span>
+                            </div>
+                            <div>
+                                <img src={IconPlace} />
+                                <span>Lugar</span>
+                            </div>
+                            <div>
+                                <img src={IconOrg} />
+                                <span>Eventos</span>
+                            </div>
+                            <div>
+                                <img src={IconFan} />
+                                <span>Fã!</span>
+                            </div>
+                        </Type>
+
+                    </FormAll>
+
+                    <FormAll>
+                        <Image>
+                            <img src={Local} />
+                        </Image>
+                        <Form>
+                            <div>
+                                <label>Selecione o seu estado*</label>
+                                <select
+                                    name="estado"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.estado}>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                    <option value="EX">Estrangeiro</option>
+                                </select>
+                            </div>
+                        </Form>
+                    </FormAll>
+
+                    <FormAll>
+                        <Image>
+                            <img src={Musica} />
+                        </Image>
+                        <Form>
+                            <div>
+                                <label>Qual instrumento você toca?*</label>
+                                <select
+                                    name="instrumento"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.instrumento}>
+                                    <option value="Violão">Violão</option>
+                                    <option value="Guitarra">Guitarra</option>
+                                    <option value="Bateria">Bateria</option>
+                                    <option value="Flauta">Flauta</option>
+                                    <option value="Gaita">Gaita</option>
+                                    <option value="Pandeiro">Pandeiro</option>
+                                    <option value="Teclado">Teclado</option>
+                                    <option value="Triangulo">Triangulo</option>
+                                    <option value="Violino">Violino</option>
+                                    <option value="Ukulelê">Ukulelê</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input
+                                    name="outroInstrum"
+                                    placeholder="Não encontrou? Digite aqui o nome do seu instrumento"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.outroInstrum}
+                                />
+                            </div>
+                            <div>
+                                <label>Qual o seu estilo musical?*</label>
+                                <select name="estilo"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.estilo}>
+                                    <option value="Pop">Pop</option>
+                                    <option value="Rag">Rag</option>
+                                    <option value="Funk">Funk</option>
+                                    <option value="Eletrônica">Eletronica</option>
+                                    <option value="Forró">Forró</option>
+                                    <option value="Sertanejo">Sertanejo</option>
+                                    <option value="MPB">MPB</option>
+                                    <option value="Góspel">Góspel</option>
+                                    <option value="Axé">Axé</option>
+                                    <option value="Clássica">Clássica</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input
+                                    name="outroEstilo"
+                                    placeholder="Outro"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.outroEstilo}
+                                />
+                            </div>
+                        </Form>
+                    </FormAll>
+
+                    <FormAll>
+                        <Image>
+                            <img src={Entrar} />
+                        </Image>
+                        <Form>
+                            <label>Agora falta pouco!</label>
+                            <div>
+                                <input
+                                    name="login"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.login}
+                                    placeholder="Digite um login"
+                                />
+                                <input
+                                    name="email"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.email}
+                                    type="email"
+                                    placeholder="Seu e-mail"
+                                />
+                                <input
+                                    name="cpf"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.cpf}
+                                    placeholder="CPF"
+                                />
+                                <input
+                                    name="senha"
+                                    onChange={this.handleInputChange}
+                                    value={this.state.senha}
+                                    type="password"
+                                    placeholder="Senha secreta"
+                                />
+                                <input
+                                    name="confSenha"
+                                    type="password"
+                                    placeholder="Confirmar senha"
+                                />
+                            </div>
+                        </Form>
+                        <Contract>
+                            <div>
+                                <Terms type="checkbox" id="termos" />
+                                <label>Ao prosseguir declaro que li, entendi, concordo e aceito os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
+                            </div>
+                        </Contract>
+                    </FormAll>
                 </Content>
                 <Space>
                 </Space>
@@ -71,154 +293,3 @@ class Register extends Component {
 
 
 export default Register;
-
-
-const FormOla = () => (
-    <FormAll>
-        <Photo>
-            <img src={Cam} />
-        </Photo>
-        <Form>
-            <input Placeholder="Nome artístico " />
-            <h3>EU SOU UM(A)</h3>
-        </Form>
-        <Type>
-            <div>
-                <img src={IconMusico} />
-                <span>Musico</span>
-            </div>
-            <div>
-                <img src={IconBanda} />
-                <span>Banda</span>
-            </div>
-            <div>
-                <img src={IconPlace} />
-                <span>Lugar</span>
-            </div>
-            <div>
-                <img src={IconOrg} />
-                <span>Eventos</span>
-            </div>
-            <div>
-                <img src={IconFan} />
-                <span>Fã!</span>
-            </div>
-        </Type>
-
-    </FormAll>
-);
-
-
-const FormPlace = () => (
-    <FormAll>
-        <Image>
-            <img src={Local} />
-        </Image>
-        <Form>
-            <div>
-                <label>Selecione o seu estado*</label>
-                <select id="estado" name="estado">
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                    <option value="EX">Estrangeiro</option>
-                </select>
-            </div>
-        </Form>
-    </FormAll>
-);
-
-
-const FormVoce = () => (
-    <FormAll>
-        <Image>
-            <img src={Musica} />
-        </Image>
-        <Form>
-            <div>
-                <label>Qual instrumento você toca?*</label>
-                <select id="estado" name="estado">
-                    <option value="AC">Violão</option>
-                    <option value="AL">Guitarra</option>
-                    <option value="AP">Bateria</option>
-                    <option value="AM">Flauta</option>
-                    <option value="RR">Gaita</option>
-                    <option value="SC">Pandeiro</option>
-                    <option value="SP">Teclado</option>
-                    <option value="SE">Triangulo</option>
-                    <option value="TO">Violino</option>
-                    <option value="EX">Ukulelê</option>
-                </select>
-            </div>
-            <div>
-                <input placeholder="Não encontrou? Digite aqui o nome do seu instrumento" />
-            </div>
-            <div>
-                <label>Qual o seu estilo musical?*</label>
-                <select id="estado" name="estado">
-                    <option value="AC">Pop</option>
-                    <option value="AL">Rag</option>
-                    <option value="AP">Funk</option>
-                    <option value="AM">Eletronica</option>
-                    <option value="RR">Forró</option>
-                    <option value="SC">Sertanejo</option>
-                    <option value="SP">MPB</option>
-                    <option value="SE">Góspel</option>
-                    <option value="TO">Axé</option>
-                    <option value="EX">Clássica</option>
-                </select>
-            </div>
-            <div>
-                <input placeholder="Outro" />
-            </div>
-        </Form>
-    </FormAll>
-);
-
-const FormEntrar = () => (
-    <FormAll>
-        <Image>
-            <img src={Entrar} />
-        </Image>
-        <Form>
-            <label>Agora falta pouco!</label>
-            <div>
-                <input placeholder="Digite um login" />
-                <input type="email" placeholder="Seu e-mail" />
-                <input type="password" placeholder="CPF" />
-                <input type="password" placeholder="Senha secreta" />
-                <input type="password" placeholder="Confirmar senha" />
-            </div>
-        </Form>
-        <Contract>
-            <div>
-                <Terms type="checkbox" id="termos" />
-                <label for="termos">Ao prosseguir declaro que li, entendi, concordo e aceito os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
-            </div>
-        </Contract>
-    </FormAll>
-);
