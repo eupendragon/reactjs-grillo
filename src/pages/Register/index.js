@@ -137,7 +137,7 @@ class Register extends Component {
                             </div>
                             <div>
                                 <img src={IconOrg} />
-                                <span>Eventos</span>y
+                                <span>Eventos</span>
                             </div>
                             <div>
                                 <img src={IconFan} />
