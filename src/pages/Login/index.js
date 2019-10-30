@@ -1,15 +1,48 @@
 // Dependencies
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import api from '../../service/api';
+
 import { Link } from 'react-router-dom';
 // Images
 import logoGrillo from '../../assets/images/grilloLogo.svg';
 import welcomePharse from '../../assets/images/welcomePharse.svg';
 // Styles
-import { Container, Pharse, Enter, Form } from './style';
+import { Container, Pharse, Enter, Form, Submit } from './style';
 
-class Login extends Component{
-    render(){
-        return(
+class Login extends Component {
+
+    state = {
+        login: '',
+        senha: ''
+    };
+
+    
+    // https://blog.rocketseat.com.br/reactjs-autenticacao/
+
+
+    handleInputChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = async e => {
+
+        e.preventDefault();
+        
+        const {
+            login,
+            senha,
+        } = this.state;
+
+        const logar = {
+            login: login,
+            senha: senha
+        }
+        
+        console.log(logar);
+    }
+
+    render() {
+        return (
             <Container>
                 <Pharse>
                     <img src={welcomePharse} />
@@ -25,21 +58,23 @@ class Login extends Component{
                         <h1>Grillo</h1>
                         <h2> BY AUXIWARE </h2>
                     </div>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <input
                             placeholder="Login"
-                            className="input"
-                            type="email"
-                            id="loginName"
+                            name="login"
+                            onChange={this.handleInputChange}
+                            value={this.state.login}
                         />
                         <input
                             placeholder="Senha"
-                            className="input"
+                            name="senha"
                             type="password"
+                            onChange={this.handleInputChange}
+                            value={this.state.senha}
                         />
-                        <Link to='./main'>
-                            <button>ENTRAR</button>
-                        </Link>
+
+                        <Submit>ENTRAR</Submit>
+
                         <p>Ainda não tem um Grillo?
                             <Link to="./register" className="Link">
                                 <span>Cadastre-se</span>

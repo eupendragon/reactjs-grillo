@@ -55,23 +55,37 @@ class Register extends Component {
     handleSubmit = async e => {
         e.preventDefault();
 
-        const data = new FormData();
+        const {
+            nome, 
+            estado, 
+            instrumento, 
+            outroInstrum, 
+            estilo, 
+            outroEstilo, 
+            login, 
+            email, 
+            cpf, 
+            senha
+        } = this.state;
 
-        data.append('nome',this.state.nome);
-        data.append('estado',this.state.estado);
-        data.append('instrumento',this.state.instrumento);
-        data.append('outroInstrum',this.state.outroInstrum);
-        data.append('estilo',this.state.estado);
-        data.append('outroEstilo',this.state.outroEstilo);
-        data.append('login',this.state.login);
-        data.append('email',this.state.email);
-        data.append('cpf',this.state.cpf);
-        data.append('senha',this.state.senha);
+        const user = {
+            nome: nome,
+            estado: estado,
+            instrumento:instrumento,
+            outroInstrum: outroInstrum,
+            estilo: estilo,
+            outroEstilo: outroEstilo,
+            login: login,
+            email: email,
+            cpf: cpf,
+            senha: senha,
+        }
 
-
-        await api.post('cadastro', data)
+        await api.post('cadastro', user)
 
         this.props.history.push('/');
+
+        console.log(user);
 
     }
 
@@ -123,7 +137,7 @@ class Register extends Component {
                             </div>
                             <div>
                                 <img src={IconOrg} />
-                                <span>Eventos</span>
+                                <span>Eventos</span>y
                             </div>
                             <div>
                                 <img src={IconFan} />

@@ -31,7 +31,7 @@ export const Pharse = styled.div`
     }
 `;
 
-export const Enter =  styled.div`
+export const Enter = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 25vh 25vh 25vh;
@@ -74,17 +74,7 @@ export const Enter =  styled.div`
     color:#bdbdbd;
     }
     button{
-        width:500px; /* DECLARAÇÃO NÃO RESPONSIVA, DEFINITIR COM PORCENTAGEM E UTILIZAR @MEDIA SCREEN */
-        cursor: pointer;
-        margin-top: 45px;
-        margin-bottom: 15px;
-        border: none;
-        font-size: 22px;
-        font-weight: bold;
-        color: #FFF;
-        padding: 10px;
-        background: linear-gradient(97.5deg, #AF5055 0%, #B17052 100%);
-        border-radius: 10px;
+        
     }
     p{
         color: #bdbdbd;
@@ -98,7 +88,30 @@ export const Enter =  styled.div`
     }
 `;
 
-export const Form = styled.div`
+export const Submit = styled.button.attrs(props => ({
+    type: 'submit'
+}))`
+    width:500px;
+     /* 
+        DECLARAÇÃO NÃO RESPONSIVA, 
+        DEFINITIR COM PORCENTAGEM E UTILIZAR 
+        @MEDIA SCREEN 
+     */
+    cursor: pointer;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #FFF;
+    padding: 10px;
+    background: linear-gradient(97.5deg, #AF5055 0%, #B17052 100%);
+    border-radius: 10px;
+`;
+
+export const Form = styled.form.attrs(props => ({
+    autoComplete: 'off'
+}))`
     display: flex;
     flex-direction: column;
     justify-content: center;
