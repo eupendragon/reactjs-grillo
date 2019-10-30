@@ -73,7 +73,7 @@ export const Submit = styled.button.attrs(props => ({
         img{
             margin: 7px;
             width: 25px;
-        }span{
+        } span{
             display: flex;
             align-self: center;
         }
@@ -122,7 +122,8 @@ export const Form = styled.div`
 export const Photo = styled.div`
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+
     margin: 60px auto;
     width: 350px;
     height: 350px;
@@ -133,6 +134,14 @@ export const Photo = styled.div`
         display: flex;
         justify-content: center;
         align-content: center;
+        cursor: pointer;
+    }
+    input{
+        display: none;
+    }
+    img:hover{
+        transition: 0.2s;
+        transform: scale(1.2);
     }
 `;
 
@@ -143,23 +152,26 @@ display: flex;
 width: 100%;
 flex-direction: row;
 justify-content: space-between;
-    div{
+    label{
     display: flex;
     flex-direction: column;
-            cursor: pointer;
+    cursor: pointer;
+
         img{
           width: 60px;   
             filter: opacity(0.4);
         }
+
         span{
             font-weight: bold; 
             filter: opacity(0.4);
             text-align: center;
             align-self: center;
         }
-        img:hover, span:hover{
+        img:hover & span:hover{
             filter: opacity(1);
         }
+
     }
 `;
 
@@ -177,7 +189,11 @@ export const Contract = styled.div`
     display: flex;
     height: 75px;
     justify-content:center;
+    align-items: center;
     div{
+        display: flex;
+        justify-content: center;
+        align-items:center;
         border-radius: 15px;
         padding: 15px;
         background: #f2f2f2;

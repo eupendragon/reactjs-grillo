@@ -34,7 +34,6 @@ import Entrar from '../../assets/images/img_registerEntrar.svg';
 import { Link } from 'react-router-dom';
 
 class Register extends Component {
-
     state = {
         nome: '',
         estado: '',
@@ -56,22 +55,22 @@ class Register extends Component {
         e.preventDefault();
 
         const {
-            nome, 
-            estado, 
-            instrumento, 
-            outroInstrum, 
-            estilo, 
-            outroEstilo, 
-            login, 
-            email, 
-            cpf, 
+            nome,
+            estado,
+            instrumento,
+            outroInstrum,
+            estilo,
+            outroEstilo,
+            login,
+            email,
+            cpf,
             senha
         } = this.state;
 
         const user = {
             nome: nome,
             estado: estado,
-            instrumento:instrumento,
+            instrumento: instrumento,
             outroInstrum: outroInstrum,
             estilo: estilo,
             outroEstilo: outroEstilo,
@@ -80,7 +79,7 @@ class Register extends Component {
             cpf: cpf,
             senha: senha,
         }
-
+        
         await api.post('cadastro', user)
 
         this.props.history.push('/');
@@ -90,6 +89,13 @@ class Register extends Component {
     }
 
     render() {
+        // var styles = {
+        //     input:{
+        //         display: "hidden",
+        //         color: "red",
+        //         visibility: "hidden"
+        //     }
+        // }
         return (
             <Container>
                 <Logo>
@@ -111,7 +117,11 @@ class Register extends Component {
 
                     <FormAll>
                         <Photo>
-                            <img src={Cam} />
+                            <input id="perfil" type="file" />
+
+                            <label for="perfil">
+                                <img src={Cam} />
+                            </label>
                         </Photo>
                         <Form>
                             <input
@@ -123,26 +133,31 @@ class Register extends Component {
                             <h3>EU SOU UM(A)</h3>
                         </Form>
                         <Type>
-                            <div>
+                            <label for="musico">
+                                <input id="musico" type="radio" name="tipo" />
                                 <img src={IconMusico} />
                                 <span>Musico</span>
-                            </div>
-                            <div>
+                            </label>
+                            <label for="banda">
+                                <input id="banda" type="radio" name="tipo" />
                                 <img src={IconBanda} />
                                 <span>Banda</span>
-                            </div>
-                            <div>
+                            </label>
+                            <label for="lugar">
+                                <input id="lugar" type="radio" name="tipo" />
                                 <img src={IconPlace} />
                                 <span>Lugar</span>
-                            </div>
-                            <div>
+                            </label>
+                            <label for="evento">
+                                <input id="evento" type="radio" name="tipo" />
                                 <img src={IconOrg} />
                                 <span>Eventos</span>
-                            </div>
-                            <div>
+                            </label>
+                            <label for="fa">
+                                <input id="fa" type="radio" name="tipo" />
                                 <img src={IconFan} />
                                 <span>Fã!</span>
-                            </div>
+                            </label>
                         </Type>
 
                     </FormAll>
@@ -293,7 +308,7 @@ class Register extends Component {
                         <Contract>
                             <div>
                                 <Terms type="checkbox" id="termos" />
-                                <label>Ao prosseguir declaro que li, entendi, concordo e aceito os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
+                                <label for="termos">Ao prosseguir declaro que li, entendi e concordo com os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
                             </div>
                         </Contract>
                     </FormAll>
