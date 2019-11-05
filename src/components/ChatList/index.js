@@ -1,15 +1,27 @@
 import React from 'react';
-import {Container} from './style';
-import MessageReceive from '../MessageReceive';
-import MessageSent from '../MessageSent';
+import { Container, BoxSent, MessageReceive, BoxReceive, MessageSent } from './style';
 
-const  Chat = () => (
-    <Container>
-        <MessageSent/> 
-        <MessageReceive/>
-        <MessageSent/> 
-        <MessageReceive/>
-    </Container>
+export default function Chat() {
+    return (
+        <Container>
+            <YourMessage/>
+            <MyMessage/>
+        </Container>
+    );
+}
+
+const YourMessage = () => (
+    <MessageReceive>
+        <BoxReceive>
+            <p>Mensagem recebida</p>
+        </BoxReceive>
+    </MessageReceive>
 );
 
-export default Chat;
+const MyMessage = () => (
+    <MessageSent>
+        <BoxSent>
+            <p>Mensagem Enviada</p>
+        </BoxSent>
+    </MessageSent>
+);
