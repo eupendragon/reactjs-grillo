@@ -1,5 +1,5 @@
 // Dependecies
-import React from 'react';
+import React, {Component} from 'react';
 // Styles
 import { Container, Content, Posts } from './style';
 // Components
@@ -12,6 +12,7 @@ const Main = () => (
         <Menu />
         <Content>
             <MainHeader subTitle="EVENTOS PRÓXIMOS"/>
+            <NewPost/>
             <Posts>
                 <PostEvent />
                 <PostEvent />
@@ -23,3 +24,12 @@ const Main = () => (
 );
 
 export default Main;
+
+class NewPost extends Component{
+    render(){
+        return(
+            <NewPostContainer>
+            </NewPostContainer>
+        );
+    }
+}

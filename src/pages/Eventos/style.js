@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+// ANIMAÇÕES 
+// const upButton = keyframes`
+//     from{
+//         transform: scale(1.0);
+//     }
+//     to{
+//         transform: scale(1.2);
+//     }
+// `;
 
 export const Container = styled.div`
     display: grid;
@@ -142,7 +151,15 @@ export const ImageInscribe = styled.div`
 export const Details = styled.div`
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        align-items: center;
+        button{
+            background: transparent;
+        }
+        button:hover{
+            transition: 0.3s;
+            transform: scale(1.2);
+        }
         img{
             width: 40px;
             cursor: pointer;
@@ -157,3 +174,4 @@ export const Name = styled.p`
         color:#FFF;
         font-weight: bold;
 `;
+

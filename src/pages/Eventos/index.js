@@ -24,6 +24,8 @@ import Flyer from '../../assets/images/flyerEvent2.svg';
 import Profile from '../../assets/images/profileTeste.jpg';
 import Send from '../../assets/images/icon_sendMsg.svg';
 
+import ViewProf from '../../assets/images/iconProfile.svg';
+
 const Events = () => (
     <Container>
         <Menu />
@@ -39,10 +41,6 @@ const Events = () => (
                 <Search />
                 <h3>Babylon</h3>
                 <span>INSCRITOS NO EVENTO</span>
-                <EventInscribes />
-                <EventInscribes />
-                <EventInscribes />
-                <EventInscribes />
                 <EventInscribes />
             </Messages>
         </Content>
@@ -77,10 +75,12 @@ const EventInscribes = () => (
             <ImageInscribe>
                 <img src={Profile} />
             </ImageInscribe>
-            <Name> Juhianna Berezin</Name>
+            <Name>Juhianna Berezin</Name>
         </div>
         <Details>
-            <img src={Send} />
+            <button>
+                <img src={Send} />
+            </button>
         </Details>
     </Inscribe>
 );
