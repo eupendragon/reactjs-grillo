@@ -5,6 +5,7 @@ export const Container = styled.div`
     grid-template-columns: 3fr 10fr 1fr;
     grid-template-rows: 3vh 97vh;
     background-color: #141A1F;
+    overflow: hidden;
 `;
 export const Content = styled.div`
     display: grid;
@@ -33,6 +34,8 @@ export const Chats = styled.div`
         margin-right: 2vh; 
     }
 `;
+
+
 export const Local = styled.div`
         background-color: white;
         border-radius: 5px;
@@ -44,20 +47,6 @@ export const Local = styled.div`
             font-size: 18px;
             font-weight: bold;
         }
-`;
-
-export const Messages = styled.div`
-    padding: 10px;
-    grid-column: 2/3;
-    grid-row: 1/3;
-    display: flex;
-    flex-direction: column;
-    padding: 40px 40px 20px 40px;
-    h3{
-        margin-top: 23px;
-        font-size: 50px;
-        color: #FFF;
-    }
 `;
 
 export const WritteMessage = styled.form.attrs(props => ({
@@ -86,4 +75,48 @@ export const WritteMessage = styled.form.attrs(props => ({
         margin-right: 2vh;
         cursor: pointer;
     }
+`;
+
+
+
+// CHAT COMPONENTS
+export const Messages = styled.div`
+    padding: 10px;
+    grid-column: 2/3;
+    grid-row: 1/3;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 40px 20px 40px;
+    h3{
+        margin-top: 23px;
+        font-size: 50px;
+        color: #FFF;
+    }
+`;
+
+export const Chat = styled.div`
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding-right: 2vh;
+`;
+
+export const MessageSent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px 0;
+`;
+
+export const BoxSent = styled.p`
+    display: flex;
+    background: #40474E;
+    color: white;
+    border-radius: 10px 10px 0 10px;
+    padding: 15px;
+    text-align: left;
+    line-height: 20px;
+    margin: 15px 0;
 `;

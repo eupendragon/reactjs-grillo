@@ -9,7 +9,7 @@ export const Container = styled.div`
     padding-right: 2vh;
 `;
 
-export const MessageSent = styled.ul`
+export const MessageSent = styled.div`
     display: flex;
     list-style: none;
     justify-content: flex-end;
@@ -22,7 +22,7 @@ export const MessageReceive = styled.div`
     padding: 10px 0;
     list-style: none;
 `;
-export const BoxSent = styled.li`
+export const BoxSent = styled.p`
     background: #40474E;
     color: white;
     border-radius: 10px 10px 0 10px;

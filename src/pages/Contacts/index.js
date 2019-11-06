@@ -1,21 +1,20 @@
 // Dependecies
 import React, { Component } from 'react';
 // Styles
-import { Container, Content, Chats, Messages, Local, WritteMessage } from './style';
+import { Container, Chat, Content, Chats, Messages, Local, BoxSent, WritteMessage, MessageSent } from './style';
 // Components
 import Menu from '../../components/Menu';
 import Search from '../../components/Search';
 import ContactList from '../../components/ContactList';
-import Chat from '../../components/ChatList';
-
 import SendIcon from '../../assets/images/icon_send.svg';
 
 export default class Contacts extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
+
     state = {
         message: [],
         newmessage: ''
@@ -23,9 +22,9 @@ export default class Contacts extends Component {
 
     componentDidMount() {
         const messageSent = localStorage.getItem('mensagens');
-        this.setState({ message: JSON.parse(messageSent)})
+        this.setState({ message: JSON.parse(messageSent) })
     }
-    
+
     componentDidUpdate(_, prevState) {
         if (prevState != this.state.message) {
             localStorage.setItem('mensagens', JSON.stringify(this.state.message));
@@ -39,12 +38,12 @@ export default class Contacts extends Component {
     handleSubmit = e => {
         e.preventDefault();
         let input = document.getElementById('mensagem').value;
-        if(input !== ''){
+        if (input !== '') {
             this.setState({
                 message: [...this.state.message, this.state.newmessage],
                 newmessage: ''
             })
-        } 
+        }
     }
     render() {
         return (
@@ -61,12 +60,17 @@ export default class Contacts extends Component {
                     <Messages>
                         <Search />
                         <h3>RIHANNA</h3>
-                        {this.state.message.map((mensagens) => (
-                            <ul>
-                                <li key={mensagens}>{mensagens}</li>
-                            </ul>
-                        ))}
-                        {this.state.newmessage}
+
+                        <Chat>
+                            <MessageSent>
+                                {this.state.message.map((mensagemDigitada) => (
+                                    <BoxSent key={mensagemDigitada}>
+                                        {mensagemDigitada}
+                                    </BoxSent>
+                                ))}
+                            </MessageSent>
+                        </Chat>
+
                         <WritteMessage onSubmit={this.handleSubmit}>
                             <input id="mensagem"
                                 placeholder="Digite sua mensagem"
@@ -77,9 +81,10 @@ export default class Contacts extends Component {
                                 <img src={SendIcon} alt="enviar" />
                             </button>
                         </WritteMessage>
+                    
                     </Messages>
                 </Content>
-            </Container>
+            </Container >
         );
     }
 }

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Container, BoxSent, MessageReceive, BoxReceive, MessageSent } from './style';
 
-export default function Chat() {
+export default function Chat({ MensagemContent }) {
     return (
         <Container>
-            <YourMessage/>
-            <MyMessage/>
         </Container>
     );
 }
@@ -13,15 +11,13 @@ export default function Chat() {
 const YourMessage = () => (
     <MessageReceive>
         <BoxReceive>
-            <p>Mensagem recebida</p>
         </BoxReceive>
     </MessageReceive>
 );
 
-const MyMessage = () => (
+const MyMessage = (MensagemContent) => (
     <MessageSent>
         <BoxSent>
-            <p>Mensagem Enviada</p>
         </BoxSent>
     </MessageSent>
 );
