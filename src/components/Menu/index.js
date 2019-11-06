@@ -11,57 +11,62 @@ import MsgIcon from '../../assets/images/menu-icon_msg.svg';
 import EventsIcon from '../../assets/images/menu-icon_events.svg';
 import MusicsIcon from '../../assets/images/menu-icon_musics.svg';
 
+import Player from '../../components/Player';
+
 class Menu extends Component {
     render() {
         return (
-            <div className="menu">
-                {/* PERFIL */}
-                <Link to="./profile" className="Link">
-                    <div className="profile opSelect">
-                        <div className="circle">
-                            <img src={Profile} />
+            <div className="tudo">
+                <div className="menu">
+                    {/* PERFIL */}
+                    <Link to="./profile" className="Link">
+                        <div className="profile opSelect">
+                            <div className="circle">
+                                <img src={Profile} />
+                            </div>
+                            <div className="infoProfile">
+                                <p className="nameProfile">Olá, Araya!</p>
+                                <span className="logoutProfile">SAIR</span>
+                            </div>
                         </div>
-                        <div className="infoProfile">
-                            <p className="nameProfile">Olá, Araya!</p>
-                            <span className="logoutProfile">SAIR</span>
-                        </div>
+                    </Link>
+                    {/* OPÇÕES DO MENU */}
+                    <div className="menuOptions">
+                        <Link to="./main" className="Link">
+                            <div className="option opSelect">
+                                <div className="icon">
+                                    <img src={GrilloIcon} />
+                                </div>
+                                <p>GRILLOS</p>
+                            </div>
+                        </Link>
+                        <Link to="./contacts" className="Link">
+                            <div className="option opSelect">
+                                <div className="icon">
+                                    <img src={MsgIcon} />
+                                </div>
+                                <p>MENSAGENS</p>
+                            </div >
+                        </Link>
+                        <Link to="./events" className="Link">
+                            <div className="option opSelect">
+                                <div className="icon">
+                                    <img src={EventsIcon} />
+                                </div>
+                                <p>EVENTOS</p>
+                            </div>
+                        </Link>
+                        <Link to="./musics" className="Link">
+                            <div className="option opSelect">
+                                <div className="icon">
+                                    <img src={MusicsIcon} />
+                                </div>
+                                <p>MÚSICAS</p>
+                            </div>
+                        </Link>
                     </div>
-                </Link>
-                {/* OPÇÕES DO MENU */}
-                <div className="menuOptions">
-                    <Link to="./main" className="Link">
-                        <div className="option opSelect">
-                            <div className="icon">
-                                <img src={GrilloIcon} />
-                            </div>
-                            <p>GRILLOS</p>
-                        </div>
-                    </Link>
-                    <Link to="./contacts" className="Link">
-                        <div className="option opSelect">
-                            <div className="icon">
-                                <img src={MsgIcon} />
-                            </div>
-                            <p>MENSAGENS</p>
-                        </div >
-                    </Link>
-                    <Link to="./events" className="Link">
-                        <div className="option opSelect">
-                            <div className="icon">
-                                <img src={EventsIcon} />
-                            </div>
-                            <p>EVENTOS</p>
-                        </div>
-                    </Link>
-                    <Link to="./musics" className="Link">
-                        <div className="option opSelect">
-                            <div className="icon">
-                                <img src={MusicsIcon} />
-                            </div>
-                            <p>MÚSICAS</p>
-                        </div>
-                    </Link>
                 </div>
+                <Player />
             </div>
         )
     }

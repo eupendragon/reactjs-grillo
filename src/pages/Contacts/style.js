@@ -87,14 +87,11 @@ export const Messages = styled.div`
     display: flex;
     flex-direction: column;
     padding: 40px 40px 20px 40px;
-    h3{
-        margin-top: 23px;
-        font-size: 50px;
-        color: #FFF;
-    }
 `;
 
-export const Chat = styled.div`
+export const Chat = styled.div.attrs(props => ({
+    id: 'divChat',
+}))`
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
@@ -119,4 +116,26 @@ export const BoxSent = styled.p`
     text-align: left;
     line-height: 20px;
     margin: 15px 0;
+`;
+
+
+export const Title = styled.div`
+    display: flex;
+    margin-top: 3vh;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    h3{
+        font-size: 50px;
+        color: #FFF;
+    }
+
+    button{
+        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        font-weight: bolder;
+        font-size: 18px
+    }
 `;

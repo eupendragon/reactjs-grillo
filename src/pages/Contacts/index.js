@@ -1,7 +1,7 @@
 // Dependecies
 import React, { Component } from 'react';
 // Styles
-import { Container, Chat, Content, Chats, Messages, Local, BoxSent, WritteMessage, MessageSent } from './style';
+import { Container, Chat, Content, Chats, Title, Messages, Local, BoxSent, WritteMessage, MessageSent } from './style';
 // Components
 import Menu from '../../components/Menu';
 import Search from '../../components/Search';
@@ -21,6 +21,21 @@ export default class Contacts extends Component {
     }
 
     componentDidMount() {
+        if (!localStorage.getItem('mensagens')) {
+
+            // Objeto  inical 
+            const mensagemInicial = {
+                mensagem: 'teste',
+                horario: '15:30'
+            }
+
+            const msgauto = [
+                'mensagemInicial'
+            ]
+
+            localStorage.setItem('mensagens', JSON.stringify(msgauto))
+        }
+
         const messageSent = localStorage.getItem('mensagens');
         this.setState({ message: JSON.parse(messageSent) })
     }
@@ -45,6 +60,15 @@ export default class Contacts extends Component {
             })
         }
     }
+
+    handleDeleteStorage() {
+        localStorage.clear();
+        window.location.reload()
+    }
+
+    scrollMessage(){
+    }
+
     render() {
         return (
             <Container>
@@ -59,8 +83,10 @@ export default class Contacts extends Component {
                     </Chats>
                     <Messages>
                         <Search />
-                        <h3>RIHANNA</h3>
-
+                        <Title>
+                            <h3>RIHANNA</h3>
+                            <button onClick={this.handleDeleteStorage}> L</button>
+                        </Title>
                         <Chat>
                             <MessageSent>
                                 {this.state.message.map((mensagemDigitada) => (
@@ -81,7 +107,7 @@ export default class Contacts extends Component {
                                 <img src={SendIcon} alt="enviar" />
                             </button>
                         </WritteMessage>
-                    
+
                     </Messages>
                 </Content>
             </Container >
