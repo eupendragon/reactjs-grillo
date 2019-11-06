@@ -11,11 +11,14 @@ import Chat from '../../components/ChatList';
 import SendIcon from '../../assets/images/icon_send.svg';
 
 export default class Contacts extends Component {
+    constructor(props){
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
     state = {
         message: [],
-        newmessage: [
-            ''
-        ],
+        newmessage: ''
     }
 
     componentDidMount() {
@@ -35,10 +38,13 @@ export default class Contacts extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.setState({
-            message: [...this.state.message, this.state.newmessage],
-            newmessage: ''
-        })
+        let input = document.getElementById('mensagem').value;
+        if(input !== ''){
+            this.setState({
+                message: [...this.state.message, this.state.newmessage],
+                newmessage: ''
+            })
+        } 
     }
     render() {
         return (
@@ -55,7 +61,12 @@ export default class Contacts extends Component {
                     <Messages>
                         <Search />
                         <h3>RIHANNA</h3>
-                        <Chat />
+                        {this.state.message.map((mensagens) => (
+                            <ul>
+                                <li key={mensagens}>{mensagens}</li>
+                            </ul>
+                        ))}
+                        {this.state.newmessage}
                         <WritteMessage onSubmit={this.handleSubmit}>
                             <input id="mensagem"
                                 placeholder="Digite sua mensagem"
