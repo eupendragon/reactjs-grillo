@@ -32,21 +32,26 @@ export const Posts = styled.div`
 export const NewPostContainer = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 15px;
+    margin: 15px 5vh;
 `;
 
 export const Icons = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 15px;
     input{
         display: none;
     }
     button{
         background: transparent;
+        img{
+            width: 75px;
+        }
     }
     label{
         display: flex;
+        cursor: pointer;
         justify-content: center;
         align-items: center;
         background: #42B5BC;
@@ -54,6 +59,14 @@ export const Icons = styled.div`
         margin: 15px;
         height: 50px;
         width: 50px;
+    }
+    label:hover{
+            transition: 0.1s;
+            transform: scale(0.9);
+    }
+    span{
+        color: #797979;
+        font-weight: 900;
     }
 `;
 
@@ -63,13 +76,42 @@ export const PostForm = styled.div`
     background: #F2F2F2;
     border-radius: 15px;
     height: 310px;
-    div{
-        background: grey;
+    input[type=file]{
+        display: none;
+    }
+    img:hover{
+        transition: 0.3s;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+    div:first-child{
+        background: #5555;
         width: 170px;
         margin: 15px;
         border-radius: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    div:nth-child(2){
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        margin: 15px;
+    }
+    input, textarea{
+        background: none;
+        border: none;
+    }
+    input{
+        font-weight: bolder;
+        font-size: 28px;
+        margin:20px 0 20px;
+    }
+    textarea{
+        font-weight: lighter;
+        font-size: 18px;
+        resize: none;
+        height: 90%;
     }
 `;

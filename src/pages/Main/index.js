@@ -8,6 +8,7 @@ import MainHeader from '../../components/MainHeader';
 import PostEvent from '../../components/PostEvent';
 
 // images
+import Cam from '../../assets/images/icon_photo.svg';
 import YourProfile from '../../assets/images/arayaProfile.svg';
 import IconEvent from '../../assets/images/postIconEvento.svg';
 import IconVaga from '../../assets/images/postIconVaga.svg';
@@ -33,30 +34,37 @@ export default Main;
 class NewPost extends Component {
     render() {
         return (
-            <NewPostContainer>
-                <Icons>
-                    <button>
-                        <img src={YourProfile} alt="Ir para perfil" />
-                    </button>
+                <NewPostContainer>
+                    <Icons>
+                        <button>
+                            <img src={YourProfile} alt="Ir para perfil" />
+                        </button>
 
-                    <label htmlFor="evento">
-                        <input type="radio" id="evento" checked name="option" />
-                        <img src={IconEvent} alt="Postar Evento" />
-                    </label>
-                    <span>EVENTO</span>
+                        <label htmlFor="evento">
+                            <input type="radio" id="evento" checked name="option" />
+                            <img src={IconEvent} alt="Postar Evento" />
+                        </label>
+                        <span>EVENTO</span>
 
-                    <label htmlFor="vaga">
-                        <input type="radio" id="vaga" name="option" />
-                        <img src={IconVaga} alt="Postar Vaga" />
-                    </label>
-                    <span>VAGA</span>
-                </Icons>
-                <PostForm>
-                    <div>
-                        <h1>+</h1>
-                    </div>
-                </PostForm>
-            </NewPostContainer>
+                        <label htmlFor="vaga">
+                            <input type="radio" id="vaga" name="option" />
+                            <img src={IconVaga} alt="Postar Vaga" />
+                        </label>
+                        <span>VAGA</span>
+                    </Icons>
+                    <PostForm>
+                        <div>
+                            <input id="perfil" type="file" />
+                            <label for="perfil">
+                                <img src={Cam} />
+                            </label>
+                        </div>
+                        <div>
+                            <input placeholder="TITULO DA POSTAGEM" type="text"/>
+                            <textarea placeholder="Descrição"  type="text"/>
+                        </div>
+                    </PostForm>
+                </NewPostContainer>
         );
     }
 }
