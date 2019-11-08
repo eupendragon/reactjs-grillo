@@ -60,6 +60,26 @@ const Musics = () => (
                     <p>Autor</p>
                     <p>Ano de lançamento</p>
                 </Item>
+                <Item>
+                    <p>Nome da Músca</p>
+                    <p>Autor</p>
+                    <p>Ano de lançamento</p>
+                </Item>
+                <Item>
+                    <p>Nome da Músca</p>
+                    <p>Autor</p>
+                    <p>Ano de lançamento</p>
+                </Item>
+                <Item>
+                    <p>Nome da Músca</p>
+                    <p>Autor</p>
+                    <p>Ano de lançamento</p>
+                </Item>
+                <Item>
+                    <p>Nome da Músca</p>
+                    <p>Autor</p>
+                    <p>Ano de lançamento</p>
+                </Item>
             </Playlist>
         </Content>
     </Container>

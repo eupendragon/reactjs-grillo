@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: grid;
+    overflow: hidden;
     grid-template-columns: 3fr 10fr 1fr;
-    grid-template-rows: 3vh 97vh;
+    grid-template-rows: 3vh 97vh auto;
     background-color: #141A1F;
 `;
 export const Content = styled.div`
@@ -71,6 +72,8 @@ export const Playlist = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
+    overflow-y: scroll;
+    max-height: 40%;
 `;
 export const Item = styled.section`
     margin: 7px 0;

@@ -4,7 +4,7 @@
     outline: none;
     box-sizing: border-box;
 }
-html, body{
+html, body, textarea{
     font-family: 'Product Sans', sans-serif;
     -webkit-font-smoothing: antialiased !important;
 }

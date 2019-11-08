@@ -28,11 +28,27 @@ export const Posts = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
 `;
-
+export const PostManager = styled.form`
+    display:flex;
+    flex-direction:column;
+    margin: 15px 5vh;
+    button.postar{
+        margin-top: 15px;
+        max-width: 100%;
+        width: 150px;
+        max-height: 100%;
+        height: 45px;
+        align-self: flex-end;
+        border-radius: 10px;
+        background: #42B5BC;
+        font-weight: bolder;
+        font-size: 16px;
+        color: white;
+    }
+`;
 export const NewPostContainer = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 15px 5vh;
 `;
 
 export const Icons = styled.div`
@@ -79,13 +95,16 @@ export const PostForm = styled.div`
     input[type=file]{
         display: none;
     }
-    img:hover{
+    img.imgIcon:hover{
         transition: 0.3s;
         transform: scale(1.2);
         cursor: pointer;
+        z-index: 999999999;
     }
     div:first-child{
         background: #5555;
+        background-size: cover;
+        background-position: center;
         width: 170px;
         margin: 15px;
         border-radius: 15px;
