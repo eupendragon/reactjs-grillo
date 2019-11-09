@@ -46,6 +46,11 @@ class Register extends Component {
         cpf: '',
         senha: '',
     };
+    handleImagChange = e => {
+        let imgProfile = document.getElementById('imagePerfil');
+        let myImg = URL.createObjectURL(e.target.files[0]);
+        imgProfile.style.backgroundImage = "url("+myImg+")";
+    }
 
     handleInputChange = e => {
         this.setState({ [e.target.name]: e.target.value });
@@ -79,7 +84,7 @@ class Register extends Component {
             cpf: cpf,
             senha: senha,
         }
-        
+
         await api.post('cadastro', user)
 
         this.props.history.push('/');
@@ -117,11 +122,13 @@ class Register extends Component {
 
                     <FormAll>
                         <Photo>
-                            <input id="perfil" type="file" />
+                            <div id="imagePerfil">
+                                <input onChange={this.handleImagChange} id="perfil" type="file" />
 
-                            <label for="perfil">
-                                <img src={Cam} />
-                            </label>
+                                <label for="perfil">
+                                    <img src={Cam} />
+                                </label>
+                            </div>
                         </Photo>
                         <Form>
                             <input
