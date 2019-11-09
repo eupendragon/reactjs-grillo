@@ -14,6 +14,9 @@ export const MusicPlayer = styled.div.attrs(props => ({
     grid-template-rows: 1vh 13vh 2vh;
     button{
         background: transparent;
+    }button img:hover{
+        transform: scale(1.2);
+        transition: 0.3s;
     }
     div.ContImage{
         grid-row: 1/3;
