@@ -1,38 +1,82 @@
 import React, { Component } from 'react';
-import { Container, MusicPlayer } from './style';
+import { Container, MusicPlayer, ControllButton } from './style';
 
 // Images
-import PlayerBanner from '../../assets/images/playerban.jpg';
 import LinkinPark from '../../assets/images/intheend.jpg';
-
+import Konai from '../../assets/images/konai.jpg';
+import Lagum from '../../assets/images/lagum.jpg';
 
 // Musics
 import InTheEnd from '../../assets/music/intheend.mp3';
+import Estacoes from '../../assets/music/konai.mp3';
+import Deixa from '../../assets/music/lagum.mp3';
 
 // Icons
 import Back from '../../assets/images/iconBack.svg';
 import Next from '../../assets/images/iconNext.svg';
+import Pause from '../../assets/images/iconPause.svg';
 import Play from '../../assets/images/iconPlay.svg';
 
 export default class Player extends Component {
+    state = {
+        isPlay: false,
+    }
+    handleChangeMusic() {
+        const player = {
+            banner: document.querySelector(".ContImage"),
+            title: document.querySelector(".MusicName h3"),
+            audio: document.querySelector("audio")
+        }
+        const data = [
+            {
+                banner: `url(${LinkinPark}`,
+                title: "In The End",
+                audio: InTheEnd,
+            },
+            {
+                banner: `url(${Konai})`,
+                title: "4 Estações ",
+                audio: Estacoes,
+            },
+            {
+                banner: `url(${Lagum})`,
+                title: "Deixa",
+                audio: Deixa,
+            }
+        ]
 
-    handleChangeMusic = e => {
-        const banner = document.querySelector(".ContImage");
-        const title = document.querySelector(".MusicName h3");
-        const audio = document.querySelector("audio");
+        player.banner.style.backgroundImage = data[2].banner;
+        player.title.innerText = data[2].title;
+        player.audio.src = data[2].audio;
 
-        const data = {
-            banner: {LinkinPark},
-            title: "In The End",
-            audio: {InTheEnd}
+        if(this.state.isPlay === false){
+            console.log(this.state.isPlay)
+            player.audio.play();
+        }
+        else{
+            console.log(this.state.isPlay)
+            player.audio.pause();
         }
 
-        banner.style.backgroundImage = `url(${data.banner.LinkinPark})`;
-        title.innerText = data.title;
-        audio.src = data.audio.InTheEnd;
+    }
+
+    controlButtonChange(action) {
+        if (action == 1) {
+            this.handleChangeMusic();
+            this.setState({ isPlay: !this.state.isPlay })
+        }
+        
+        else if (action == 2) {
+            this.handleChangeMusic(1);
+        }
+
+        else {
+            console.log("Return")
+        }
     }
 
     render() {
+        const { isPlay } = this.state;
         return (
             <Container>
                 <MusicPlayer>
@@ -40,21 +84,29 @@ export default class Player extends Component {
                     <div className="ContImage"></div>
                     <div className="ContController">
                         <div className="MusicName">
-                            <h3></h3>
+                            <h3>Start</h3>
                         </div>
                         <div className="Controllers">
                             <audio src=""></audio>
-                            <button id="back">
+
+                            <ControllButton
+                                onClick={() => this.controlButtonChange(3)}
+                                id="back" >
                                 <img src={Back} alt="" />
-                            </button>
+                            </ControllButton>
 
-                            <button id="play">
-                                <img src={Play} alt="" />
-                            </button>
+                            <ControllButton
+                                isPlay={isPlay}
+                                onClick={() => this.controlButtonChange(1)}
+                                id="play">
+                                {isPlay ? <img src={Pause} alt="" /> : <img src={Play} alt="" />}
+                            </ControllButton>
 
-                            <button id="next">
-                                <img src={Next} alt="" onClick={this.handleChangeMusic} />
-                            </button>
+                            <ControllButton
+                                onClick={() => this.controlButtonChange(2)}
+                                id="next">
+                                <img src={Next} alt="" />
+                            </ControllButton>
                         </div>
                     </div>
                 </MusicPlayer>

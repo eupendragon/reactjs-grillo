@@ -1,9 +1,31 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import PlayerBanner from '../../assets/images/playerban.jpg'
 
 export const Container = styled.div.attrs(props => ({
 }))`
     
+`;
+
+const audioOn = keyframes`
+    to{
+        transform: scale(1.1);
+    }
+    from{
+        transform: scale(1.4);
+    }
+`;
+
+export const ControllButton = styled.button.attrs(props => ({
+    focus: props.isPlay,
+}))`
+    background: transparent;
+    &:focus{
+        animation: ${audioOn} 0.8s infinite;
+    }
+    &:hover{
+        transform: scale(1.2);
+        transition: 0.3s;
+    }
 `;
 
 export const MusicPlayer = styled.div.attrs(props => ({
@@ -12,17 +34,12 @@ export const MusicPlayer = styled.div.attrs(props => ({
     display: grid;
     grid-template-columns: 1fr 6fr 8fr;
     grid-template-rows: 1vh 13vh 2vh;
-    button{
-        background: transparent;
-    }button img:hover{
-        transform: scale(1.2);
-        transition: 0.3s;
-    }
     div.ContImage{
         grid-row: 1/3;
         grid-column: 2/3;
         background:no-repeat url(${PlayerBanner});
         background-size: cover;
+        background-position: center center ;
         width: 100%;
         height: 100%;
         border-radius: 15px;
