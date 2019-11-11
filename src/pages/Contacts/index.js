@@ -8,13 +8,16 @@ import Search from '../../components/Search';
 import ContactList from '../../components/ContactList';
 import SendIcon from '../../assets/images/icon_send.svg';
 
-import socket from 'socket.io-client'
+import io from 'socket.io-client'
+
 
 export default class Contacts extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+
+        this.socket = io('http://localhost:8080')
     }
 
     state = {
@@ -39,9 +42,6 @@ export default class Contacts extends Component {
 
         const messageSent = localStorage.getItem('mensagens');
         this.setState({ message: JSON.parse(messageSent) })
-
-        socket('http://localhost:8080')
-        socket.on('chat message', () => console.log('chat funfando'))
     }
 
     componentDidUpdate(_, prevState) {
@@ -67,9 +67,8 @@ export default class Contacts extends Component {
         var minute = new Date().getMinutes();
         console.log(hour + ':' + minute);
 
-        console.log(this.state.newmessage)
-        socket.emit('chat message', this.state.newmessage)
-
+        console.log(this.state.newmessage)        
+        this.socket.emit('chat message', this.state.newmessage)
     }
 
     handleDeleteStorage() {
