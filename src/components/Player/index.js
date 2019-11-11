@@ -22,14 +22,16 @@ export default class Player extends Component {
         const audio = document.querySelector("audio");
 
         const data = {
-            banner: {LinkinPark},
+            banner: LinkinPark,
             title: "In The End",
-            audio: {InTheEnd}
+            audio: InTheEnd
         }
 
-        banner.style.backgroundImage = `url(${data.banner.LinkinPark})`;
+        banner.style.backgroundImage = `url(${data.banner})`;
         title.innerText = data.title;
-        audio.src = data.audio.InTheEnd;
+        audio.src = data.audio;
+
+        audio.play();
     }
 
     render() {
