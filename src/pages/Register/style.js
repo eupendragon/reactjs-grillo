@@ -68,26 +68,23 @@ export const Tab = styled.h3.attrs(props => ({
 export const Submit = styled.button.attrs(props => ({
     type: "submit",
 }))`
- cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-content: center;
-        margin-top: -12px;
-        color: white;
-        font-size: 15px;
-        font-weight: 700;
-        width: 140px;
-        height: 45px;
-        border-radius: 25px;
-        background-color: #182026;
-        img{
-            margin: 7px;
-            width: 25px;
-        } span{
-            display: flex;
-            align-self: center;
-        }
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin-top: 25px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    width: 100%;
+    height: 45px;
+    border-radius: 25px;
+    background-color: #182026;
+    &:hover{
+        transition: 0.2s;
+        transform: scale(0.9);
+    }
 `;
 
 export const FormAll = styled.div`
@@ -239,7 +236,7 @@ export const FormOla = styled.div.attrs(props => ({
 
 export const FormLocal = styled.div.attrs(props => ({
     id: "tab2",
-    
+
 }))`
     display: none;
 `;
@@ -254,5 +251,35 @@ export const FormEntra = styled.div.attrs(props => ({
     id: "tab4",
 }))`
     display: none;
+`;
+
+export const ControlTab = styled.div.attrs(props => ({
+
+}))`
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .tabStyle1{
+        width: 100%;
+        justify-content: flex-end;
+    }
+    div{
+        display: flex;
+        align-items: center;
+        button{
+        background: transparent;
+            img{
+                width: 45px;
+            }
+        }
+        span{
+            margin: 15px;
+        }
+        button:hover{
+            transition: 0.3s;
+            transform: scale(1.2);
+        }
+    }
 `;
 

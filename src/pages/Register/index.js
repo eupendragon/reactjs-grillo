@@ -19,12 +19,16 @@ import {
     Contract,
     Submit,
     Space,
+    ControlTab,
     Tab
 } from './style';
 
 // Images
 import Icon from '../../assets/images/icon_next.svg';
 import Cam from '../../assets/images/icon_photo.svg';
+
+import Next from '../../assets/images/nextRegisterIcon.svg';
+import Back from '../../assets/images/backRegisterIcon.svg';
 
 import IconMusico from '../../assets/images/register_music.svg';
 import IconBanda from '../../assets/images/register_banda.svg';
@@ -47,9 +51,7 @@ class Register extends Component {
         nome: '',
         estado: '',
         instrumento: '',
-        outroInstrum: '',
         estilo: '',
-        outroEstilo: '',
         login: '',
         email: '',
         cpf: '',
@@ -72,9 +74,7 @@ class Register extends Component {
             nome,
             estado,
             instrumento,
-            outroInstrum,
             estilo,
-            outroEstilo,
             login,
             email,
             cpf,
@@ -86,38 +86,29 @@ class Register extends Component {
             email: email,
             login: login,
             password: senha,
-            // estado: estado,
-            // instrumento: instrumento,
-            // outroInstrum: outroInstrum,
-            // estilo: estilo,
-            // outroEstilo: outroEstilo,
-            // cpf: cpf,
+            estado: estado,
+            instrumento: instrumento,
+            estilo: estilo,
+            cpf: cpf,
         }
-        
-        await registerUser(user)
-            .then(result => console.log(result))
-            .catch(err => console.log(err))
-
-        this.props.history.push('/');
 
         const TermsOfUse = document.getElementById("AcceptTerms");
         const ConfSenha = document.getElementsByName("confSenha")[0].value;
 
-        if(TermsOfUse.checked != true){
+        if (TermsOfUse.checked != true) {
             alert("Atenção, Leia e aceite nossos termos de uso");
         }
-        if(user.senha != ConfSenha){
+        if (user.password != ConfSenha) {
             alert("As senhas não coincidem");
         }
-        else{
-            
-    
-            // await api.post('cadastro', user)
-    
-            // this.props.history.push('/');
-    
-            console.log("BemVindo");
-            console.log(user);
+        else {
+            await registerUser(user)
+                .then(result => console.log(result))
+                .catch(err => console.log(err))
+
+            this.props.history.push('/')
+
+            console.log("Conta criada com sucesso");
         }
     }
 
@@ -237,6 +228,7 @@ class Register extends Component {
                     <h3>CADASTRAR</h3>
                 </Logo>
                 <Content onSubmit={this.handleSubmit}>
+
                     <Stage>
                         <Tab id="tabTitle1" onClick={() => this.naxtTab(1)}>Olá</Tab>
                         <Tab id="tabTitle2" onClick={() => this.naxtTab(2)}>Local</Tab>
@@ -255,6 +247,7 @@ class Register extends Component {
                                     </label>
                                 </div>
                             </Photo>
+
                             <Form>
                                 <input
                                     name="nome"
@@ -291,10 +284,14 @@ class Register extends Component {
                                     <span>Fã!</span>
                                 </label>
                             </Type>
-                            <Submit onClick={() => this.naxtTab(2)}>
-                                <span>PRÓXIMO</span>
-                                <img src={Icon} />
-                            </Submit>
+                            <ControlTab >
+                                <div className="tabStyle1">
+                                    <span>Próximo</span>
+                                    <button onClick={() => this.naxtTab(2)} type="button">
+                                        <img src={Next} />
+                                    </button>
+                                </div>
+                            </ControlTab>
                         </FormAll>
                     </FormOla>
 
@@ -341,10 +338,20 @@ class Register extends Component {
                                     </select>
                                 </div>
                             </Form>
-                            <Submit onClick={() => this.naxtTab(3)}>
-                                <span>PRÓXIMO</span>
-                                <img src={Icon} />
-                            </Submit>
+                            <ControlTab>
+                                <div>
+                                    <button onClick={() => this.naxtTab(1)} type="button">
+                                        <img src={Back} />
+                                    </button>
+                                    <span>Voltar</span>
+                                </div>
+                                <div>
+                                    <span>Próximo</span>
+                                    <button onClick={() => this.naxtTab(3)} type="button">
+                                        <img src={Next} />
+                                    </button>
+                                </div>
+                            </ControlTab>
                         </FormAll>
                     </FormLocal>
 
@@ -390,12 +397,23 @@ class Register extends Component {
                                     </select>
                                 </div>
                             </Form>
-                            <Submit onClick={() => this.naxtTab(4)}>
-                                <span>PRÓXIMO</span>
-                                <img src={Icon} />
-                            </Submit>
+                            <ControlTab>
+                                <div>
+                                    <button onClick={() => this.naxtTab(2)} type="button">
+                                        <img src={Back} />
+                                    </button>
+                                    <span>Voltar</span>
+                                </div>
+                                <div>
+                                    <span>Próximo</span>
+                                    <button onClick={() => this.naxtTab(4)} type="button">
+                                        <img src={Next} />
+                                    </button>
+                                </div>
+                            </ControlTab>
                         </FormAll>
                     </FormVoce>
+
                     <FormEntra>
                         <FormAll>
                             <Image>
@@ -439,11 +457,18 @@ class Register extends Component {
                             </Form>
                             <Contract>
                                 <div>
-                                    <Terms id="AcceptTerms" type="checkbox"/>
+                                    <Terms id="AcceptTerms" type="checkbox" />
                                     <label for="termos">Ao prosseguir declaro que li, entendi e concordo com os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
                                 </div>
                             </Contract>
-
+                            <ControlTab>
+                                <div>
+                                    <button onClick={() => this.naxtTab(3)} type="button">
+                                        <img src={Back} />
+                                    </button>
+                                    <span>Voltar</span>
+                                </div>
+                            </ControlTab>
                             <Submit>
                                 <span>FINALIZAR</span>
                             </Submit>
