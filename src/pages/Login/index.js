@@ -40,9 +40,11 @@ class Login extends Component {
             password: senha
         }
         
-        await sessionStart(loginData)
-            .then(result => console.log(result))
-            .catch(err => console.log(err))
+        try {
+            console.log(await sessionStart(loginData))
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {

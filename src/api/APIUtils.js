@@ -5,24 +5,24 @@ const api = axios.create({
 });
 
 const request = {
-    POST: async (url, data) => {
-        await api.post(url, data)
+    POST: (url, data) => {
+        return api.post(url, data)
             .then(res => res)
             .catch(err => err)
     },
-    GET: async (url, data) => {
-        await api.get(url, data)
-            .then(res => res)
+    GET: (url, data) => {
+        return api.get(url, data)
+            .then(res => res.data)
             .catch(err => err)
     },
-    PUT: async (url, data) => {
-        await api.put(url, data)
-            .then(res => res)
+    PUT: (url, data) => {
+        return api.put(url, data)
+            .then(res => res.data)
             .catch(err => err)
     },
-    DELETE: async (url, data) => {
-        await api.delete(url, data)
-            .then(res => res)
+    DELETE: (url, data) => {
+        return api.delete(url, data)
+            .then(res => res.data)
             .catch(err => err)
     },
 }
