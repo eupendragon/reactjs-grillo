@@ -1,6 +1,5 @@
 // Dependencies
 import React, { Component } from 'react';
-import api from '../../service/api';
 // Styles
 import {
     Container,
@@ -32,6 +31,9 @@ import Musica from '../../assets/images/img_registerMusica.svg';
 import Entrar from '../../assets/images/img_registerEntrar.svg';
 
 import { Link } from 'react-router-dom';
+
+// services
+import { registerUser } from '../../api/UserAPI'
 
 class Register extends Component {
     state = {
@@ -69,23 +71,22 @@ class Register extends Component {
 
         const user = {
             nome: nome,
-            estado: estado,
-            instrumento: instrumento,
-            outroInstrum: outroInstrum,
-            estilo: estilo,
-            outroEstilo: outroEstilo,
-            login: login,
             email: email,
-            cpf: cpf,
-            senha: senha,
+            login: login,
+            password: senha,
+            // estado: estado,
+            // instrumento: instrumento,
+            // outroInstrum: outroInstrum,
+            // estilo: estilo,
+            // outroEstilo: outroEstilo,
+            // cpf: cpf,
         }
         
-        await api.post('cadastro', user)
+        await registerUser(user)
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
 
         this.props.history.push('/');
-
-        console.log(user);
-
     }
 
     render() {

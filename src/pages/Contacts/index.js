@@ -16,16 +16,17 @@ export default class Contacts extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-
-        this.socket = io('http://localhost:8080')
     }
 
     state = {
-        message: [],
+        message: [
+            ''
+        ],
         newmessage: ''
     }
 
     componentDidMount() {
+        this.socket = io('http://localhost:8080')
         if (!localStorage.getItem('mensagens')) {
 
             // Objeto  inical 
@@ -45,9 +46,18 @@ export default class Contacts extends Component {
     }
 
     componentDidUpdate(_, prevState) {
-        if (prevState != this.state.message) {
-            localStorage.setItem('mensagens', JSON.stringify(this.state.message));
-        }
+        this.socket.on('chat message', data => {
+            this.setState({
+                message: [
+                    ...this.state.message, data
+                ]
+            })
+        })
+        
+        // if (prevState != this.state.message) {
+        //     localStorage.setItem('mensagens', JSON.stringify(this.state.message));
+        // }
+        console.log(this.state.message)
     }
 
     handleInputChange = e => {
@@ -58,8 +68,8 @@ export default class Contacts extends Component {
         e.preventDefault();
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
+            this.socket.emit('chat message', this.state.newmessage)
             this.setState({
-                message: [...this.state.message, this.state.newmessage],
                 newmessage: ''
             })
         }
@@ -68,7 +78,6 @@ export default class Contacts extends Component {
         console.log(hour + ':' + minute);
 
         console.log(this.state.newmessage)        
-        this.socket.emit('chat message', this.state.newmessage)
     }
 
     handleDeleteStorage() {
@@ -99,9 +108,9 @@ export default class Contacts extends Component {
                         </Title>
                         <Chat>
                             <MessageSent>
-                                {this.state.message.map((mensagemDigitada) => (
-                                    <BoxSent key={mensagemDigitada}>
-                                        {mensagemDigitada}
+                                {this.state.message.map((key, index) => (
+                                    <BoxSent key={index}>
+                                        {key}
                                     </BoxSent>
                                 ))}
                             </MessageSent>

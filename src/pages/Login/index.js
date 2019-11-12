@@ -1,6 +1,5 @@
 // Dependencies
 import React, { Component } from 'react';
-import api from '../../service/api';
 
 import { Link } from 'react-router-dom';
 // Images
@@ -8,6 +7,9 @@ import logoGrillo from '../../assets/images/grilloLogo.svg';
 import welcomePharse from '../../assets/images/welcomePharse.svg';
 // Styles
 import { Container, Pharse, Enter, Form, Submit } from './style';
+
+// services
+import { sessionStart, registerUser } from '../../api/UserAPI'
 
 class Login extends Component {
 
@@ -33,12 +35,14 @@ class Login extends Component {
             senha,
         } = this.state;
 
-        const logar = {
+        const loginData = {
             login: login,
-            senha: senha
+            password: senha
         }
         
-        console.log(logar);
+        await sessionStart(loginData)
+            .then(result => console.log(result))
+            .catch(err => console.log(err))
     }
 
     render() {
