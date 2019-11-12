@@ -27,7 +27,7 @@ export default class Player extends Component {
             title: document.querySelector(".MusicName h3"),
             audio: document.querySelector("audio")
         }
-        const data = [
+        const musicList = [
             {
                 banner: `url(${LinkinPark}`,
                 title: "In The End",
@@ -45,16 +45,14 @@ export default class Player extends Component {
             }
         ]
 
-        player.banner.style.backgroundImage = data[2].banner;
-        player.title.innerText = data[2].title;
-        player.audio.src = data[2].audio;
+        player.banner.style.backgroundImage = musicList[2].banner;
+        player.title.innerText = musicList[2].title;
+        player.audio.src = musicList[2].audio;
 
         if(this.state.isPlay === false){
-            console.log(this.state.isPlay)
             player.audio.play();
         }
         else{
-            console.log(this.state.isPlay)
             player.audio.pause();
         }
 
@@ -71,7 +69,6 @@ export default class Player extends Component {
         }
 
         else {
-            console.log("Return")
         }
     }
 

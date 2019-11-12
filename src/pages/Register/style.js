@@ -52,8 +52,14 @@ export const Stage = styled.div`
         transition: 0.2s;
         filter: opacity(1);
     }
-
 `;
+
+export const Tab = styled.h3.attrs(props => ({
+
+}))`
+   
+`;
+
 export const Submit = styled.button.attrs(props => ({
     type: "submit",
 }))`
@@ -220,21 +226,26 @@ export const Terms = styled.input`
 `;
 
 export const FormOla = styled.div.attrs(props => ({
-    
+    id: "tab1",
 }))`
 `;
 
 export const FormLocal = styled.div.attrs(props => ({
+    id: "tab2",
     
 }))`
+    display: none;
 `;
 
 export const FormVoce = styled.div.attrs(props => ({
-    
+    id: "tab3",
 }))`
+    display: none;
 `;
 
 export const FormEntra = styled.div.attrs(props => ({
-    
+    id: "tab4",
 }))`
+    display: none;
 `;
+

@@ -34,14 +34,14 @@ export default class Contacts extends Component {
                 }
             ]
 
-            localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["Oiee"]))
+            localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["INICIE UMA CONVERSA"]))
         }
 
         const messageSent = localStorage.getItem('mensagens');
         this.setState({ message: JSON.parse(messageSent) })
 
-        socket('http://localhost:8080')
-        socket.on('chat message', () => console.log('chat funfando'))
+        // socket('http://localhost:8080')
+        // socket.on('chat message', () => console.log('chat funfando'))
     }
 
     componentDidUpdate(_, prevState) {
@@ -65,10 +65,8 @@ export default class Contacts extends Component {
         }
         var hour = new Date().getHours();
         var minute = new Date().getMinutes();
-        console.log(hour + ':' + minute);
 
-        console.log(this.state.newmessage)
-        socket.emit('chat message', this.state.newmessage)
+        // socket.emit('chat message', this.state.newmessage)
 
     }
 

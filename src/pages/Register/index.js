@@ -19,7 +19,8 @@ import {
     Terms,
     Contract,
     Submit,
-    Space
+    Space,
+    Tab
 } from './style';
 
 // Images
@@ -61,10 +62,6 @@ class Register extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    naxtTab(){
-        
-    }
-
     handleSubmit = async e => {
         e.preventDefault();
 
@@ -94,14 +91,48 @@ class Register extends Component {
             senha: senha,
         }
 
-        await api.post('cadastro', user)
+        // await api.post('cadastro', user)
 
-        this.props.history.push('/');
+        // this.props.history.push('/');
 
         console.log(user);
 
     }
 
+    naxtTab(tab) {
+        const Ola = document.getElementById("tab1");
+        const Local = document.getElementById("tab2");
+        const Voce = document.getElementById("tab3");
+        const Entra = document.getElementById("tab4");
+        if (tab == 1) {
+            Local.style.display = "none";
+            Voce.style.display = "none";
+            Entra.style.display = "none";
+
+            Ola.style.display = "block";
+        }
+        if (tab == 2) {
+            Ola.style.display = "none";
+            Voce.style.display = "none";
+            Entra.style.display = "none";
+
+            Local.style.display = "block";
+        }
+        if (tab == 3) {
+            Ola.style.display = "none";
+            Local.style.display = "none";
+            Entra.style.display = "none";
+
+            Voce.style.display = "Block";
+        }
+        if (tab == 4) {
+            Ola.style.display = "none";
+            Local.style.display = "none";
+            Voce.style.display = "none";
+
+            Entra.style.display = "Block";
+        }
+    }
 
     render() {
         return (
@@ -112,15 +143,10 @@ class Register extends Component {
                 </Logo>
                 <Content onSubmit={this.handleSubmit}>
                     <Stage>
-                        <h3>Olá</h3>
-
-                        <h3>Local</h3>
-                        <h3>Você</h3>
-                        <h3>Entrar</h3>
-                        <Submit onClick={this.nextTab}>
-                            <span>PRÓXIMO</span>
-                            <img src={Icon} />
-                        </Submit>
+                        <Tab onClick={() => this.naxtTab(1)}>Olá</Tab>
+                        <Tab onClick={() => this.naxtTab(2)}>Local</Tab>
+                        <Tab onClick={() => this.naxtTab(3)}>Você</Tab>
+                        <Tab onClick={() => this.naxtTab(4)}>Entrar</Tab>
                     </Stage>
 
                     <FormOla>
@@ -129,7 +155,6 @@ class Register extends Component {
                             <Photo>
                                 <div id="imagePerfil">
                                     <input onChange={this.handleImagChange} id="perfil" type="file" />
-
                                     <label for="perfil">
                                         <img src={Cam} />
                                     </label>
@@ -171,6 +196,10 @@ class Register extends Component {
                                     <span>Fã!</span>
                                 </label>
                             </Type>
+                            <Submit onClick={() => this.naxtTab(2)}>
+                                <span>PRÓXIMO</span>
+                                <img src={Icon} />
+                            </Submit>
                         </FormAll>
                     </FormOla>
 
@@ -217,6 +246,10 @@ class Register extends Component {
                                     </select>
                                 </div>
                             </Form>
+                            <Submit onClick={() => this.naxtTab(3)}>
+                                <span>PRÓXIMO</span>
+                                <img src={Icon} />
+                            </Submit>
                         </FormAll>
                     </FormLocal>
 
@@ -278,6 +311,10 @@ class Register extends Component {
                                     />
                                 </div>
                             </Form>
+                            <Submit onClick={() => this.naxtTab(4)}>
+                                <span>PRÓXIMO</span>
+                                <img src={Icon} />
+                            </Submit>
                         </FormAll>
                     </FormVoce>
                     <FormEntra>
@@ -327,6 +364,11 @@ class Register extends Component {
                                     <label for="termos">Ao prosseguir declaro que li, entendi e concordo com os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
                                 </div>
                             </Contract>
+
+                            <Submit>
+                                <span>FINALIZAR</span>
+                            </Submit>
+
                         </FormAll>
                     </FormEntra>
                 </Content>
