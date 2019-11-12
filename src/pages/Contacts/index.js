@@ -28,7 +28,7 @@ export default class Contacts extends Component {
                 {
                     mensagem: [
                     ],
-                    horario: '15:30'
+                    horario: '15:30' 
                 }
             ]
 
