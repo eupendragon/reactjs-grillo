@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Results, FilterOption } from './style';
 
-function resultsName() {
-    var val = "";
-    return val;
-}
-
 class FiltersMenu extends Component {
     render() {
         return (
             <Container>
-                <Results> Resultados para "{resultsName()}"</Results>
+                <Results> Resultados para ""</Results>
                 <FilterOption>
                     <button> BANDAS </button>
                     <button> MÚSICOS </button>

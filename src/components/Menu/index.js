@@ -26,7 +26,6 @@ class Menu extends Component {
                             </div>
                             <div className="infoProfile">
                                 <p className="nameProfile">Olá, Araya!</p>
-                                <span className="logoutProfile">SAIR</span>
                             </div>
                         </div>
                     </Link>

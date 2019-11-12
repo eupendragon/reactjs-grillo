@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Bar = styled.div`
+export const Bar = styled.form`
     display: flex;
     min-height: 50px;
     grid-row: 1/2;

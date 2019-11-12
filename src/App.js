@@ -2,8 +2,6 @@
 import React from 'react';
 import Routes from './Routes';
 
-import {Link} from 'react-router-dom'
-import Menu from './components/Menu';
 import "./styles.css";
 
 

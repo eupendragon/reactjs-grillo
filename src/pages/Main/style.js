@@ -70,7 +70,7 @@ export const Icons = styled.div`
         cursor: pointer;
         justify-content: center;
         align-items: center;
-        background: #42B5BC;
+        background: #797979;
         border-radius: 100%;
         margin: 15px;
         height: 50px;
