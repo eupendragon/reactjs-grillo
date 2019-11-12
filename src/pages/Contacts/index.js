@@ -8,7 +8,8 @@ import Search from '../../components/Search';
 import ContactList from '../../components/ContactList';
 import SendIcon from '../../assets/images/icon_send.svg';
 
-import socket from 'socket.io-client'
+import io from 'socket.io-client'
+
 
 export default class Contacts extends Component {
     constructor(props) {
@@ -18,11 +19,14 @@ export default class Contacts extends Component {
     }
 
     state = {
-        message: [],
+        message: [
+            ''
+        ],
         newmessage: ''
     }
 
     componentDidMount() {
+        this.socket = io('http://localhost:8080')
         if (!localStorage.getItem('mensagens')) {
 
             // Objeto  inical 
@@ -39,15 +43,21 @@ export default class Contacts extends Component {
 
         const messageSent = localStorage.getItem('mensagens');
         this.setState({ message: JSON.parse(messageSent) })
-
-        // socket('http://localhost:8080')
-        // socket.on('chat message', () => console.log('chat funfando'))
     }
 
     componentDidUpdate(_, prevState) {
-        if (prevState != this.state.message) {
-            localStorage.setItem('mensagens', JSON.stringify(this.state.message));
-        }
+        this.socket.on('chat message', data => {
+            this.setState({
+                message: [
+                    ...this.state.message, data
+                ]
+            })
+        })
+        
+        // if (prevState != this.state.message) {
+        //     localStorage.setItem('mensagens', JSON.stringify(this.state.message));
+        // }
+        console.log(this.state.message)
     }
 
     handleInputChange = e => {
@@ -58,15 +68,13 @@ export default class Contacts extends Component {
         e.preventDefault();
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
+            this.socket.emit('chat message', this.state.newmessage)
             this.setState({
-                message: [...this.state.message, this.state.newmessage],
                 newmessage: ''
             })
         }
         var hour = new Date().getHours();
         var minute = new Date().getMinutes();
-
-        // socket.emit('chat message', this.state.newmessage)
 
     }
 
@@ -98,9 +106,9 @@ export default class Contacts extends Component {
                         </Title>
                         <Chat>
                             <MessageSent>
-                                {this.state.message.map((mensagemDigitada) => (
-                                    <BoxSent key={mensagemDigitada}>
-                                        {mensagemDigitada}
+                                {this.state.message.map((key, index) => (
+                                    <BoxSent key={index}>
+                                        {key}
                                     </BoxSent>
                                 ))}
                             </MessageSent>
