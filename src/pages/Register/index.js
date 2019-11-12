@@ -64,7 +64,6 @@ class Register extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-
         const {
             nome,
             estado,
@@ -91,12 +90,25 @@ class Register extends Component {
             senha: senha,
         }
 
-        // await api.post('cadastro', user)
+        const TermsOfUse = document.getElementById("AcceptTerms");
+        const ConfSenha = document.getElementsByName("confSenha")[0].value;
 
-        // this.props.history.push('/');
-
-        console.log(user);
-
+        if(TermsOfUse.checked != true){
+            alert("Atenção, Leia e aceite nossos termos de uso");
+        }
+        if(user.senha != ConfSenha){
+            alert("As senhas não coincidem");
+        }
+        else{
+            
+    
+            // await api.post('cadastro', user)
+    
+            // this.props.history.push('/');
+    
+            console.log("BemVindo");
+            console.log(user);
+        }
     }
 
     naxtTab(tab) {
@@ -162,6 +174,7 @@ class Register extends Component {
             Entra.style.display = "Block";
         }
     }
+
     selectTypeProfile() {
         const CheckMusico = document.getElementById("musico");
         const CheckBanda = document.getElementById("banda");
@@ -416,7 +429,7 @@ class Register extends Component {
                             </Form>
                             <Contract>
                                 <div>
-                                    <Terms type="checkbox" id="termos" />
+                                    <Terms id="AcceptTerms" type="checkbox"/>
                                     <label for="termos">Ao prosseguir declaro que li, entendi e concordo com os <u>Termos de Uso</u> e de <u>Serviço</u> do Grillo.</label>
                                 </div>
                             </Contract>
