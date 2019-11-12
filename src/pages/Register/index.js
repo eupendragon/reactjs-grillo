@@ -104,18 +104,37 @@ class Register extends Component {
         const Local = document.getElementById("tab2");
         const Voce = document.getElementById("tab3");
         const Entra = document.getElementById("tab4");
+
+        const TitleOla = document.getElementById("tabTitle1");
+        const TitleLocal = document.getElementById("tabTitle2");
+        const TitleVoce = document.getElementById("tabTitle3");
+        const TitleEntra = document.getElementById("tabTitle4");
+
+        const TitleTabStyle = "color: black; border-bottom: 2px solid black; filter: opacity(1)";
+        const TitleTabResetStyle = "filter: opacity(0.2); border: none";
+
         if (tab == 1) {
             Local.style.display = "none";
             Voce.style.display = "none";
             Entra.style.display = "none";
 
+            TitleLocal.style.cssText = TitleTabResetStyle;
+            TitleVoce.style.cssText = TitleTabResetStyle;
+            TitleEntra.style.cssText = TitleTabResetStyle;
+
             Ola.style.display = "block";
+            TitleOla.style.cssText = TitleTabStyle;
         }
         if (tab == 2) {
             Ola.style.display = "none";
             Voce.style.display = "none";
             Entra.style.display = "none";
 
+            TitleOla.style.cssText = TitleTabResetStyle;
+            TitleVoce.style.cssText = TitleTabResetStyle;
+            TitleEntra.style.cssText = TitleTabResetStyle;
+
+            TitleLocal.style.cssText = TitleTabStyle;
             Local.style.display = "block";
         }
         if (tab == 3) {
@@ -123,6 +142,11 @@ class Register extends Component {
             Local.style.display = "none";
             Entra.style.display = "none";
 
+            TitleOla.style.cssText = TitleTabResetStyle;
+            TitleLocal.style.cssText = TitleTabResetStyle;
+            TitleEntra.style.cssText = TitleTabResetStyle;
+
+            TitleVoce.style.cssText = TitleTabStyle;
             Voce.style.display = "Block";
         }
         if (tab == 4) {
@@ -130,7 +154,55 @@ class Register extends Component {
             Local.style.display = "none";
             Voce.style.display = "none";
 
+            TitleOla.style.cssText = TitleTabResetStyle;
+            TitleLocal.style.cssText = TitleTabResetStyle;
+            TitleVoce.style.cssText = TitleTabResetStyle;
+
+            TitleEntra.style.cssText = TitleTabStyle;
             Entra.style.display = "Block";
+        }
+    }
+    selectTypeProfile() {
+        const CheckMusico = document.getElementById("musico");
+        const CheckBanda = document.getElementById("banda");
+        const CheckLugar = document.getElementById("lugar");
+        const CheckEvent = document.getElementById("evento");
+        const CheckFa = document.getElementById("fa");
+
+        const ImgMusico = document.getElementById("musicoImg")
+        const ImgBanda = document.getElementById("bandaImg")
+        const ImgLugar = document.getElementById("lugarImg")
+        const ImgEvent = document.getElementById("eventoImg")
+        const ImgFa = document.getElementById("faImg")
+
+        if (CheckMusico.checked == true) {
+            ImgMusico.style.cssText = "filter: opacity(1)";
+        } else {
+            ImgMusico.style.cssText = "filter: opacity(0.4)";
+        }
+
+        if (CheckBanda.checked == true) {
+            ImgBanda.style.cssText = "filter: opacity(1)";
+        } else {
+            ImgBanda.style.cssText = "filter: opacity(0.4)";
+        }
+
+        if (CheckLugar.checked == true) {
+            ImgLugar.style.cssText = "filter: opacity(1)";
+        } else {
+            ImgLugar.style.cssText = "filter: opacity(0.4)";
+        }
+
+        if (CheckEvent.checked == true) {
+            ImgEvent.style.cssText = "filter: opacity(1)";
+        } else {
+            ImgEvent.style.cssText = "filter: opacity(0.4)";
+        }
+
+        if (CheckFa.checked == true) {
+            ImgFa.style.cssText = "filter: opacity(1)";
+        } else {
+            ImgFa.style.cssText = "filter: opacity(0.4)";
         }
     }
 
@@ -143,10 +215,10 @@ class Register extends Component {
                 </Logo>
                 <Content onSubmit={this.handleSubmit}>
                     <Stage>
-                        <Tab onClick={() => this.naxtTab(1)}>Olá</Tab>
-                        <Tab onClick={() => this.naxtTab(2)}>Local</Tab>
-                        <Tab onClick={() => this.naxtTab(3)}>Você</Tab>
-                        <Tab onClick={() => this.naxtTab(4)}>Entrar</Tab>
+                        <Tab id="tabTitle1" onClick={() => this.naxtTab(1)}>Olá</Tab>
+                        <Tab id="tabTitle2" onClick={() => this.naxtTab(2)}>Local</Tab>
+                        <Tab id="tabTitle3" onClick={() => this.naxtTab(3)}>Você</Tab>
+                        <Tab id="tabTitle4" onClick={() => this.naxtTab(4)}>Entrar</Tab>
                     </Stage>
 
                     <FormOla>
@@ -171,28 +243,28 @@ class Register extends Component {
                             </Form>
                             <Type>
                                 <label for="musico">
-                                    <input id="musico" type="radio" name="tipo" />
-                                    <img src={IconMusico} />
+                                    <input onClick={this.selectTypeProfile} id="musico" type="radio" name="tipo" />
+                                    <img id="musicoImg" src={IconMusico} />
                                     <span>Musico</span>
                                 </label>
                                 <label for="banda">
-                                    <input id="banda" type="radio" name="tipo" />
-                                    <img src={IconBanda} />
+                                    <input onClick={this.selectTypeProfile} id="banda" type="radio" name="tipo" />
+                                    <img id="bandaImg" src={IconBanda} />
                                     <span>Banda</span>
                                 </label>
                                 <label for="lugar">
-                                    <input id="lugar" type="radio" name="tipo" />
-                                    <img src={IconPlace} />
-                                    <span>Lugar</span>
+                                    <input onClick={this.selectTypeProfile} id="lugar" type="radio" name="tipo" />
+                                    <img id="lugarImg" src={IconPlace} />
+                                    <span>Local</span>
                                 </label>
                                 <label for="evento">
-                                    <input id="evento" type="radio" name="tipo" />
-                                    <img src={IconOrg} />
+                                    <input onClick={this.selectTypeProfile} id="evento" type="radio" name="tipo" />
+                                    <img id="eventoImg" src={IconOrg} />
                                     <span>Eventos</span>
                                 </label>
                                 <label for="fa">
-                                    <input id="fa" type="radio" name="tipo" />
-                                    <img src={IconFan} />
+                                    <input onClick={this.selectTypeProfile} id="fa" type="radio" name="tipo" />
+                                    <img id="faImg" src={IconFan} />
                                     <span>Fã!</span>
                                 </label>
                             </Type>
@@ -278,14 +350,6 @@ class Register extends Component {
                                     </select>
                                 </div>
                                 <div>
-                                    <input
-                                        name="outroInstrum"
-                                        placeholder="Não encontrou? Digite aqui o nome do seu instrumento"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.outroInstrum}
-                                    />
-                                </div>
-                                <div>
                                     <label>Qual o seu estilo musical?*</label>
                                     <select name="estilo"
                                         onChange={this.handleInputChange}
@@ -301,14 +365,6 @@ class Register extends Component {
                                         <option value="Axé">Axé</option>
                                         <option value="Clássica">Clássica</option>
                                     </select>
-                                </div>
-                                <div>
-                                    <input
-                                        name="outroEstilo"
-                                        placeholder="Outro"
-                                        onChange={this.handleInputChange}
-                                        value={this.state.outroEstilo}
-                                    />
                                 </div>
                             </Form>
                             <Submit onClick={() => this.naxtTab(4)}>

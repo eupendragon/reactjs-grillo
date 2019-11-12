@@ -44,6 +44,10 @@ export const Stage = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    h3:first-child{
+        filter: opacity(1);
+        border-bottom: 2px solid black
+    }
     h3{
         filter: opacity(0.2);
         cursor: pointer;
@@ -52,6 +56,7 @@ export const Stage = styled.div`
         transition: 0.2s;
         filter: opacity(1);
     }
+
 `;
 
 export const Tab = styled.h3.attrs(props => ({
@@ -186,7 +191,9 @@ justify-content: space-between;
         img:hover & span:hover{
             filter: opacity(1);
         }
-
+        input{
+            display: none;
+        }
     }
 `;
 
