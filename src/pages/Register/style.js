@@ -218,3 +218,23 @@ export const Terms = styled.input`
     margin-right: 15px;
     width: 30px;
 `;
+
+export const FormOla = styled.div.attrs(props => ({
+    
+}))`
+`;
+
+export const FormLocal = styled.div.attrs(props => ({
+    
+}))`
+`;
+
+export const FormVoce = styled.div.attrs(props => ({
+    
+}))`
+`;
+
+export const FormEntra = styled.div.attrs(props => ({
+    
+}))`
+`;
