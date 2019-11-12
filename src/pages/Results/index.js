@@ -1,5 +1,5 @@
 // Dependecies
-import React from 'react';
+import React, { Component } from 'react';
 // Styles
 import { Container, Content, Info, ProfileInfo, More, Publi } from './style';
 // Components
@@ -8,28 +8,35 @@ import MainHeader from '../../components/MainHeader';
 import MusicList from '../../components/ProfileMusicsList';
 import EventList from '../../components/ProfileEventList';
 
-const Results = () => (
-    <Container>
-        <Menu />
-        <Content>
-            <MainHeader subTitle="MÚSICO" />
-            <Info>
-                <div>
-                    <h1>ALOK</h1>
-                    <p>SÃO PAULO | MÚSICO/DJ</p>
-                </div>
-            </Info>
-        </Content>
-        <ProfileInfo>
-            <MusicList />
-            <EventList />
-            <Sobre />
-            <Posts />
-        </ProfileInfo>
-    </Container>
-);
-export default Results;
+export default class Results extends Component {
+    render() {
+        return (
+            <Container>
+                <Menu />
+                <Content>
+                    <MainHeader subTitle="MÚSICO" />
+                    <BasicInfo/>
+                </Content>
+                <ProfileInfo>
+                    <MusicList />
+                    <EventList />
+                    <Sobre />
+                    <Posts />
+                </ProfileInfo>
+            </Container>
+        );
+    }
+}
 
+
+const BasicInfo = () => (
+    <Info>
+        <div>
+            <h1>Joao </h1>
+            <p>SÃO PAULO | MÚSICO/DJ</p>
+        </div>
+    </Info>
+);
 
 const Sobre = () => (
     <More>
@@ -39,10 +46,10 @@ const Sobre = () => (
             <p>Lorem its ipsum do not every no every in every
                 ipsum se every e inv nos do isnt ne
                 no more happness</p>
-            <button  className="viewMore">VER MAIS</button>
+            <button className="viewMore">VER MAIS</button>
         </div>
         <div>
-        
+
         </div>
     </More>
 );
@@ -57,10 +64,10 @@ const Posts = () => (
             <div className="postInfo">
                 <p>Há 6h horas atrás</p>
             </div>
-            <button  className="viewMore">VER MAIS</button>
+            <button className="viewMore">VER MAIS</button>
         </div>
         <div>
-        
+
         </div>
     </Publi>
 );

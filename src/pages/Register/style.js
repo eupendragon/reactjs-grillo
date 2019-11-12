@@ -44,6 +44,10 @@ export const Stage = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    h3:first-child{
+        filter: opacity(1);
+        border-bottom: 2px solid black
+    }
     h3{
         filter: opacity(0.2);
         cursor: pointer;
@@ -54,6 +58,13 @@ export const Stage = styled.div`
     }
 
 `;
+
+export const Tab = styled.h3.attrs(props => ({
+
+}))`
+   
+`;
+
 export const Submit = styled.button.attrs(props => ({
     type: "submit",
 }))`
@@ -123,12 +134,21 @@ export const Photo = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin: 60px auto;
-    width: 350px;
-    height: 350px;
-    border-radius: 15px;
-    background: #e6e6e6;
+
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        height: 350px;
+        border-radius: 15px;
+
+        background: #e6e6e6;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     img{
         width: 60px;
         display: flex;
@@ -171,7 +191,9 @@ justify-content: space-between;
         img:hover & span:hover{
             filter: opacity(1);
         }
-
+        input{
+            display: none;
+        }
     }
 `;
 
@@ -209,3 +231,28 @@ export const Terms = styled.input`
     margin-right: 15px;
     width: 30px;
 `;
+
+export const FormOla = styled.div.attrs(props => ({
+    id: "tab1",
+}))`
+`;
+
+export const FormLocal = styled.div.attrs(props => ({
+    id: "tab2",
+    
+}))`
+    display: none;
+`;
+
+export const FormVoce = styled.div.attrs(props => ({
+    id: "tab3",
+}))`
+    display: none;
+`;
+
+export const FormEntra = styled.div.attrs(props => ({
+    id: "tab4",
+}))`
+    display: none;
+`;
+

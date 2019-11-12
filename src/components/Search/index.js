@@ -4,25 +4,42 @@ import { Bar } from './style';
 
 
 class Search extends Component {
+
+    state = {
+        pesquisa: '',
+    }
+
     _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            const valor = document.getElementById('pesquisar').value;
-            window.location.href = "./filters"          
+            window.location.href = "./filters"
         }
     }
+
+    handleInputChange = e => {
+        this.setState({ pesquisa: e.target.value });
+        console.log(this.state.pesquisa);
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+    }   
+
     render() {
         return (
-            <Bar>
-                <input 
-                id="pesquisar" 
-                onKeyDown={this._handleKeyDown} 
-                type="text" 
-                placeholder="Procure por eventos, músicos ou bandas" />
-                
-                <button type="submit" className="submiter">
-                    <img src={iconSearch} />
-                </button>
-            </Bar>
+                <Bar onSubmit={this.handleSubmit}>
+                    <input
+                        id="pesquisar"
+                        onKeyDown={this._handleKeyDown}
+                        onChange={this.handleInputChange}
+                        value={this.state.pesquisa}
+                        name="pesquisa"
+                        type="text"
+                        placeholder="Procure por eventos, músicos ou bandas" />
+                    <button type="submit" className="submiter">
+                        <img src={iconSearch} />
+                    </button>
+                </Bar>
+        
         )
     }
 }

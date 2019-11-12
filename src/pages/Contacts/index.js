@@ -34,11 +34,11 @@ export default class Contacts extends Component {
                 {
                     mensagem: [
                     ],
-                    horario: '15:30'
+                    horario: '15:30' 
                 }
             ]
 
-            localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["Oiee"]))
+            localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["INICIE UMA CONVERSA"]))
         }
 
         const messageSent = localStorage.getItem('mensagens');
@@ -75,9 +75,7 @@ export default class Contacts extends Component {
         }
         var hour = new Date().getHours();
         var minute = new Date().getMinutes();
-        console.log(hour + ':' + minute);
 
-        console.log(this.state.newmessage)        
     }
 
     handleDeleteStorage() {

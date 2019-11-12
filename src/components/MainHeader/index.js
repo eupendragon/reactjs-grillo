@@ -4,11 +4,8 @@ import { Container, Place, YourPosition } from './style';
 
 
 class MainHeader extends Component {
-    
     render() {
-       
         return (
-            
             <Container>
                 <Place>
                     <h1>Grillo</h1>

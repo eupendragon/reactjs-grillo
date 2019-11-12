@@ -49,6 +49,27 @@ class NewPost extends Component {
         imageSpace.style.backgroundImage = "url("+myImage+")";
     }
 
+    selectPostType(){
+        const NewStyle = "background: #42B5BC"
+        const DefaultStyle = "background: #797979"
+
+        const EventCheck = document.getElementById("checkPostEvento");
+        const VagaCheck = document.getElementById("CheckPostVaga");
+        
+        const EventOp = document.getElementById("optionEvento");
+        const VagaOp = document.getElementById("optionVaga");
+
+        if(EventCheck.checked == true){
+            EventOp.style.cssText = NewStyle;
+        }else{
+            EventOp.style.cssText = DefaultStyle;
+        }
+        if(VagaCheck.checked == true){
+            VagaOp.style.cssText = NewStyle;
+        }else{
+            VagaOp.style.cssText = DefaultStyle;
+        }
+    }
     render() {
         return (
             <PostManager>
@@ -58,14 +79,14 @@ class NewPost extends Component {
                             <img src={YourProfile} alt="Ir para perfil" />
                         </button>
 
-                        <label htmlFor="evento">
-                            <input type="radio" id="evento" checked name="option" />
+                        <label onClick={this.selectPostType} id="optionEvento" for="checkPostEvento">
+                            <input type="radio" id="checkPostEvento" name="option" />
                             <img src={IconEvent} alt="Postar Evento" />
                         </label>
                         <span>EVENTO</span>
 
-                        <label htmlFor="vaga">
-                            <input type="radio" id="vaga" name="option" />
+                        <label onClick={this.selectPostType} id="optionVaga" htmlFor="CheckPostVaga">
+                            <input type="radio" id="CheckPostVaga" name="option" />
                             <img src={IconVaga} alt="Postar Vaga" />
                         </label>
                         <span>VAGA</span>

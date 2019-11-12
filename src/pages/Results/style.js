@@ -7,6 +7,9 @@ export const Container = styled.div`
     grid-template-rows: 3vh 370px auto;
     min-height: 100vh;
     background-color: #141A1F;
+    h1{
+        color: white;
+    }
 `;
 export const Content = styled.div`
     overflow-y: hidden;
