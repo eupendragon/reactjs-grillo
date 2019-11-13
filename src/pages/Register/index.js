@@ -23,8 +23,11 @@ import {
     Tab
 } from './style';
 
+// dependecies
+import InputMask from 'react-input-mask';
+import api from '../../services/api';
+
 // Images
-import Icon from '../../assets/images/icon_next.svg';
 import Cam from '../../assets/images/icon_photo.svg';
 
 import Next from '../../assets/images/nextRegisterIcon.svg';
@@ -40,14 +43,10 @@ import Local from '../../assets/images/img_registerLocal.svg';
 import Musica from '../../assets/images/img_registerMusica.svg';
 import Entrar from '../../assets/images/img_registerEntrar.svg';
 
-import { Link } from 'react-router-dom';
-
-// services
-import { registerUser } from '../../api/UserAPI'
-
 class Register extends Component {
 
     state = {
+        image: null,
         nome: '',
         estado: '',
         instrumento: '',
@@ -55,13 +54,15 @@ class Register extends Component {
         login: '',
         email: '',
         cpf: '',
-        senha: '',
+        password: '',
     };
 
     handleImagChange = e => {
         let imgProfile = document.getElementById('imagePerfil');
         let myImg = URL.createObjectURL(e.target.files[0]);
         imgProfile.style.backgroundImage = "url(" + myImg + ")";
+
+        this.setState({ image: e.target.files[0] });
     }
 
     handleInputChange = e => {
@@ -70,46 +71,37 @@ class Register extends Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        const {
-            nome,
-            estado,
-            instrumento,
-            estilo,
-            login,
-            email,
-            cpf,
-            senha
-        } = this.state;
 
-        const user = {
-            nome: nome,
-            email: email,
-            login: login,
-            password: senha,
-            estado: estado,
-            instrumento: instrumento,
-            estilo: estilo,
-            cpf: cpf,
-        }
+        // Desestruturando estado
+        const profileData = new FormData;
 
-        const TermsOfUse = document.getElementById("AcceptTerms");
-        const ConfSenha = document.getElementsByName("confSenha")[0].value;
+        profileData.append('image', this.state.image);
+        profileData.append('nome', this.state.nome);
+        profileData.append('estado', this.state.estado);
+        profileData.append('instrumento', this.state.instrumento);
+        profileData.append('estilo', this.state.estilo);
+        profileData.append('login', this.state.login);
+        profileData.append('email', this.state.email);
+        profileData.append('cpf', this.state.cpf);
+        profileData.append('password', this.state.password);
 
-        if (TermsOfUse.checked != true) {
-            alert("Atenção, Leia e aceite nossos termos de uso");
-        }
-        if (user.password != ConfSenha) {
-            alert("As senhas não coincidem");
-        }
-        else {
-            await registerUser(user)
-                .then(result => console.log(result))
-                .catch(err => console.log(err))
+        console.log(this.state)
+        await api.post('profiles', profileData);
+        this.props.history.push('/')
 
-            this.props.history.push('/')
+        // const TermsOfUse = document.getElementById("AcceptTerms");
+        // const ConfSenha = document.getElementsByName("confSenha")[0].value;
 
-            console.log("Conta criada com sucesso");
-        }
+        // if (TermsOfUse.checked != true) {
+        //     alert("Atenção, Leia e aceite nossos termos de uso");
+        // }
+        // if (password != ConfSenha) {
+        //     alert("As senhas não coincidem");
+        // }
+        // if (TermsOfUse.checked == true && password == ConfSenha) {
+        //     this.props.history.push('/')
+        //     console.log("Conta criada com sucesso");
+        // }
     }
 
     naxtTab(tab) {
@@ -367,6 +359,7 @@ class Register extends Component {
                                         name="instrumento"
                                         onChange={this.handleInputChange}
                                         value={this.state.instrumento}>
+                                        <option value="null">Selecione um instrumento</option>
                                         <option value="Violão">Violão</option>
                                         <option value="Guitarra">Guitarra</option>
                                         <option value="Bateria">Bateria</option>
@@ -377,6 +370,7 @@ class Register extends Component {
                                         <option value="Triangulo">Triangulo</option>
                                         <option value="Violino">Violino</option>
                                         <option value="Ukulelê">Ukulelê</option>
+                                        <option value="Outro">Outro</option>
                                     </select>
                                 </div>
                                 <div>
@@ -384,6 +378,7 @@ class Register extends Component {
                                     <select name="estilo"
                                         onChange={this.handleInputChange}
                                         value={this.state.estilo}>
+                                        <option value="null">Selecione seu estilo musical</option>
                                         <option value="Pop">Pop</option>
                                         <option value="Rag">Rag</option>
                                         <option value="Funk">Funk</option>
@@ -394,6 +389,7 @@ class Register extends Component {
                                         <option value="Góspel">Góspel</option>
                                         <option value="Axé">Axé</option>
                                         <option value="Clássica">Clássica</option>
+                                        <option value="Outro">Outro</option>
                                     </select>
                                 </div>
                             </Form>
@@ -435,16 +431,18 @@ class Register extends Component {
                                         type="email"
                                         placeholder="Seu e-mail"
                                     />
-                                    <input
+                                    <InputMask
                                         name="cpf"
                                         onChange={this.handleInputChange}
                                         value={this.state.cpf}
+                                        mask="999.999.999-99"
+                                        maskChar=""
                                         placeholder="CPF"
                                     />
                                     <input
-                                        name="senha"
+                                        name="password"
                                         onChange={this.handleInputChange}
-                                        value={this.state.senha}
+                                        value={this.state.password}
                                         type="password"
                                         placeholder="Senha secreta"
                                     />

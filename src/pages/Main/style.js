@@ -3,21 +3,23 @@ import styled from 'styled-components';
 export const Container = styled.div`
     display: grid;
     grid-template-columns: 3fr 10fr 1fr;
-    grid-template-rows: 3vh 97vh;
+    grid-template-rows: 3vh 97vh auto;
     background-color: #141A1F;
 `;
 export const Content = styled.div`
     background: #FFF;
+    max-height: 900px;
     overflow-y: hidden;
     border-radius: 10px 10px 0px 0px;
     grid-row: 2/3;
     grid-column: 2/3;
     padding: 40px;
+
 `;
 
 export const Scroll = styled.div`
     overflow-y: scroll;
-    height: 100%;
+    height: 85%;
 `;
 
 export const Posts = styled.div`
@@ -28,7 +30,9 @@ export const Posts = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
 `;
-export const PostManager = styled.form`
+export const PostManager = styled.form.attrs(props => ({
+    autoComplete: "off"
+}))`
     display:flex;
     flex-direction:column;
     margin: 15px 5vh;
@@ -86,7 +90,9 @@ export const Icons = styled.div`
     }
 `;
 
-export const PostForm = styled.div`
+export const PostForm = styled.div.attrs(props => ({
+    autoComplete: "off"
+}))`
     display: flex;
     flex: 1 1 0;
     background: #F2F2F2;
@@ -132,5 +138,102 @@ export const PostForm = styled.div`
         font-size: 18px;
         resize: none;
         height: 90%;
+    }
+`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// POST DISPLAY STYLE
+
+export const PostContainer = styled.div`
+    display: grid;
+    width: 600px;
+    margin: 4vh auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 300px 50px; 
+`;
+
+export const Head = styled.div`
+display: flex;
+grid-column:2/3; 
+grid-row: 1/2;
+section img{
+    width: 70px;
+}section{
+    display: flex;
+    flex-direction: row;
+    margin-right: 25px;
+    div{
+        margin: 15px;
+        display: flex;
+        flex-direction: column;
+        align-content:center;
+        justify-content:center;
+    }span:first-child{
+        font-size: 20px;
+        font-weight: bolder;
+    }span:nth-child(2){
+        color: #656565;
+        font-weight: bolder;
+    }
+}
+`;
+export const Body = styled.div`
+    grid-row: 2/3;
+    grid-column:2/3; 
+   
+    h3{
+        font-size: 25px;
+        margin: 5px 0;
+    }
+    p{
+        min-height: 270px;
+        max-height: 270px;
+        text-align: justify;
+    }
+    div{
+        display: flex;
+        justify-content: flex-end;
+        align-self: flex-end;
+    }
+    button{
+        background-color: #4289A2;
+        height: 35px;
+        border-radius:7px;
+        font-weight: bold;
+        color: white;
+        margin: 8px 0;
+        cursor: pointer;
+        width: 100%;
+    }
+`;
+export const Post = styled.div`
+    grid-column: 1/2;
+    grid-row: 1/2;
+    max-width: 20px;
+    div{
+        width: 280px;
+        height: 450px;
+        background-color: #f4f4ff;
+        overflow: hidden;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 160%;
+            height: 100%;
+            text-align: center;
+        }
     }
 `;

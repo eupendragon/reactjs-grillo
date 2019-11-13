@@ -46,18 +46,17 @@ export default class Contacts extends Component {
     }
 
     componentDidUpdate(_, prevState) {
-        this.socket.on('chat message', data => {
-            this.setState({
-                message: [
-                    ...this.state.message, data
-                ]
-            })
-        })
+        // this.socket.on('chat message', data => {
+        //     this.setState({
+        //         message: [
+        //             ...this.state.message, data
+        //         ]
+        //     })
+        // })
         
-        // if (prevState != this.state.message) {
-        //     localStorage.setItem('mensagens', JSON.stringify(this.state.message));
-        // }
-        console.log(this.state.message)
+        if (prevState != this.state.message) {
+            localStorage.setItem('mensagens', JSON.stringify(this.state.message));
+        }
     }
 
     handleInputChange = e => {
@@ -68,8 +67,9 @@ export default class Contacts extends Component {
         e.preventDefault();
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
-            this.socket.emit('chat message', this.state.newmessage)
+            // this.socket.emit('chat message', this.state.newmessage)
             this.setState({
+                message: [...this.state.message, this.state.newmessage],
                 newmessage: ''
             })
         }
