@@ -108,6 +108,7 @@ export const PostForm = styled.div.attrs(props => ({
         z-index: 999999999;
     }
     div:first-child{
+        flex-direction: column;
         background: #5555;
         background-size: cover;
         background-position: center;
@@ -123,15 +124,31 @@ export const PostForm = styled.div.attrs(props => ({
         flex-direction: column;
         flex: 1 1 0;
         margin: 15px;
+        section{
+            display: flex;
+        }
     }
     input, textarea{
+        margin-top: 15px;
         background: none;
         border: none;
     }
     input{
         font-weight: bolder;
         font-size: 28px;
-        margin:20px 0 20px;
+    }
+    section{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        input{
+            font-size: 18px;
+            font-weight: lighter;
+            color: #656565;
+        }
+    }
+    hr{
+        border-top: 2px solid rgba(0,0,0,0.2)
     }
     textarea{
         font-weight: lighter;
