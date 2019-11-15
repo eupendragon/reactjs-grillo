@@ -9,16 +9,22 @@ const userActions = {
     DELETE: '/user'
 }
 
-const registerUser = async data => {
-    return await request.POST(userActions, data)
+const registerUser = data => {
+    return request.POST(userActions.POST, data)
 }
 
-const sessionStart = async data => {
-    return await request.POST(userActions.LOGIN, data)
+const sessionStart = data => {
+    return request.POST(userActions.LOGIN, data)
 }
 
-const getUser = async userId => {
-    return await request.GET(`${userActions.GET}?id=${userId}`)
+const getUser = userId => {
+    return request.GET(`${userActions.GET}?id=${userId}`)
 }
 
-export { registerUser, sessionStart, getUser }
+const loginVerify = data => {
+    return request.POST(userActions.LOGIN, data)
+        .then(res => res.status === 202 ? true : false)
+        .catch(err => console.log(err))
+}
+
+export { registerUser, sessionStart, getUser, loginVerify }

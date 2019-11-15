@@ -9,7 +9,7 @@ import welcomePharse from '../../assets/images/welcomePharse.svg';
 import { Container, Pharse, Enter, Form, Submit } from './style';
 
 // services
-import { sessionStart, registerUser } from '../../api/UserAPI'
+import { loginVerify, registerUser } from '../../api/UserAPI'
 
 class Login extends Component {
 
@@ -40,9 +40,12 @@ class Login extends Component {
             password: senha
         }
         
-        await sessionStart(loginData)
-            .then(result => console.log(result))
-            .catch(err => console.log(err))
+        const session = await loginVerify(loginData)
+        if (session === true) {
+            window.location.href  = "/main"
+        } else {
+            alert('Dados Inválidos')
+        }
     }
 
     render() {
@@ -68,6 +71,7 @@ class Login extends Component {
                             name="login"
                             onChange={this.handleInputChange}
                             value={this.state.login}
+                            required
                         />
                         <input
                             placeholder="Senha"
@@ -75,6 +79,7 @@ class Login extends Component {
                             type="password"
                             onChange={this.handleInputChange}
                             value={this.state.senha}
+                            required
                         />
 
                         <Submit>ENTRAR</Submit>
