@@ -1,30 +1,30 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://localhost:3333',
 });
 
 const request = {
-    POST: async (url, data) => {
-        await api.post(url, data)
+    POST: (url, data) => {
+        return api.post(url, data)
             .then(res => res)
             .catch(err => err)
     },
-    GET: async (url, data) => {
-        await api.get(url, data)
+    GET: (url, data) => {
+        return api.get(url, data)
             .then(res => res)
             .catch(err => err)
     },
-    PUT: async (url, data) => {
-        await api.put(url, data)
+    PUT: (url, data) => {
+        return api.put(url, data)
             .then(res => res)
             .catch(err => err)
     },
-    DELETE: async (url, data) => {
-        await api.delete(url, data)
+    DELETE: (url, data) => {
+        return api.delete(url, data)
             .then(res => res)
             .catch(err => err)
     },
 }
 
-export { request };
+export { request, api };

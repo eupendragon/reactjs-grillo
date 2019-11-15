@@ -38,6 +38,7 @@ class Main extends Component {
     state = {
         feed: [],
     }
+
     async componentDidMount() {
         this.registerToSocket();
 
@@ -54,7 +55,7 @@ class Main extends Component {
             this.setState({ feed: [newPost, ...this.state.feed] });
         })
     }
-    
+
     render() {
         return (
             <Container>
@@ -124,7 +125,7 @@ class NewPost extends Component {
         await api.post('posts', postData);
 
         // Resetando estado atual
-        this.setState({postTitle: '', description: '', image: null})
+        this.setState({ postTitle: '', description: '', image: null })
 
         // Resetando background img
         let imageSpace = document.getElementById('postimage');
@@ -165,6 +166,7 @@ class NewPost extends Component {
         }
     }
 
+
     render() {
         return (
             <PostManager onSubmit={this.handleSubmit}>
@@ -197,6 +199,7 @@ class NewPost extends Component {
                             <label for="perfil">
                                 <img className="imgIcon" src={Cam} />
                             </label>
+                            <div>teste</div>
                         </div>
                         <div>
                             <input
@@ -214,6 +217,14 @@ class NewPost extends Component {
                                 name="description"
                                 maxlength="620"
                             />
+                            <hr />
+                            <section>
+                                <input
+                                    placeholder="Local"
+                                    type="text"
+                                />
+                                <input type="date" />
+                            </section>
                         </div>
                     </PostForm>
 
