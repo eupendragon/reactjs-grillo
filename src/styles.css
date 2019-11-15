@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     margin: 0;
     padding: 0;
@@ -57,4 +58,65 @@ button{
 
 button.submiter{
     background-color: transparent;
+=======
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body, textarea, input{
+    font-family: 'Product Sans', sans-serif;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-BoldItalic.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Bold.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Regular.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Product Sans';
+    src: url('./assets/fonts/ProductSans-Italic.woff2') format('woff2'),
+        url('./assets/fonts/ProductSans-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+.Link{
+    color: white;
+}
+.Link:link{
+    text-decoration: none;
+    color: white;
+}
+
+button{
+    border: none;
+    cursor: pointer;
+}
+
+button.submiter{
+    background-color: transparent;
+>>>>>>> 5cb28b84c238f448613f82ab6b33b2332d8e3ea8
 }
