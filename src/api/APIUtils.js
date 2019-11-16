@@ -26,5 +26,4 @@ const request = {
             .catch(err => err)
     },
 }
-
 export { request, api };
