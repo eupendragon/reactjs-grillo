@@ -25,7 +25,7 @@ import {
 
 // dependecies
 import InputMask from 'react-input-mask';
-import api from '../../services/api';
+import {api} from '../../api/APIUtils'
 
 // Images
 import Cam from '../../assets/images/icon_photo.svg';

@@ -28,13 +28,12 @@ import IconVaga from '../../assets/images/postIconVaga.svg';
 
 // Post
 import Profile from '../../assets/images/weekProfile.svg';
-import Flyer from '../../assets/images/flyerPost.svg';
 
 // dependecies
-import api from '../../services/api'
+import {api} from '../../api/APIUtils'
 import io from 'socket.io-client';
 
-class Main extends Component {
+export default class Main extends Component {
     state = {
         feed: [],
     }
@@ -96,8 +95,6 @@ class Main extends Component {
     }
 }
 
-export default Main;
-
 class NewPost extends Component {
     constructor(props) {
         super(props)
@@ -106,6 +103,8 @@ class NewPost extends Component {
             description: '',
             place: 'São Paulo - Brasil',
             author: 'João Araya',
+            placeEvent: '',
+            date: '',
             image: null,
         }
     }
@@ -113,23 +112,25 @@ class NewPost extends Component {
     handleSubmit = async e => {
         e.preventDefault();
 
-        const postData = new FormData
+        const postData = new FormData;
 
         postData.append('postTitle', this.state.postTitle);
-        postData.append('image', this.state.image);
-        postData.append('author', this.state.author);
-        postData.append('place', this.state.place);
         postData.append('description', this.state.description);
+        postData.append('author', this.state.author);
+        postData.append('placeEvent', this.state.placeEvent);
+        postData.append('date', this.state.date);
+        postData.append('place', this.state.place);
+        postData.append('image', this.state.image);
 
         // Mandando  Post para rota 'posts'
         await api.post('posts', postData);
 
         // Resetando estado atual
-        this.setState({ postTitle: '', description: '', image: null })
+        this.setState({ postTitle: '', description: '', placeEvent: '', date: '', image: null })
 
         // Resetando background img
         let imageSpace = document.getElementById('postimage');
-        imageSpace.style.background = "#bebebe";
+        imageSpace.style.backgroundImage = null;
     }
 
     handleInputChange = e => {
@@ -199,7 +200,6 @@ class NewPost extends Component {
                             <label for="perfil">
                                 <img className="imgIcon" src={Cam} />
                             </label>
-                            <div>teste</div>
                         </div>
                         <div>
                             <input
@@ -220,10 +220,18 @@ class NewPost extends Component {
                             <hr />
                             <section>
                                 <input
+                                    onChange={this.handleInputChange}
+                                    value={this.state.placeEvent}
                                     placeholder="Local"
                                     type="text"
+                                    name="placeEvent"
                                 />
-                                <input type="date" />
+                                <input 
+                                    onChange={this.handleInputChange}
+                                    value={this.state.date}
+                                    type="date"
+                                    name="date"
+                                />
                             </section>
                         </div>
                     </PostForm>

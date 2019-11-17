@@ -1,13 +1,23 @@
 import styled from 'styled-components';
+export {
+    Container,
+    Content,
+    Player,
+    Info,
+    Controls,
+    Item,
+    Title,
+    Playlist
+}
 
-export const Container = styled.div`
+const Container = styled.div`
     display: grid;
     overflow: hidden;
     grid-template-columns: 3fr 10fr 1fr;
     grid-template-rows: 3vh 97vh auto;
     background-color: #141A1F;
 `;
-export const Content = styled.div`
+const Content = styled.div`
     background-image: linear-gradient(to top, #BC8C6C, transparent 99%);
     border-radius: 10px 10px 0px 0px;
     grid-row: 2/3;
@@ -32,13 +42,14 @@ export const Content = styled.div`
 `;
 
 
-export const Player = styled.section`
+const Player = styled.section`
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 250px;
+    margin: 0 -15px;
 `;
-export const Info = styled.section`
+
+const Info = styled.section`
     display: flex;
     margin-left: 20px;
     justify-content: center;
@@ -54,7 +65,7 @@ export const Info = styled.section`
     }
 `;
 
-export const Controls = styled.aside`
+const Controls = styled.aside`
     display: flex;
     flex-direction: row;
     margin: 25px 0;
@@ -68,14 +79,14 @@ export const Controls = styled.aside`
     }
 `;
 
-export const Playlist = styled.section`
+const Playlist = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
     overflow-y: scroll;
     max-height: 40%;
 `;
-export const Item = styled.section`
+const Item = styled.section`
     margin: 7px 0;
     line-height: 40px;
     width: 100%;
@@ -93,3 +104,43 @@ export const Item = styled.section`
         color: white;
     }
 `;
+
+const Title = styled.section.attrs(props => ({
+
+}))`
+    display: flex;
+    align-items: center; 
+    div{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;    
+        margin: 15px 0;
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            background-color: transparent;
+            color: #FFF;
+            font-weight: bolder;
+            font-size: 23px;
+
+            border: 3px solid #FFF;
+            border-radius: 15px;
+            width: 205px;
+            height: 50px; 
+            img{
+                width: 25px;
+                margin-right: 8px;
+            }
+        }
+        button:hover{
+            color: #8D6D58;
+            transition: 0.2s;
+            background-color: #fff;
+        }
+    }
+`;
+
+

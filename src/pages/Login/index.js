@@ -15,7 +15,7 @@ class Login extends Component {
 
     state = {
         login: '',
-        senha: ''
+        password: ''
     };
 
     
@@ -32,12 +32,12 @@ class Login extends Component {
         
         const {
             login,
-            senha,
+            password,
         } = this.state;
 
         const loginData = {
             login: login,
-            password: senha
+            password: password
         }
         
         const session = await loginVerify(loginData)

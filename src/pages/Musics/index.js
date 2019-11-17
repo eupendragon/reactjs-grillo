@@ -1,5 +1,7 @@
 // Dependecies
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 // Styles
 import {
     Container,
@@ -8,6 +10,7 @@ import {
     Info,
     Controls,
     Item,
+    Title,
     Playlist
 } from './style';
 // Components
@@ -19,6 +22,7 @@ import Back from '../../assets/images/control_back.svg';
 import Play from '../../assets/images/control_play.svg';
 import Next from '../../assets/images/control_next.svg';
 import Loop from '../../assets/images/control_loop.svg';
+import CreateIcon from '../../assets/images/iconCreateMusic.svg';
 
 const Musics = () => (
     <Container>
@@ -38,7 +42,17 @@ const Musics = () => (
                     </Controls>
                 </Info>
             </Player>
-            <h3>Playlist</h3>
+            <Title>
+                <div>
+                    <h3>Playlist</h3>
+                    <Link class="Link" to="/createmusic">
+                        <button>
+                            <img src={CreateIcon} alt="create" />
+                            CRIAR
+                        </button>
+                    </Link>
+                </div>
+            </Title>
             <Playlist>
                 <Item>
                     <p>Nome da Músca</p>

@@ -10,6 +10,7 @@ import Results from './pages/Results';
 import Filters from './pages/Filters';
 import Events from './pages/Eventos';
 import Musics from './pages/Musics';
+import NewMusic from './pages/NewMusic';
 
 
 const Routes = () => (
@@ -22,6 +23,7 @@ const Routes = () => (
             <Route path="/contacts" component={Contacts} />
             <Route path="/events" component={Events} />
             <Route path="/musics" component={Musics} />
+            <Route path="/createmusic" component={NewMusic} />
             <Route path="/results" component={Results} />
             <Route path="/filters" component={Filters} />
         </Switch>
