@@ -26,5 +26,4 @@ const loginVerify = data => {
         .then(res => res.status === 202 ? true : false)
         .catch(err => console.log(err))
 }
-
 export { registerUser, sessionStart, getUser, loginVerify }
