@@ -9,42 +9,44 @@ import welcomePharse from '../../assets/images/welcomePharse.svg';
 import { Container, Pharse, Enter, Form, Submit } from './style';
 
 // services
-import { loginVerify, registerUser } from '../../api/UserAPI'
+import { api } from '../../api/APIUtils'
 
 class Login extends Component {
 
     state = {
         login: '',
-        password: ''
-    };
+        password: '',
+        loggedInUser: null,
 
-    
-    // https://blog.rocketseat.com.br/reactjs-autenticacao/
-
+    }
 
     handleInputChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     handleSubmit = async e => {
-
         e.preventDefault();
-        
-        const {
-            login,
-            password,
-        } = this.state;
+        try {
+            const {
+                login,
+                password,
+            } = this.state;
 
-        const loginData = {
-            login: login,
-            password: password
-        }
-        
-        const session = await loginVerify(loginData)
-        if (session === true) {
+            const response = await api.post('/auth', {
+                login: login,
+                password: password,
+            })
+
+            this.setState({loggedInUser: login})
+
+            const { user, token } = response.data
+            localStorage.setItem('@CacheGrillo:Token', token)
+            localStorage.setItem('@CacheGrillo:User', JSON.stringify(user))
+
             window.location.href  = "/main"
-        } else {
-            alert('Dados Inválidos')
+
+        } catch (err) {
+            console.log("Erro na requisição: " + err)
         }
     }
 
@@ -75,10 +77,10 @@ class Login extends Component {
                         />
                         <input
                             placeholder="Senha"
-                            name="senha"
+                            name="password"
                             type="password"
                             onChange={this.handleInputChange}
-                            value={this.state.senha}
+                            value={this.state.password}
                             required
                         />
 

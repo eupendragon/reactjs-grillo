@@ -1,7 +1,20 @@
 // Dependecies
 import React, { Component } from 'react';
+
 // Styles
-import { Container, Chat, Content, Chats, Title, Messages, Local, BoxSent, WritteMessage, MessageSent } from './style';
+import { 
+    Container,
+    Chat, 
+    Content, 
+    Chats, 
+    Title, 
+    Messages, 
+    Local, 
+    BoxSent, 
+    WritteMessage, 
+    MessageSent 
+} from './style';
+
 // Components
 import Menu from '../../components/Menu';
 import Search from '../../components/Search';
@@ -26,7 +39,7 @@ export default class Contacts extends Component {
     }
 
     componentDidMount() {
-        this.socket = io('http://localhost:8080')
+        this.socket = io('http://localhost:3333')
         if (!localStorage.getItem('mensagens')) {
 
             // Objeto  inical 

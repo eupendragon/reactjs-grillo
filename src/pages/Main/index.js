@@ -26,11 +26,8 @@ import YourProfile from '../../assets/images/arayaProfile.svg';
 import IconEvent from '../../assets/images/postIconEvento.svg';
 import IconVaga from '../../assets/images/postIconVaga.svg';
 
-// Post
-import Profile from '../../assets/images/weekProfile.svg';
-
 // dependecies
-import {api} from '../../api/APIUtils'
+import { api } from '../../api/APIUtils'
 import io from 'socket.io-client';
 
 export default class Main extends Component {
@@ -44,7 +41,6 @@ export default class Main extends Component {
         const response = await api.get('posts');
 
         this.setState({ feed: response.data })
-
     }
 
     registerToSocket() {
@@ -68,16 +64,16 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <img src={Profile} />
+                                            <img src={`http://localhost:3333/files/${postMap.user.image}`} />
                                             <div>
-                                                <span>{postMap.author}</span>
-                                                <span>{postMap.place}</span>
+                                                <span>{postMap.user.nome}</span>
+                                                <span>{postMap.user.estado}</span>
                                             </div>
                                         </section>
                                     </Head>
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
-                                        <p>{postMap.description}</p>
+                                        <p>{postMap.description} Data do evento = {postMap.date} Local do evento = {postMap.placeEvent}</p>
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
@@ -101,12 +97,20 @@ class NewPost extends Component {
         this.state = {
             postTitle: '',
             description: '',
-            place: 'São Paulo - Brasil',
-            author: 'João Araya',
             placeEvent: '',
             date: '',
             image: null,
         }
+    }
+
+    async componentDidMount(){
+        const token = await localStorage.getItem('@CacheGrillo:Token')
+        const user = JSON.parse(await localStorage.getItem('@CacheGrillo:User'))
+
+        if(token && user){
+            alert("Você está validado!")
+        }
+
     }
 
     handleSubmit = async e => {
@@ -131,6 +135,9 @@ class NewPost extends Component {
         // Resetando background img
         let imageSpace = document.getElementById('postimage');
         imageSpace.style.backgroundImage = null;
+
+        // recarregando a pagina - REFATORAR ESTA PARTE
+        window.location.reload();
     }
 
     handleInputChange = e => {
@@ -166,7 +173,6 @@ class NewPost extends Component {
             VagaOp.style.cssText = DefaultStyle;
         }
     }
-
 
     render() {
         return (
@@ -226,7 +232,7 @@ class NewPost extends Component {
                                     type="text"
                                     name="placeEvent"
                                 />
-                                <input 
+                                <input
                                     onChange={this.handleInputChange}
                                     value={this.state.date}
                                     type="date"
