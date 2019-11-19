@@ -17,7 +17,6 @@ class Login extends Component {
         login: '',
         password: '',
         loggedInUser: null,
-
     }
 
     handleInputChange = e => {

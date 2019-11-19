@@ -63,10 +63,16 @@ export const Icons = styled.div`
     input{
         display: none;
     }
-    button{
-        background: transparent;
+    div{
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        position: relative;
+        overflow: hidden;
         img{
-            width: 75px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
         }
     }
     label{
@@ -184,22 +190,35 @@ export const Head = styled.div`
 display: flex;
 grid-column:2/3; 
 grid-row: 1/2;
-section img{
-    width: 70px;
-}section{
+section{
     display: flex;
+    align-items: center;
     flex-direction: row;
     margin-right: 25px;
     div{
-        margin: 15px;
+        margin-right: 15px;
         display: flex;
         flex-direction: column;
         align-content:center;
         justify-content:center;
-    }span:first-child{
+    }
+    .circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .circle img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    span:first-child{
         font-size: 20px;
         font-weight: bolder;
-    }span:nth-child(2){
+    }
+    span:nth-child(2){
         color: #656565;
         font-weight: bolder;
     }

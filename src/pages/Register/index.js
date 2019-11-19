@@ -41,7 +41,7 @@ import IconPlace from '../../assets/images/register_place.svg';
 
 import Local from '../../assets/images/img_registerLocal.svg';
 import Musica from '../../assets/images/img_registerMusica.svg';
-import Entrar from '../../assets/images/img_registerEntrar.svg';
+import Entrar from '../../assets/images/img_registerEntrar2.svg';
 
 class Register extends Component {
 

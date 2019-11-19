@@ -14,21 +14,21 @@ import {
     Head,
     Post,
     PostManager
-} from './style';
+} from './style'
 
 // Components
-import Menu from '../../components/Menu';
-import MainHeader from '../../components/MainHeader';
+import Menu from '../../components/Menu'
+import MainHeader from '../../components/MainHeader'
 
 // images
-import Cam from '../../assets/images/icon_photo.svg';
-import YourProfile from '../../assets/images/arayaProfile.svg';
-import IconEvent from '../../assets/images/postIconEvento.svg';
-import IconVaga from '../../assets/images/postIconVaga.svg';
+import Cam from '../../assets/images/icon_photo.svg'
+import IconEvent from '../../assets/images/postIconEvento.svg'
+import IconVaga from '../../assets/images/postIconVaga.svg'
 
 // dependecies
 import { api } from '../../api/APIUtils'
-import io from 'socket.io-client';
+import { Link } from 'react-router-dom'
+import io from 'socket.io-client'
 
 export default class Main extends Component {
     state = {
@@ -64,7 +64,9 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <img src={`http://localhost:3333/files/${postMap.user.image}`} />
+                                            <div className="circle">
+                                                <img src={`http://localhost:3333/files/${postMap.user.image}`} />
+                                            </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
                                                 <span>{postMap.user.estado}</span>
@@ -100,15 +102,19 @@ class NewPost extends Component {
             placeEvent: '',
             date: '',
             image: null,
+            imageProfile: null,
         }
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         const token = await localStorage.getItem('@CacheGrillo:Token')
         const user = JSON.parse(await localStorage.getItem('@CacheGrillo:User'))
 
-        if(token && user){
-            alert("Você está validado!")
+        const userImage = `http://localhost:3333/files/${user.image}`
+        this.setState({ imageProfile: userImage })
+
+        if (token && user) {
+            console.log("Você está validado!")
         }
 
     }
@@ -179,9 +185,11 @@ class NewPost extends Component {
             <PostManager onSubmit={this.handleSubmit}>
                 <NewPostContainer>
                     <Icons>
-                        <button>
-                            <img src={YourProfile} alt="Ir para perfil" />
-                        </button>
+                        <div>
+                            <Link to="/profile" className="Link">
+                                <img src={this.state.imageProfile} alt="Ir para perfil" />
+                            </Link>
+                        </div>
 
                         <label onClick={this.selectPostType} id="optionEvento" for="checkPostEvento">
                             <input type="radio" id="checkPostEvento" name="option" />
