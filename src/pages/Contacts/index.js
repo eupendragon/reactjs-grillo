@@ -2,17 +2,17 @@
 import React, { Component } from 'react';
 
 // Styles
-import { 
+import {
     Container,
-    Chat, 
-    Content, 
-    Chats, 
-    Title, 
-    Messages, 
-    Local, 
-    BoxSent, 
-    WritteMessage, 
-    MessageSent 
+    Chat,
+    Content,
+    Chats,
+    Title,
+    Messages,
+    Local,
+    BoxSent,
+    WritteMessage,
+    MessageSent
 } from './style';
 
 // Components
@@ -32,14 +32,14 @@ export default class Contacts extends Component {
     }
 
     state = {
-        message: [
-            ''
-        ],
+        message: '',
         newmessage: ''
     }
 
     componentDidMount() {
-        this.socket = io('http://localhost:3333')
+        this.socket = io.connect('http://localhost:3333')
+        this.socket.emit('subscribe', 12)
+
         if (!localStorage.getItem('mensagens')) {
 
             // Objeto  inical 
@@ -47,18 +47,26 @@ export default class Contacts extends Component {
                 {
                     mensagem: [
                     ],
-                    horario: '15:30' 
+                    horario: '15:30'
                 }
             ]
 
-            localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["INICIE UMA CONVERSA"]))
+            // localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["INICIE UMA CONVERSA"]))
         }
 
-        const messageSent = localStorage.getItem('mensagens');
-        this.setState({ message: JSON.parse(messageSent) })
+        // const messageSent = localStorage.getItem('mensagens');
+        // this.setState({ message: JSON.parse(messageSent) })
     }
 
     componentDidUpdate(_, prevState) {
+
+        this.socket.on('conversation private post', data => {
+            this.setState({
+                message: data
+            })
+        })
+        
+        console.log(this.state.message)
         // this.socket.on('chat message', data => {
         //     this.setState({
         //         message: [
@@ -66,7 +74,7 @@ export default class Contacts extends Component {
         //         ]
         //     })
         // })
-        
+
         if (prevState != this.state.message) {
             localStorage.setItem('mensagens', JSON.stringify(this.state.message));
         }
@@ -74,15 +82,18 @@ export default class Contacts extends Component {
 
     handleInputChange = e => {
         this.setState({ newmessage: e.target.value })
+        console.log(this.state.newmessage)
     }
 
     handleSubmit = e => {
         e.preventDefault();
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
-            // this.socket.emit('chat message', this.state.newmessage)
+            this.socket.emit('send message', {
+                room: 12,
+                message: this.state.newmessage
+            })
             this.setState({
-                message: [...this.state.message, this.state.newmessage],
                 newmessage: ''
             })
         }
@@ -96,7 +107,7 @@ export default class Contacts extends Component {
         window.location.reload()
     }
 
-    scrollMessage(){
+    scrollMessage() {
     }
 
     render() {
@@ -119,14 +130,11 @@ export default class Contacts extends Component {
                         </Title>
                         <Chat>
                             <MessageSent>
-                                {this.state.message.map((key, index) => (
-                                    <BoxSent key={index}>
-                                        {key}
-                                    </BoxSent>
-                                ))}
+                                <BoxSent>
+                                    {this.state.message}
+                                </BoxSent>
                             </MessageSent>
                         </Chat>
-
                         <WritteMessage onSubmit={this.handleSubmit}>
                             <input id="mensagem"
                                 placeholder="Digite sua mensagem"
@@ -137,7 +145,6 @@ export default class Contacts extends Component {
                                 <img src={SendIcon} alt="enviar" />
                             </button>
                         </WritteMessage>
-
                     </Messages>
                 </Content>
             </Container >

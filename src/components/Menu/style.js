@@ -1,7 +1,15 @@
 import styled from 'styled-components'
 
 export const ContainerMenu = styled.div`
+    display: flex;
+    grid-row: 1/3;
+    grid-column: 1/2;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+
     div.tudo{
+        height: 150vh;
         grid-row: 2/3;
         grid-column: 1/2;
         display: flex;
@@ -51,8 +59,8 @@ export const ContainerMenu = styled.div`
     }
 
     .circle {
-        width: 25%;
-        height: 55px;
+        width: 70px;
+        height: 70px;
         border-radius: 100%;
         margin-right: 8px;
         position: relative;

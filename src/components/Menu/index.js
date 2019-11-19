@@ -8,14 +8,17 @@ import EventsIcon from '../../assets/images/menu-icon_events.svg';
 import MusicsIcon from '../../assets/images/menu-icon_musics.svg';
 
 import Player from '../../components/Player';
-import { api } from '../../api/APIUtils'
-
 import { ContainerMenu } from './style';
 
+import styled from 'styled-components'
+
 class Menu extends Component {
-    state = {
-        userName: '',
-        image: null
+    constructor(props){
+        super(props)
+            this.state = {
+                userName: '',
+                image: null
+            }
     }
     async componentDidMount() {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
