@@ -29,20 +29,30 @@ export default class Contacts extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-    }
 
-    state = {
-        message: '',
-        newmessage: ''
+        this.user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
+
+        this.state = {
+            message: [''],
+            newmessage: ''
+        }
+
+        this.socket = io.connect('http://localhost:3333')
+        this.socket.emit('subscribe', 10)
+
+        this.socket.on('conversation private post', data => {
+            this.setState(state => {
+                const message = state.message.push(data.message)
+                return message
+            })
+        })
     }
 
     componentDidMount() {
-        this.socket = io.connect('http://localhost:3333')
-        this.socket.emit('subscribe', 12)
 
         if (!localStorage.getItem('mensagens')) {
 
-            // Objeto  inical 
+            // Objeto  inicial 
             const msgauto = [
                 {
                     mensagem: [
@@ -59,12 +69,6 @@ export default class Contacts extends Component {
     }
 
     componentDidUpdate(_, prevState) {
-
-        this.socket.on('conversation private post', data => {
-            this.setState({
-                message: data
-            })
-        })
         
         console.log(this.state.message)
         // this.socket.on('chat message', data => {
@@ -90,7 +94,7 @@ export default class Contacts extends Component {
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
             this.socket.emit('send message', {
-                room: 12,
+                room: 10,
                 message: this.state.newmessage
             })
             this.setState({
@@ -130,9 +134,11 @@ export default class Contacts extends Component {
                         </Title>
                         <Chat>
                             <MessageSent>
-                                <BoxSent>
-                                    {this.state.message}
-                                </BoxSent>
+                                {this.state.message.map((key, index) => (
+                                    <BoxSent key={index}>
+                                        {key}
+                                    </BoxSent>
+                                ))}
                             </MessageSent>
                         </Chat>
                         <WritteMessage onSubmit={this.handleSubmit}>
