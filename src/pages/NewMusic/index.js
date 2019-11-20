@@ -1,5 +1,6 @@
 // Dependecies
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {api} from '../../api/APIUtils'
 // Styles
 import {
     Container,
@@ -7,21 +8,21 @@ import {
     NewMusic,
     MusicAndTitle,
     Capa
-} from './style';
+} from './style'
 
 // Components
-import Menu from '../../components/Menu';
-import MainHeader from '../../components/MainHeader';
+import Menu from '../../components/Menu'
+import MainHeader from '../../components/MainHeader'
 
 // Images
-import Cam from '../../assets/images/icon_photo.svg';
+import Cam from '../../assets/images/icon_photo.svg'
 
 
 export class Musics extends Component {
     state = {
         MusicTitle: '',
         MusicImage: null,
-        Music: null,
+        MyMusic: null,
     }
 
     handleImageChange = e => {
@@ -38,9 +39,19 @@ export class Musics extends Component {
         this.setState({ MyMusic: e.target.files[0] });
         Player.src = MyMusic;
     }
+    handleInputChange = e =>{
+        this.setState({MusicTitle: e.target.value})
+    }
+    handleSubmit = async e => {
+        e.preventDefault();
 
-    handleSubmit = e => {
-        e.prevetDefault();
+        const musicData = new FormData
+        musicData.append('musicName',this.state.MusicTitle)
+        musicData.append('image',this.state.MusicImage)
+        musicData.append('audio',this.state.MyMusic)
+
+        await api.post('music', musicData)
+
     }
 
     render() {
@@ -49,7 +60,7 @@ export class Musics extends Component {
                 <Menu />
                 <Content>
                     <MainHeader subTitle="MÚSICAS" />
-                    <NewMusic>
+                    <NewMusic onSubmit={this.handleSubmit}>
                         <Capa id="imageSpace">
                             <input
                                 onChange={this.handleImageChange}
@@ -62,7 +73,12 @@ export class Musics extends Component {
                             </label>
                         </Capa>
                         <MusicAndTitle>
-                            <input placeholder=" |  TITULO DA MÚSICA" type="text" />
+                            <input 
+                                onChange={this.handleInputChange} 
+                                value={this.state.MusicTitle}
+                                placeholder=" |  TITULO DA MÚSICA" 
+                                type="text"
+                            />
                             <audio controls src id="playerPreview"></audio>
                             <label htmlFor="music">
                                 <input 
@@ -72,6 +88,7 @@ export class Musics extends Component {
                                     accept=".mp3, .mp4, .mpeg"/>
                                 <span>Carregar Musica</span>
                             </label>
+                            <button type="submit">cadastrar</button>
                         </MusicAndTitle>
                     </NewMusic>
                 </Content>

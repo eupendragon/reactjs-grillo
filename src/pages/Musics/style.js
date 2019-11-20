@@ -103,6 +103,11 @@ const Item = styled.section`
         font-size: 20px;
         color: white;
     }
+    img{
+        width: 50px;
+        height: 50px;
+        background: red;
+    }
 `;
 
 const Title = styled.section.attrs(props => ({

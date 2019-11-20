@@ -39,7 +39,7 @@ export default class Main extends Component {
         this.registerToSocket();
 
         const response = await api.get('posts');
-
+        console.log(response.data)
         this.setState({ feed: response.data })
     }
 

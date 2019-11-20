@@ -7,5 +7,4 @@ const api = axios.create({
     headers: {'Authorization': `Bearer ${token}`},
 });
 
-
 export { api };
