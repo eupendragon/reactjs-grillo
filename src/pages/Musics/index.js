@@ -34,19 +34,10 @@ export default class Musics extends Component {
     }
 
     async componentDidMount() {
-        const response = await api.get('music');
+        const user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
+        const response = await api.get(`/music?userId=${user._id}`)
         this.setState({ musics: response.data })
-        console.log(this.state.musics)
-        console.log(this.state.musics[1].audio)
     }
-
-    // registerToSocket() {
-    //     // const socket = io('http://localhost:3333');
-
-    //     socket.on('music', NewMusic => {
-    //         this.setState({ musics: [NewMusic, ...this.state.musics] });
-    //     })
-    // }
 
     render() {
         return (

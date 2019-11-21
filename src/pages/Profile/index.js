@@ -10,17 +10,21 @@ import {
 import Menu from '../../components/Menu';
 import MainHeader from '../../components/MainHeader';
 export default class Profile extends Component {
-    state = {
-        image: null,
-        nome: '',
-        estado: '',
-        instrumento: '',
-        estilo: '',
-        login: '',
-        email: '',
-        cpf: '',
-        password: '',
+    constructor(props){
+        super(props)
+        this.state = {
+            image: null,
+            nome: '',
+            estado: '',
+            instrumento: '',
+            estilo: '',
+            login: '',
+            email: '',
+            cpf: '',
+            password: '',
+        }
     }
+    
     async componentDidMount() {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         this.setState({
