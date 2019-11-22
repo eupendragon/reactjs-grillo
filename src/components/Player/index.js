@@ -21,8 +21,8 @@ export default class Player extends Component {
 
     async componentDidMount(){
         const response = await api.get('music/all')
-        this.setState({playlist: response.data[0].audio})
-        console.log(this.state.playlist[0].audio)
+        console.log(response.data)
+        this.setState({playlist: response.data.audio})
     }
 
     handleChangeMusic() {
@@ -67,7 +67,7 @@ export default class Player extends Component {
                             <h3>Start</h3>
                         </div>
                         <div className="Controllers">
-                            <audio src={`http://localhost:3333/musics/${playlist}`}/>
+                            {/* <audio src={`http://localhost:3333/musics/${playlist}`}/> */}
                             <ControllButton
                                 onClick={() => this.controlButtonChange(3)}
                                 id="back" >

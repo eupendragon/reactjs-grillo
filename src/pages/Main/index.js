@@ -40,6 +40,7 @@ export default class Main extends Component {
 
         const response = await api.get('posts');
         this.setState({ feed: response.data })
+        console.log(response.data)
     }
 
     registerToSocket() {
