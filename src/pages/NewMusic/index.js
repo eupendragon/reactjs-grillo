@@ -68,7 +68,7 @@ export class Musics extends Component {
                                 type="file"
                                 accept=".png, .jpg, .jpeg"
                             />
-                            <label for="capa">
+                            <label htmlFor="capa">
                                 <img className="imgIcon" src={Cam} />
                             </label>
                         </Capa>
@@ -79,7 +79,7 @@ export class Musics extends Component {
                                 placeholder=" |  TITULO DA MÚSICA" 
                                 type="text"
                             />
-                            <audio controls src id="playerPreview"></audio>
+                            <audio controls id="playerPreview"></audio>
                             <label htmlFor="music">
                                 <input 
                                     onChange={this.handleMusicChange}

@@ -36,7 +36,7 @@ class Search extends Component {
                         type="text"
                         placeholder="Procure por eventos, músicos ou bandas" />
                     <button type="submit" className="submiter">
-                        <img src={iconSearch} />
+                        <img src={iconSearch} alt="pesquisar"/>
                     </button>
                 </Bar>
         

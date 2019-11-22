@@ -61,7 +61,7 @@ export default class Musics extends Component {
                     <Title>
                         <div>
                             <h3>Playlist</h3>
-                            <Link class="Link" to="/createmusic">
+                            <Link className="Link" to="/createmusic">
                                 <button>
                                     <img src={CreateIcon} alt="create" />
                                     CRIAR
@@ -71,10 +71,10 @@ export default class Musics extends Component {
                     </Title>
                     <Playlist>
                         {this.state.musics.map(itemMap => (
-                            <Item key={itemMap.id}>
+                            <Item key={itemMap._id}>
                                 <p>{itemMap.musicName}</p>
                                 <img src={`http://localhost:3333/files/${itemMap.image}`} alt=""/>
-                                <audio controls src={`http://localhost:3333/files/${itemMap.audio}`}/>
+                                <audio controls src={`http://localhost:3333/musics/${itemMap.audio}`}/>
                             </Item>
                         ))}
                     </Playlist>

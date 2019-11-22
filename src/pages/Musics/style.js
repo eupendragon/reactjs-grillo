@@ -1,14 +1,4 @@
 import styled from 'styled-components';
-export {
-    Container,
-    Content,
-    Player,
-    Info,
-    Controls,
-    Item,
-    Title,
-    Playlist
-}
 
 const Container = styled.div`
     display: grid;
@@ -148,4 +138,13 @@ const Title = styled.section.attrs(props => ({
     }
 `;
 
-
+export {
+    Container,
+    Content,
+    Player,
+    Info,
+    Controls,
+    Item,
+    Title,
+    Playlist
+}

@@ -1,11 +1,4 @@
 import styled from 'styled-components';
-export {
-    Container,
-    Content,
-    NewMusic,
-    Capa,
-    MusicAndTitle
-}
 
 const Container = styled.div`
     display: grid;
@@ -92,3 +85,11 @@ const MusicAndTitle = styled.section`
         }
     }
 `;
+
+export {
+    Container,
+    Content,
+    NewMusic,
+    Capa,
+    MusicAndTitle
+}

@@ -7,7 +7,7 @@ class ContactItem extends Component {
         return (
             <Item>
                 <Image>
-                    <img src={Profile} />
+                    <img src={Profile} alt="profile"/>
                 </Image>
                 <Friends>
                     <h3> Juhianna </h3>

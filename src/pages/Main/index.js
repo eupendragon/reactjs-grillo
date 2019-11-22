@@ -39,7 +39,6 @@ export default class Main extends Component {
         this.registerToSocket();
 
         const response = await api.get('posts');
-        console.log(response.data)
         this.setState({ feed: response.data })
     }
 
@@ -60,7 +59,7 @@ export default class Main extends Component {
                     <Scroll>
                         <NewPost />
                         {this.state.feed.map(postMap => (
-                            <Posts key={postMap.id}>
+                            <Posts key={postMap._id}>
                                 <PostContainer>
                                     <Head>
                                         <section>
@@ -191,7 +190,7 @@ class NewPost extends Component {
                             </Link>
                         </div>
 
-                        <label onClick={this.selectPostType} id="optionEvento" for="checkPostEvento">
+                        <label onClick={this.selectPostType} id="optionEvento" htmlFor="checkPostEvento">
                             <input type="radio" id="checkPostEvento" name="option" />
                             <img src={IconEvent} alt="Postar Evento" />
                         </label>
@@ -210,8 +209,9 @@ class NewPost extends Component {
                                 onChange={this.handleImageChange}
                                 id="perfil"
                                 type="file"
+                                required
                             />
-                            <label for="perfil">
+                            <label htmlFor="perfil">
                                 <img className="imgIcon" src={Cam} />
                             </label>
                         </div>
@@ -222,6 +222,7 @@ class NewPost extends Component {
                                 onChange={this.handleInputChange}
                                 value={this.state.postTitle}
                                 name="postTitle"
+                                required
                             />
                             <textarea
                                 placeholder="Descrição"
@@ -229,7 +230,8 @@ class NewPost extends Component {
                                 onChange={this.handleInputChange}
                                 value={this.state.description}
                                 name="description"
-                                maxlength="620"
+                                maxLength="620"
+                                required
                             />
                             <hr />
                             <section>
@@ -239,12 +241,15 @@ class NewPost extends Component {
                                     placeholder="Local"
                                     type="text"
                                     name="placeEvent"
+                                    required
                                 />
                                 <input
                                     onChange={this.handleInputChange}
                                     value={this.state.date}
                                     type="date"
                                     name="date"
+                                    min=""
+                                    required
                                 />
                             </section>
                         </div>

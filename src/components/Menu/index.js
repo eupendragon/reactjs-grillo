@@ -10,7 +10,7 @@ import MusicsIcon from '../../assets/images/menu-icon_musics.svg';
 import Player from '../../components/Player';
 import { ContainerMenu } from './style';
 
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 class Menu extends Component {
     constructor(props){
