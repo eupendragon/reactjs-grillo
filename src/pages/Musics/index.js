@@ -1,7 +1,6 @@
 // Dependecies
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 // Styles
 import {
     Container,
@@ -12,17 +11,19 @@ import {
     Item,
     Title,
     Playlist
-} from './style';
+} from './style'
+
 // Components
-import Menu from '../../components/Menu';
-import MainHeader from '../../components/MainHeader';
+import Menu from '../../components/Menu'
+import MainHeader from '../../components/MainHeader'
+
 // Images
-import Album from '../../assets/images/music_album.svg';
-import Back from '../../assets/images/control_back.svg';
-import Play from '../../assets/images/control_play.svg';
-import Next from '../../assets/images/control_next.svg';
-import Loop from '../../assets/images/control_loop.svg';
-import CreateIcon from '../../assets/images/iconCreateMusic.svg';
+import Album from '../../assets/images/music_album.svg'
+import Back from '../../assets/images/control_back.svg'
+import Play from '../../assets/images/control_play.svg'
+import Next from '../../assets/images/control_next.svg'
+import Loop from '../../assets/images/control_loop.svg'
+import CreateIcon from '../../assets/images/iconCreateMusic.svg'
 
 import { api } from '../../api/APIUtils'
 export default class Musics extends Component {
@@ -73,8 +74,7 @@ export default class Musics extends Component {
                         {this.state.musics.map(itemMap => (
                             <Item key={itemMap._id}>
                                 <p>{itemMap.musicName}</p>
-                                <img src={`http://localhost:3333/files/${itemMap.image}`} alt=""/>
-                                <audio controls src={`http://localhost:3333/musics/${itemMap.audio}`}/>
+                                <audio src={`http://localhost:3333/musics/${itemMap.audio}`}/>
                             </Item>
                         ))}
                     </Playlist>

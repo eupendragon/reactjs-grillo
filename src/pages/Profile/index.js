@@ -4,13 +4,15 @@ import React, { Component } from 'react';
 import {
     Container,
     Content,
-    YourInfo
+    YourInfo,
+    TextInfo,
+    Options
 } from './style';
 // Components
 import Menu from '../../components/Menu';
 import MainHeader from '../../components/MainHeader';
 export default class Profile extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             image: null,
@@ -24,7 +26,7 @@ export default class Profile extends Component {
             password: '',
         }
     }
-    
+
     async componentDidMount() {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         this.setState({
@@ -35,34 +37,52 @@ export default class Profile extends Component {
             estilo: user.estilo,
             login: user.login,
             email: user.email,
+            descricao: user.descricao,
         })
     }
 
-    logout(){
+    async logout() {
         window.location.href = "/"
-        localStorage.clear();
+        await localStorage.clear()
     }
 
     render() {
-        const { image, nome, estado, instrumento, estilo, login, email } = this.state
+        const { image, nome, estado, instrumento, estilo, descricao, email } = this.state
         return (
             <Container>
                 <Menu />
                 <Content>
-                    <MainHeader subTitle="SEU PERFIL" />
+                    <MainHeader subTitle={nome} />
                     <YourInfo>
                         <img src={image} alt="" />
-                        <div>
-                            <h1>{nome}</h1>
-                            <h2>{estado}</h2>
-                            <h2>{instrumento}</h2>
-                            <h2>{estilo}</h2>
-                            <h2>{email}</h2>
-                            <h2>{login}</h2>
-                            <h2>{estilo}</h2>
-                        </div>
-                        <button onClick={this.logout}>SAIR</button>
+                        <TextInfo>
+                            <section>
+                                <aside>
+                                    <label htmlFor="">Estado</label>
+                                    <input type="text" value={estado} />
+                                </aside>
+                                <aside>
+                                    <label htmlFor="">E-mail</label>
+                                    <input type="text" value={email} />
+                                </aside>
+                            </section>
+                            <section>
+                                <aside>
+                                    <label htmlFor="">Estilo Musical</label>
+                                    <input type="text" value={estilo} />
+                                </aside>
+                                <aside>
+                                    <label htmlFor="">Instrumento</label>
+                                    <input type="text" value={instrumento} />
+                                </aside>
+                            </section>
+                            <label htmlFor="">Sobre você</label>
+                            <textarea value={descricao}></textarea>
+                        </TextInfo>
                     </YourInfo>
+                        <Options>
+                            <button onClick={this.logout}>SAIR</button>
+                        </Options>
                 </Content>
             </Container>
         )

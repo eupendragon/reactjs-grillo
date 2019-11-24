@@ -16,7 +16,7 @@ const Content = styled.div`
     h1{
         color:white;
     }
-    div:nth-child(2){
+    div.header{
         background: white;
     }h4{
         color: #141A1F;

@@ -15,6 +15,7 @@ export const Container = styled.div`
         line-height: 51px;
         color: white;
         font-size: 18px;
+        text-transform: uppercase;
     }
 `;
 

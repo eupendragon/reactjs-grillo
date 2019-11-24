@@ -23,8 +23,9 @@ class Menu extends Component {
     async componentDidMount() {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         const { nome, image } = user
+        const [firstname] = nome.split(' ')
         const imageProfile = `http://localhost:3333/files/${image}`
-        this.setState({ userName: nome, image: imageProfile })
+        this.setState({ userName: firstname, image: imageProfile })
     }
     render() {
         return (

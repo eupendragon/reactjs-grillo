@@ -9,7 +9,7 @@ class MainHeader extends Component {
             <Container>
                 <Place>
                     <h1>Grillo</h1>
-                    <YourPosition>
+                    <YourPosition className="header">
                         <h4>{this.props.subTitle}</h4>
                     </YourPosition>
                 </Place>

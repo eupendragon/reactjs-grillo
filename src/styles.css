@@ -6,7 +6,7 @@
     user-select: none;
 }
 
-html, body, textarea, input{
+html, body, textarea, input, label, button, p, span{
     font-family: 'Product Sans', sans-serif;
     -webkit-font-smoothing: antialiased !important;
 }

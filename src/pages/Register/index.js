@@ -104,7 +104,7 @@ class Register extends Component {
         // }
     }
 
-    naxtTab(tab) {
+    nextTab(tab) {
         const Ola = document.getElementById("tab1");
         const Local = document.getElementById("tab2");
         const Voce = document.getElementById("tab3");
@@ -222,10 +222,10 @@ class Register extends Component {
                 <Content onSubmit={this.handleSubmit}>
 
                     <Stage>
-                        <Tab id="tabTitle1" onClick={() => this.naxtTab(1)}>Olá</Tab>
-                        <Tab id="tabTitle2" onClick={() => this.naxtTab(2)}>Local</Tab>
-                        <Tab id="tabTitle3" onClick={() => this.naxtTab(3)}>Você</Tab>
-                        <Tab id="tabTitle4" onClick={() => this.naxtTab(4)}>Entrar</Tab>
+                        <Tab id="tabTitle1" onClick={() => this.nextTab(1)}>Olá</Tab>
+                        <Tab id="tabTitle2" onClick={() => this.nextTab(2)}>Local</Tab>
+                        <Tab id="tabTitle3" onClick={() => this.nextTab(3)}>Você</Tab>
+                        <Tab id="tabTitle4" onClick={() => this.nextTab(4)}>Entrar</Tab>
                     </Stage>
 
                     <FormOla>
@@ -279,7 +279,7 @@ class Register extends Component {
                             <ControlTab >
                                 <div className="tabStyle1">
                                     <span>Próximo</span>
-                                    <button onClick={() => this.naxtTab(2)} type="button">
+                                    <button onClick={() => this.nextTab(2)} type="button">
                                         <img src={Next} />
                                     </button>
                                 </div>
@@ -332,14 +332,14 @@ class Register extends Component {
                             </Form>
                             <ControlTab>
                                 <div>
-                                    <button onClick={() => this.naxtTab(1)} type="button">
+                                    <button onClick={() => this.nextTab(1)} type="button">
                                         <img src={Back} />
                                     </button>
                                     <span>Voltar</span>
                                 </div>
                                 <div>
                                     <span>Próximo</span>
-                                    <button onClick={() => this.naxtTab(3)} type="button">
+                                    <button onClick={() => this.nextTab(3)} type="button">
                                         <img src={Next} />
                                     </button>
                                 </div>
@@ -395,14 +395,14 @@ class Register extends Component {
                             </Form>
                             <ControlTab>
                                 <div>
-                                    <button onClick={() => this.naxtTab(2)} type="button">
+                                    <button onClick={() => this.nextTab(2)} type="button">
                                         <img src={Back} />
                                     </button>
                                     <span>Voltar</span>
                                 </div>
                                 <div>
                                     <span>Próximo</span>
-                                    <button onClick={() => this.naxtTab(4)} type="button">
+                                    <button onClick={() => this.nextTab(4)} type="button">
                                         <img src={Next} />
                                     </button>
                                 </div>
@@ -461,7 +461,7 @@ class Register extends Component {
                             </Contract>
                             <ControlTab>
                                 <div>
-                                    <button onClick={() => this.naxtTab(3)} type="button">
+                                    <button onClick={() => this.nextTab(3)} type="button">
                                         <img src={Back} />
                                     </button>
                                     <span>Voltar</span>

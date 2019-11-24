@@ -16,7 +16,7 @@ const Content = styled.div`
     h1{
         color:white;
     }
-    div:nth-child(2){
+    div.header{
         background: white;
     }h4{
         color: #141A1F;
@@ -31,10 +31,118 @@ const Content = styled.div`
     }
 `;
 
+const Tabs = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px 0 20px;
+    h2:first-child{
+        filter: opacity(1);
+        border-bottom: 2px solid #FFF;
+    }
+    h2{
+        color: #FFF;
+        filter: opacity(0.3);
+        cursor: pointer;
+    }
+    h2:hover{
+        transition: 0.2s;
+        filter: opacity(1);
+    }
+`;
+
 const NewMusic = styled.form.attrs(props => ({
     autoComplete: "off"
 }))`
     display: flex;
+`;
+// =========================================================
+const FormMusic = styled.div.attrs(props => ({
+    id: 'tab1'
+}))`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    div.DefaultStyle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+`;
+
+const MusicUpload = styled.div`
+    margin-top: 20px;
+    input[type="file"]{
+        display: none;
+    }
+    button{
+        width: 230px;
+        height: 45px;
+        background-color: rgba(0,0,0,0.2);
+        color: #FFF;
+        font-size: 20px;
+        border-radius: 5px;
+        font-weight: lighter;
+        label{
+            cursor: pointer;
+        }
+    }
+`;
+
+const ProgressCircle = styled.div`
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;  
+    background-color: rgba(255,255,255,0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    div{
+        background-color: #E58342;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            cursor: pointer;
+        }
+        img:hover{
+            transition: 0.3s;
+            transform: scale(1.1);
+        }
+    }
+`;
+
+// =========================================================
+const FormArt = styled.div.attrs(props => ({
+    id: 'tab2'
+}))`
+    margin-top: 20px;
+    display: none;
+    width: 100%;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        button{
+            width: 350px;
+            height: 45px;
+            background-color: rgba(0,0,0,0.2);
+            color: #FFF;
+            font-size: 20px;
+            border-radius: 5px;
+            font-weight: lighter;
+            margin-top: 20px;
+        }
+        label{
+            cursor: pointer;
+        }
+    }
 `;
 
 const Capa = styled.div.attrs(props => ({
@@ -46,7 +154,6 @@ const Capa = styled.div.attrs(props => ({
     background-color: rgba(0,0,0,0.3);
     background-position: center;
     background-size: cover;
-    
     width: 300px;
     height: 300px;
 
@@ -59,29 +166,57 @@ const Capa = styled.div.attrs(props => ({
         transform: scale(1.3);
         transition: 0.3s;
     }
+    
 `;
-
-const MusicAndTitle = styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 5px 25px;
-    input{
-        border: none;
-        color: #FFF;
+// =========================================================
+const FormName = styled.div.attrs(props => ({
+    id: 'tab3'
+}))`
+    margin-top: 20px;
+    display: none;
+    width: 100%;
+    div{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
     }
-    input[type="text"]{
-        font-size: 35px;
-        font-weight: bolder;
+    section{
+        min-width: 300px;
+        min-height: 300px;
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background-position: center;
+        background-size: cover;
     }
-    label{
-        color: #FFF;
-        background-color: #BC8C6C;
-        cursor: pointer;
-        height: 50px;
-        border-radius: 5px;
-        input[type="file"]{
-            display: none;
+    aside{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin-left: 20px;
+        input{
+            width: 100%;
+            border: none;
+            background-color: #FFF;
+            height: 50px;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+        input::placeholder{
+            font-weight: lighter;
+            color: #353535;
+        }
+        button{
+            color: #FFF;
+            font-size: 15px;
+            margin-top: 20px;
+            background-color: rgba(0,0,0,0.2) ;
+            height: 50px;
+            width: 175px;
+            border-radius: 10px;
+            font-weight: bold;
         }
     }
 `;
@@ -89,7 +224,12 @@ const MusicAndTitle = styled.section`
 export {
     Container,
     Content,
+    Tabs,
     NewMusic,
+    FormMusic,
+    ProgressCircle,
+    MusicUpload,
+    FormArt,
+    FormName,
     Capa,
-    MusicAndTitle
 }
