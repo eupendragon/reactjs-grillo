@@ -45,6 +45,7 @@ class Login extends Component {
             window.location.href  = "/main"
 
         } catch (err) {
+            alert('Dados Inválidos!')
             console.log("Erro na requisição: " + err)
         }
     }
