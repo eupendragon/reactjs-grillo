@@ -44,7 +44,7 @@ export default class Main extends Component {
     }
 
     registerToSocket() {
-        const socket = io('http://localhost:3333');
+        const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
 
         socket.on('post', newPost => {
             this.setState({ feed: [newPost, ...this.state.feed] });
@@ -64,7 +64,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.user.image}`+")"}} className="circle">
+                                            <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}`+")"}} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -78,7 +78,7 @@ export default class Main extends Component {
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
-                                        <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.image}`+")"}}>
+                                        <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}`+")"}}>
                                         </div>
                                     </Post>
                                 </PostContainer>
@@ -108,7 +108,7 @@ class NewPost extends Component {
         const token = await localStorage.getItem('@CacheGrillo:Token')
         const user = JSON.parse(await localStorage.getItem('@CacheGrillo:User'))
 
-        const userImage = `http://localhost:3333/files/${user.image}`
+        const userImage = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${user.image}`
         this.setState({ imageProfile: userImage })
 
         if (token && user) {

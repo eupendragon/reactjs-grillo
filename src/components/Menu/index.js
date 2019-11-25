@@ -24,7 +24,7 @@ class Menu extends Component {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         const { nome, image } = user
         const [firstname] = nome.split(' ')
-        const imageProfile = `http://localhost:3333/files/${image}`
+        const imageProfile = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${image}`
         this.setState({ userName: firstname, image: imageProfile })
     }
     render() {
