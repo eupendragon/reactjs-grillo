@@ -30,9 +30,11 @@ export const Content = styled.div`
 export const YourInfo = styled.div`
     display: flex;
     flex-direction: row;
-    img{
-        width: 300px;
-        height: 300px;
+    div:first-child{
+        min-width: 300px;
+        min-height: 300px;
+        background-position: center;
+        background-size: cover;
         border-radius: 15px;
     }
     div{

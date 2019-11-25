@@ -59,6 +59,8 @@ export const ContainerMenu = styled.div`
     }
 
     .circle {
+        background-size: cover;
+        background-position: center;
         width: 70px;
         height: 70px;
         border-radius: 100%;

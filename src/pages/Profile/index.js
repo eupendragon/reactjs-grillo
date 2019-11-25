@@ -54,7 +54,7 @@ export default class Profile extends Component {
                 <Content>
                     <MainHeader subTitle={nome} />
                     <YourInfo>
-                        <img src={image} alt="" />
+                        <div style={{backgroundImage: "url(" + image + ")", width: '300px'}}></div>
                         <TextInfo>
                             <section>
                                 <aside>

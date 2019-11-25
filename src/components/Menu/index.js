@@ -28,6 +28,7 @@ class Menu extends Component {
         this.setState({ userName: firstname, image: imageProfile })
     }
     render() {
+        const { userName, image } = this.state
         return (
             <ContainerMenu>
                 <div className="tudo">
@@ -35,11 +36,10 @@ class Menu extends Component {
                         {/* PERFIL */}
                         <Link to="./profile" className="Link">
                             <div className="profile opSelect">
-                                <div className="circle">
-                                    <img src={this.state.image} />
+                                <div style={{backgroundImage: "url("+image+")"}} className="circle">
                                 </div>
                                 <div className="infoProfile">
-                                    <p className="nameProfile">Olá, {this.state.userName}</p>
+                                    <p className="nameProfile">Olá, {userName}</p>
                                 </div>
                             </div>
                         </Link>

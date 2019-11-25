@@ -21,37 +21,36 @@ export default class Player extends Component {
 
     async componentDidMount(){
         const response = await api.get('music/all')
-        console.log(response.data)
-        this.setState({playlist: response.data.audio})
+        this.setState({playlist: response.data})
+        
     }
 
-    handleChangeMusic() {
+    controlButtonChange(action) {
+        const {playlist} = this.state
+        
         const player = {
             banner: document.querySelector(".ContImage"),
             title: document.querySelector(".MusicName h3"),
             audio: document.querySelector("audio")
         }
 
-        if (this.state.isPlay === false) {
-            player.audio.play();
-        }
-        else {
-            player.audio.pause();
-        }
-
-    }
-
-    controlButtonChange(action) {
+        player.audio.src =  `http://localhost:3333/musics/${playlist[0].audio}`
+        
+        // Play - Pause
         if (action == 1) {
-            this.handleChangeMusic();
             this.setState({ isPlay: !this.state.isPlay })
+            if (this.state.isPlay === false) {
+                player.audio.play();
+            }
+            else {
+                player.audio.pause();
+            }
         }
-
+        // Next
         else if (action == 2) {
-            this.handleChangeMusic(1);
         }
-
-        else {
+        // Back
+        else if (action == 3){
         }
     }
 
@@ -67,7 +66,7 @@ export default class Player extends Component {
                             <h3>Start</h3>
                         </div>
                         <div className="Controllers">
-                            {/* <audio src={`http://localhost:3333/musics/${playlist}`}/> */}
+                            <audio controls />
                             <ControllButton
                                 onClick={() => this.controlButtonChange(3)}
                                 id="back" >
