@@ -64,16 +64,13 @@ export const Icons = styled.div`
         display: none;
     }
     div{
+        background-size: cover;
+        background-position: center;
         width: 70px;
         height: 70px;
         border-radius: 100%;
         position: relative;
         overflow: hidden;
-        img{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
     }
     label{
         display: flex;
@@ -203,6 +200,9 @@ section{
         justify-content:center;
     }
     .circle {
+        background: red;
+        background-size: cover;
+        background-position: center;
         width: 70px;
         height: 70px;
         border-radius: 100%;
@@ -258,6 +258,8 @@ export const Post = styled.div`
     grid-row: 1/2;
     max-width: 20px;
     div{
+        background-position: center;
+        background-size: cover;
         width: 280px;
         height: 450px;
         background-color: #f4f4ff;
@@ -266,10 +268,5 @@ export const Post = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        img{
-            width: 160%;
-            height: 100%;
-            text-align: center;
-        }
     }
 `;

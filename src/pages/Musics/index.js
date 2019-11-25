@@ -46,9 +46,19 @@ export default class Musics extends Component {
     }
 
     async componentDidMount() {
+        let Title = document.getElementById('musicTitle')
+        let Banner = document.getElementById('musicBanner')
+        let Player = document.getElementById('musicPlayer')        
+
         const user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         const response = await api.get(`/music?userId=${user._id}`)
         this.setState({ musics: response.data })
+
+        const {musics} = this.state
+        let Image = `http://localhost:3333/files/${musics[0].image}`
+        Title.textContent = musics[0].musicName
+        Player.src = `http://localhost:3333/musics/${musics[0].audio}`
+        Banner.style.backgroundImage = "url(" + Image + ")"
     }
 
     render() {

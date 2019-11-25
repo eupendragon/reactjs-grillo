@@ -64,8 +64,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div className="circle">
-                                                <img src={`http://localhost:3333/files/${postMap.user.image}`} />
+                                            <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.user.image}`+")"}} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -79,8 +78,7 @@ export default class Main extends Component {
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
-                                        <div>
-                                            <img src={`http://localhost:3333/files/${postMap.image}`} />
+                                        <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.image}`+")"}}>
                                         </div>
                                     </Post>
                                 </PostContainer>
@@ -187,7 +185,7 @@ class NewPost extends Component {
                     <Icons>
                         <div>
                             <Link to="/profile" className="Link">
-                                <img src={this.state.imageProfile} alt="Ir para perfil" />
+                                <div style={{backgroundImage: "url("+this.state.imageProfile+")"}}></div>
                             </Link>
                         </div>
 
