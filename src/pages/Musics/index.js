@@ -34,6 +34,17 @@ export default class Musics extends Component {
         }
     }
 
+    handlePlayMusic = async (itemMap) => {
+        let Title = document.getElementById('musicTitle')
+        let Banner = document.getElementById('musicBanner')
+        let Player = document.getElementById('musicPlayer')
+        let Image = `http://localhost:3333/files/${itemMap.image}`
+        
+        Title.textContent = itemMap.musicName
+        Banner.style.backgroundImage = "url(" + Image + ")"
+        Player.src = `http://localhost:3333/musics/${itemMap.audio}`
+    }
+
     async componentDidMount() {
         const user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         const response = await api.get(`/music?userId=${user._id}`)
@@ -47,15 +58,17 @@ export default class Musics extends Component {
                 <Content>
                     <MainHeader subTitle="MÚSICAS" />
                     <Player>
-                        <img src={Album} />
+                        <div id="musicBanner">
+                        </div>
                         <Info>
-                            <h3>Hey Jude</h3>
-                            <p>BEATLES</p>
+                            <h3 id="musicTitle"></h3>
+                            <p>VOCÊ</p>
                             <Controls>
-                                <img src={Back} />
+                                <audio src controls id="musicPlayer"></audio>
+                                {/* <img src={Back} />
                                 <img className="play" src={Play} />
                                 <img src={Next} />
-                                <img src={Loop} />
+                                <img src={Loop} /> */}
                             </Controls>
                         </Info>
                     </Player>
@@ -72,7 +85,7 @@ export default class Musics extends Component {
                     </Title>
                     <Playlist>
                         {this.state.musics.map(itemMap => (
-                            <Item key={itemMap._id}>
+                            <Item key={itemMap._id} onClick={() => this.handlePlayMusic(itemMap)}>
                                 <p>{itemMap.musicName}</p>
                                 <audio src={`http://localhost:3333/musics/${itemMap.audio}`}/>
                             </Item>

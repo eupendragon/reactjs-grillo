@@ -36,7 +36,13 @@ const Player = styled.section`
     display: flex;
     flex-direction: row;
     width: 100%;
-    margin: 0 -15px;
+    div{
+        background-position: center;
+        background-size: cover;
+        border-radius: 10px;
+        min-width: 300px;
+        min-height: 300px;
+    }
 `;
 
 const Info = styled.section`
