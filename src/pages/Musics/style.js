@@ -4,7 +4,7 @@ const Container = styled.div`
     display: grid;
     overflow: hidden;
     grid-template-columns: 3fr 10fr 1fr;
-    grid-template-rows: 3vh 97vh auto;
+    grid-template-rows: 3vh 97vh;
     background-color: #141A1F;
 `;
 const Content = styled.div`
@@ -12,7 +12,7 @@ const Content = styled.div`
     border-radius: 10px 10px 0px 0px;
     grid-row: 2/3;
     grid-column: 2/3;
-    padding: 40px;
+    padding: 40px 40px  0 40px;
     h1{
         color:white;
     }
@@ -78,9 +78,9 @@ const Controls = styled.aside`
 const Playlist = styled.section`
     display: flex;
     flex-direction: column;
-    width: 100%;
     overflow-y: scroll;
-    max-height: 40%;
+    width: 100%;
+    max-height: 20vh;
 `;
 const Item = styled.section`
     margin: 7px 0;
@@ -129,12 +129,8 @@ const Title = styled.section.attrs(props => ({
 
             border: 3px solid #FFF;
             border-radius: 15px;
-            width: 205px;
+            width: 350px;
             height: 50px; 
-            img{
-                width: 25px;
-                margin-right: 8px;
-            }
         }
         button:hover{
             color: #8D6D58;

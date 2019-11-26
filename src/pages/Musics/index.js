@@ -18,11 +18,6 @@ import Menu from '../../components/Menu'
 import MainHeader from '../../components/MainHeader'
 
 // Images
-import Album from '../../assets/images/music_album.svg'
-import Back from '../../assets/images/control_back.svg'
-import Play from '../../assets/images/control_play.svg'
-import Next from '../../assets/images/control_next.svg'
-import Loop from '../../assets/images/control_loop.svg'
 import CreateIcon from '../../assets/images/iconCreateMusic.svg'
 
 import { api } from '../../api/APIUtils'
@@ -56,10 +51,16 @@ export default class Musics extends Component {
         this.setState({ musics: response.data })
 
         const {musics} = this.state
-        let Image = `http://localhost:3333/files/${musics[0].image}`
-        Title.textContent = musics[0].musicName
-        Player.src = `http://localhost:3333/musics/${musics[0].audio}`
-        Banner.style.backgroundImage = "url(" + Image + ")"
+        
+        if(musics[0] === undefined){
+            console.log("Sem músicas cadastradas")
+        }
+        else{
+            let Image = `http://localhost:3333/files/${musics[0].image}`
+            Title.textContent = musics[0].musicName
+            Player.src = `http://localhost:3333/musics/${musics[0].audio}`
+            Banner.style.backgroundImage = "url(" + Image + ")"
+        }
     }
 
     render() {
@@ -76,10 +77,6 @@ export default class Musics extends Component {
                             <p>VOCÊ</p>
                             <Controls>
                                 <audio src controls id="musicPlayer"></audio>
-                                {/* <img src={Back} />
-                                <img className="play" src={Play} />
-                                <img src={Next} />
-                                <img src={Loop} /> */}
                             </Controls>
                         </Info>
                     </Player>
@@ -87,10 +84,7 @@ export default class Musics extends Component {
                         <div>
                             <h3>Playlist</h3>
                             <Link className="Link" to="/createmusic">
-                                <button>
-                                    <img src={CreateIcon} alt="create" />
-                                    CRIAR
-                                </button>
+                                <button>ADICIONAR MÚSICA</button>
                             </Link>
                         </div>
                     </Title>
