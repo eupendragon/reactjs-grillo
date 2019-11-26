@@ -40,8 +40,9 @@ export default class Main extends Component {
 
         const response = await api.get('posts');
         this.setState({ feed: response.data })
-        console.log(response.data)
+
     }
+
 
     registerToSocket() {
         const socket = io('http://localhost:3333');
@@ -52,6 +53,61 @@ export default class Main extends Component {
     }
 
     render() {
+        const formatDate = date => {
+            //xml nodeValue from time element
+            let data = date
+            let array = new Array();
+
+            //split string and store it into array
+            array = data.split('-')
+
+            switch (array[1]) {
+                case '01':
+                    array[1] = 'Janeiro'
+                    break;
+                case '02':
+                    array[1] = 'Fevereiro'
+                    break;
+                case '03':
+                    array[1] = 'Março'
+                    break;
+                case '04':
+                    array[1] = 'Abril'
+                    break;
+                case '05':
+                    array[1] = 'Maio'
+                    break;
+                case '06':
+                    array[1] = 'Junho'
+                    break;
+                case '07':
+                    array[1] = 'Julho'
+                    break;
+                case '08':
+                    array[1] = 'Agosto'
+                    break;
+                case '09':
+                    array[1] = 'Setembro'
+                    break;
+                case '10':
+                    array[1] = 'Outubro'
+                    break;
+                case '11':
+                    array[1] = 'Novembro'
+                    break;
+                case '12':
+                    array[1] = 'Dezembro'
+                    break;
+                default:
+                    break;
+            }
+
+            //from array concatenate into new date string format: "DD.MM.YYYY"
+            let newDate = (array[2] + " de " + array[1] + " de " + array[0])
+
+            return newDate
+        }
+        
         return (
             <Container>
                 <Menu />
@@ -64,7 +120,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.user.image}`+")"}} className="circle">
+                                            <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.user.image}` + ")" }} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -74,11 +130,14 @@ export default class Main extends Component {
                                     </Head>
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
-                                        <p>{postMap.description} Data do evento = {postMap.date} Local do evento = {postMap.placeEvent}</p>
+                                        <p>{postMap.description} Data do evento = {postMap.date}</p>
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
-                                        <div style={{backgroundImage: "url("+`http://localhost:3333/files/${postMap.image}`+")"}}>
+                                        <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.image}` + ")" }}>
+                                        </div>
+                                        <div>
+                                            <p>{formatDate(postMap.date)}</p>
                                         </div>
                                     </Post>
                                 </PostContainer>
@@ -185,7 +244,7 @@ class NewPost extends Component {
                     <Icons>
                         <div>
                             <Link to="/profile" className="Link">
-                                <div style={{backgroundImage: "url("+this.state.imageProfile+")"}}></div>
+                                <div style={{ backgroundImage: "url(" + this.state.imageProfile + ")" }}></div>
                             </Link>
                         </div>
 

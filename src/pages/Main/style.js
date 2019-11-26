@@ -256,17 +256,31 @@ export const Body = styled.div`
 export const Post = styled.div`
     grid-column: 1/2;
     grid-row: 1/2;
-    max-width: 20px;
-    div{
+    max-width: 280px;
+    max-height: 450px;
+    div:first-child{
         background-position: center;
         background-size: cover;
         width: 280px;
         height: 450px;
         background-color: #f4f4ff;
         overflow: hidden;
-        border-radius: 15px;
+        border-radius: 15px 15px 0px 0px;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    div:nth-child(2){
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 40px;
+        background-color: black;
+        width: 100%; 
+        border-radius: 0px 0px 15px 15px;
+        padding: 15px;
+        p{
+            color: white;
+        }
     }
 `;
