@@ -34,6 +34,7 @@ import io from 'socket.io-client'
 export default class Main extends Component {
     state = {
         feed: [],
+        user: JSON.parse(localStorage.getItem('@CacheGrillo:User'))
     }
 
     async componentDidMount() {
@@ -44,7 +45,18 @@ export default class Main extends Component {
 
     }
 
-
+    eventPartipate(postId) {
+        console.log(this.state.user._id)
+        api.put('post', {
+            userId: this.state.user._id,
+            postId: postId
+        }).then(result => {
+            console.log(result.data.participants)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    
     registerToSocket() {
         const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
 
@@ -131,8 +143,14 @@ export default class Main extends Component {
                                     </Head>
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
-                                        <p>{postMap.description}</p>
-                                        <div><button>COMPARECER</button></div>
+                                        <p>{postMap.description} Data do evento = {postMap.date} Local do evento = {postMap.placeEvent}</p>
+                                        <div>
+                                            <button onClick={() => {
+                                                this.eventPartipate(postMap._id)
+                                            }}>
+                                                Comparecer
+                                            </button>
+                                        </div>
                                     </Body>
                                     <Post>
                                         <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}`+")"}}>
