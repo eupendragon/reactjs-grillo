@@ -29,6 +29,8 @@ export const Posts = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
+    margin-bottom: 50px;
+    
 `;
 export const PostManager = styled.form.attrs(props => ({
     autoComplete: "off"
@@ -233,40 +235,70 @@ export const Body = styled.div`
         margin: 5px 0;
     }
     p{
-        min-height: 270px;
-        max-height: 270px;
+        min-height: 295px;
+        max-height: 295px;
         text-align: justify;
     }
     div{
         display: flex;
         justify-content: flex-end;
         align-self: flex-end;
+       
     }
     button{
         background-color: #4289A2;
-        height: 35px;
+        height: 45px;
         border-radius:7px;
         font-weight: bold;
         color: white;
         margin: 8px 0;
         cursor: pointer;
         width: 100%;
+        font-size: 16px;
     }
 `;
+
 export const Post = styled.div`
     grid-column: 1/2;
     grid-row: 1/2;
-    max-width: 20px;
-    div{
+    max-width: 280px;
+    max-height: 450px;
+    div:first-child{
         background-position: center;
         background-size: cover;
         width: 280px;
         height: 450px;
         background-color: #f4f4ff;
         overflow: hidden;
-        border-radius: 15px;
+        border-radius: 15px 15px 0px 0px;
         display: flex;
-        justify-content: center;
+        align-items: flex-start;
+        aside.local{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 35px;
+            background: rgba(255,255,255,0.8);
+            color: #4289A2;
+            img{
+                width: 22px;
+            }
+        }
+    }
+
+    div:nth-child(2){
+        display: flex;
+        justify-content:center;
         align-items: center;
+        height: 40px;
+        background-color: black;
+        width: 100%; 
+        border-radius: 0px 0px 15px 15px;
+        padding: 15px;
+        p{
+            font-weight: bold;
+            color: white;
+        }
     }
 `;
