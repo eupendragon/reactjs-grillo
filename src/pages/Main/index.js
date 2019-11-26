@@ -34,6 +34,7 @@ import io from 'socket.io-client'
 export default class Main extends Component {
     state = {
         feed: [],
+        user: JSON.parse(localStorage.getItem('@CacheGrillo:User'))
     }
 
     async componentDidMount() {
@@ -44,9 +45,20 @@ export default class Main extends Component {
 
     }
 
+    eventPartipate(postId) {
+        console.log(this.state.user._id)
+        api.put('post', {
+            userId: this.state.user._id,
+            postId: postId
+        }).then(result => {
+            console.log(result.data.participants)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
     registerToSocket() {
-        const socket = io('http://localhost:3333');
+        const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
 
         socket.on('post', newPost => {
             this.setState({ feed: [newPost, ...this.state.feed] });
@@ -121,7 +133,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.user.image}` + ")" }} className="circle">
+                                            <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}` + ")" }} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -132,12 +144,18 @@ export default class Main extends Component {
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
                                         <p>{postMap.description}</p>
-                                        <div><button>COMPARECER</button></div>
+                                        <div>
+                                            <button onClick={() => {
+                                                this.eventPartipate(postMap._id)
+                                            }}>
+                                                COMPARECER
+                                            </button>
+                                        </div>
                                     </Body>
                                     <Post>
-                                        <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.image}` + ")" }}>
+                                        <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}` + ")" }}>
                                             <aside className="local">
-                                                <img src={Place} alt=""/>
+                                                <img src={Place} alt="" />
                                                 <p>{postMap.placeEvent}</p>
                                             </aside>
                                         </div>
@@ -172,7 +190,7 @@ class NewPost extends Component {
         const token = await localStorage.getItem('@CacheGrillo:Token')
         const user = JSON.parse(await localStorage.getItem('@CacheGrillo:User'))
 
-        const userImage = `http://localhost:3333/files/${user.image}`
+        const userImage = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${user.image}`
         this.setState({ imageProfile: userImage })
 
         if (token && user) {
