@@ -148,7 +148,7 @@ export default class Main extends Component {
                                             <button onClick={() => {
                                                 this.eventPartipate(postMap._id)
                                             }}>
-                                                COMPARECER
+                                                COMPARECE
                                             </button>
                                         </div>
                                     </Body>
