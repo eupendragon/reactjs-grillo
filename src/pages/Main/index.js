@@ -121,11 +121,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-<<<<<<< HEAD
-                                            <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.user.image}` + ")" }} className="circle">
-=======
                                             <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}`+")"}} className="circle">
->>>>>>> gitpod cloud url config
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -139,18 +135,7 @@ export default class Main extends Component {
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
-<<<<<<< HEAD
-                                        <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.image}` + ")" }}>
-                                            <aside className="local">
-                                                <img src={Place} alt=""/>
-                                                <p>{postMap.placeEvent}</p>
-                                            </aside>
-                                        </div>
-                                        <div>
-                                            <p>{formatDate(postMap.date)}</p>
-=======
                                         <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}`+")"}}>
->>>>>>> gitpod cloud url config
                                         </div>
                                     </Post>
                                 </PostContainer>
