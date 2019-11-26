@@ -29,7 +29,7 @@ export const Posts = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     
 `;
 export const PostManager = styled.form.attrs(props => ({
