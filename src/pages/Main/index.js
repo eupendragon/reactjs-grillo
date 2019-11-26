@@ -24,6 +24,7 @@ import MainHeader from '../../components/MainHeader'
 import Cam from '../../assets/images/icon_photo.svg'
 import IconEvent from '../../assets/images/postIconEvento.svg'
 import IconVaga from '../../assets/images/postIconVaga.svg'
+import Place from '../../assets/images/placeIcon.png'
 
 // dependecies
 import { api } from '../../api/APIUtils'
@@ -107,7 +108,7 @@ export default class Main extends Component {
 
             return newDate
         }
-        
+
         return (
             <Container>
                 <Menu />
@@ -130,11 +131,15 @@ export default class Main extends Component {
                                     </Head>
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
-                                        <p>{postMap.description} Data do evento = {postMap.date}</p>
+                                        <p>{postMap.description}</p>
                                         <div><button>COMPARECER</button></div>
                                     </Body>
                                     <Post>
                                         <div style={{ backgroundImage: "url(" + `http://localhost:3333/files/${postMap.image}` + ")" }}>
+                                            <aside className="local">
+                                                <img src={Place} alt=""/>
+                                                <p>{postMap.placeEvent}</p>
+                                            </aside>
                                         </div>
                                         <div>
                                             <p>{formatDate(postMap.date)}</p>
