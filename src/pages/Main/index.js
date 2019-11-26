@@ -56,7 +56,7 @@ export default class Main extends Component {
             console.log(err)
         })
     }
-    
+
     registerToSocket() {
         const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
 
@@ -133,7 +133,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}`+")"}} className="circle">
+                                            <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}` + ")" }} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -143,17 +143,24 @@ export default class Main extends Component {
                                     </Head>
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
-                                        <p>{postMap.description} Data do evento = {postMap.date} Local do evento = {postMap.placeEvent}</p>
+                                        <p>{postMap.description}</p>
                                         <div>
                                             <button onClick={() => {
                                                 this.eventPartipate(postMap._id)
                                             }}>
-                                                Comparecer
+                                                COMPARECER
                                             </button>
                                         </div>
                                     </Body>
                                     <Post>
-                                        <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}`+")"}}>
+                                        <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}` + ")" }}>
+                                            <aside className="local">
+                                                <img src={Place} alt="" />
+                                                <p>{postMap.placeEvent}</p>
+                                            </aside>
+                                        </div>
+                                        <div>
+                                            <p>{formatDate(postMap.date)}</p>
                                         </div>
                                     </Post>
                                 </PostContainer>
