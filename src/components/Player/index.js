@@ -66,7 +66,7 @@ export default class Player extends Component {
                             <h3>Start</h3>
                         </div>
                         <div className="Controllers">
-                            <audio controls />
+                            <audio />
                             <ControllButton
                                 onClick={() => this.controlButtonChange(3)}
                                 id="back" >
