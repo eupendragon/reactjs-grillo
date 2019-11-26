@@ -92,14 +92,7 @@ export default class Main extends Component {
                                             <button onClick={() => {
                                                 this.eventPartipate(postMap._id)
                                             }}>
-                                                {() => {
-                                                    console.log(postMap.participants)
-                                                    if (postMap.participants === this.state.user._id) {
-                                                        return "Comparecer"
-                                                    } else {
-                                                        return "Marcado"
-                                                    }
-                                                }}
+                                                Comparecer
                                             </button>
                                         </div>
                                     </Body>
