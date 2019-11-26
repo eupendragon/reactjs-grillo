@@ -33,6 +33,7 @@ import io from 'socket.io-client'
 export default class Main extends Component {
     state = {
         feed: [],
+        user: JSON.parse(localStorage.getItem('@CacheGrillo:User'))
     }
 
     async componentDidMount() {
@@ -41,6 +42,18 @@ export default class Main extends Component {
         const response = await api.get('posts');
         this.setState({ feed: response.data })
         console.log(response.data)
+    }
+
+    eventPartipate(postId) {
+        console.log(this.state.user._id)
+        api.put('post', {
+            userId: this.state.user._id,
+            postId: postId
+        }).then(result => {
+            console.log(result.data.participants)
+        }).catch(err => {
+            console.log(err)
+        })
     }
 
     registerToSocket() {
@@ -75,7 +88,20 @@ export default class Main extends Component {
                                     <Body>
                                         <h3>{postMap.postTitle}</h3>
                                         <p>{postMap.description} Data do evento = {postMap.date} Local do evento = {postMap.placeEvent}</p>
-                                        <div><button>COMPARECER</button></div>
+                                        <div>
+                                            <button onClick={() => {
+                                                this.eventPartipate(postMap._id)
+                                            }}>
+                                                {() => {
+                                                    console.log(postMap.participants)
+                                                    if (postMap.participants === this.state.user._id) {
+                                                        return "Comparecer"
+                                                    } else {
+                                                        return "Marcado"
+                                                    }
+                                                }}
+                                            </button>
+                                        </div>
                                     </Body>
                                     <Post>
                                         <div style={{backgroundImage: "url("+`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}`+")"}}>
