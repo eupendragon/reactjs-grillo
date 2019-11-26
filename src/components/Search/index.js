@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import iconSearch from '../../assets/images/icon_search.svg';
 import { Bar } from './style';
-
+import { api } from '../../api/APIUtils'
 
 class Search extends Component {
-
-    state = {
-        pesquisa: '',
-    }
-
-    _handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            window.location.href = "./filters"
+    constructor(props) {
+        super(props)
+        this.state = {
+            pesquisa: '',
         }
     }
 
@@ -20,26 +16,29 @@ class Search extends Component {
         console.log(this.state.pesquisa);
     }
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
-    }   
+        const response = await api.get(`profiles?nome=${this.state.pesquisa}`)
+        await localStorage.setItem('@CacheGrillo:Query', JSON.stringify(response.data))
+        window.location.href = "./filters"
+    }
 
     render() {
         return (
-                <Bar onSubmit={this.handleSubmit}>
-                    <input
-                        id="pesquisar"
-                        onKeyDown={this._handleKeyDown}
-                        onChange={this.handleInputChange}
-                        value={this.state.pesquisa}
-                        name="pesquisa"
-                        type="text"
-                        placeholder="Procure por eventos, músicos ou bandas" />
-                    <button type="submit" className="submiter">
-                        <img src={iconSearch} alt="pesquisar"/>
-                    </button>
-                </Bar>
-        
+            <Bar onSubmit={this.handleSubmit}>
+                <input
+                    id="pesquisar"
+                    onChange={this.handleInputChange}
+                    value={this.state.pesquisa}
+                    name="pesquisa"
+                    type="text"
+                    placeholder="Procure por eventos, músicos ou bandas" 
+                />
+                <button type="submit" className="submiter">
+                    <img src={iconSearch} alt="pesquisar" />
+                </button>
+            </Bar>
+
         )
     }
 }

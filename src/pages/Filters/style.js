@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Profile from "../../assets/images/img_profile.svg";
 
 
 export const Container = styled.div`
@@ -48,11 +47,12 @@ export const Estrutura = styled.div`
     height: 130px;
     border-radius: 15px;
     div.prof{
-        width: 60%;
+        border-radius: 15px 0 0 15px;
+        width: 200px;
         height: 100%;
-        background-size: 100%;
+        background-position: center;
         background-repeat: no-repeat;
-        background-image: url(${Profile});
+        background-size: cover;
     }
     div.back{
         display: flex;

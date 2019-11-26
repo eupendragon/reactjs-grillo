@@ -51,6 +51,7 @@ export default class Musics extends Component {
         let Player = document.getElementById('musicPlayer')        
 
         const user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
+        
         const response = await api.get(`/music?userId=${user._id}`)
         this.setState({ musics: response.data })
 
