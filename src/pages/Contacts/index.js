@@ -23,6 +23,8 @@ import SendIcon from '../../assets/images/icon_send.svg';
 
 import io from 'socket.io-client'
 
+import { api } from '../../api/APIUtils'
+
 
 export default class Contacts extends Component {
     constructor(props) {
@@ -33,12 +35,12 @@ export default class Contacts extends Component {
         this.user = JSON.parse(localStorage.getItem('@CacheGrillo:User'))
 
         this.state = {
-            message: [''],
+            message: [],
             newmessage: ''
         }
 
-        this.socket = io.connect('http://localhost:3333')
-        this.socket.emit('subscribe', 10)
+        this.socket = io.connect('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/')
+        this.socket.emit('subscribe', localStorage.getItem('@CacheGrillo:Room'))
 
         this.socket.on('conversation private post', data => {
             this.setState(state => {
@@ -48,21 +50,7 @@ export default class Contacts extends Component {
         })
     }
 
-    componentDidMount() {
-
-        if (!localStorage.getItem('mensagens')) {
-
-            // Objeto  inicial 
-            const msgauto = [
-                {
-                    mensagem: [
-                    ],
-                    horario: '15:30'
-                }
-            ]
-
-            // localStorage.setItem('mensagens', JSON.stringify(msgauto[0].mensagem = ["INICIE UMA CONVERSA"]))
-        }
+    async componentDidMount() {
 
         // const messageSent = localStorage.getItem('mensagens');
         // this.setState({ message: JSON.parse(messageSent) })
@@ -94,15 +82,15 @@ export default class Contacts extends Component {
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
             this.socket.emit('send message', {
-                room: 10,
+                room: localStorage.getItem('@CacheGrillo:Room'),
                 message: this.state.newmessage
             })
             this.setState({
                 newmessage: ''
             })
         }
-        var hour = new Date().getHours();
-        var minute = new Date().getMinutes();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
 
     }
 

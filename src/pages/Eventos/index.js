@@ -99,7 +99,14 @@ export default class Events extends Component {
                                         <Name>{key.nome}</Name>
                                     </div>
                                     <Details>
-                                        <button>
+                                        <button onClick={async () => {
+                                            const newUser = await api.post('/conversation', {
+                                                authorId: this.state.user._id,
+                                                recipientId: key._id,
+                                            })
+                                            localStorage.setItem('@CacheGrillo:User', JSON.stringify(newUser.data))
+                                            this.props.history.push('/contacts')
+                                        }}>
                                             <img src={Send} />
                                         </button>
                                     </Details>
