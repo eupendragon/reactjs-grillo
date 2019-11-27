@@ -28,7 +28,6 @@ import { api } from '../../api/APIUtils'
 import io from 'socket.io-client'
 
 export default class Events extends Component {
-
     state = {
         participants: [],
         postTitle: 'Selecione um evento',
@@ -37,8 +36,22 @@ export default class Events extends Component {
     }
 
     async componentDidMount() {
+        this.registerToSocket();
+
         const response = await api.get(`events?userId=${this.state.user._id}`);
-        this.setState({ events: response.data })
+        this.setState({ 
+            events: response.data,
+        })
+        console.log(response.data)
+    }
+
+    registerToSocket() {
+        const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
+
+        socket.on('participants', newParticipant => {
+            console.log(newParticipant)
+            this.setState({ participants: [newParticipant, ...this.state.participants] });
+        })
     }
 
     render() {
@@ -53,8 +66,13 @@ export default class Events extends Component {
                         </Local>
                         <ListContent>
                             {this.state.events.map(key => (
-                                <Item key={key._id} onClick={() => {
-                                    this.setState({ postTitle: key.postTitle })
+                                <Item key={key._id} onClick={async () => {
+                                    await 
+                                    this.setState({
+                                        postTitle: key.postTitle,
+                                        participants: key.participants
+                                    })
+                                    console.log(this.state.participants)
                                 }}>
                                     <Image>
                                         <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
@@ -71,6 +89,23 @@ export default class Events extends Component {
                         <Search />
                         <h3>{this.state.postTitle}</h3>
                         <span>INSCRITOS NO EVENTO</span>
+                        {
+                            this.state.participants.map((key) => (
+                                <Inscribe key={key._id}>
+                                    <div>
+                                        <ImageInscribe>
+                                            <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
+                                        </ImageInscribe>
+                                        <Name>{key.nome}</Name>
+                                    </div>
+                                    <Details>
+                                        <button>
+                                            <img src={Send} />
+                                        </button>
+                                    </Details>
+                                </Inscribe>
+                            ))
+                        }
                     </Messages>
                 </Content>
             </Container>
