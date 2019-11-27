@@ -23,13 +23,16 @@ class ContactItem extends Component {
             <>
             {
                 this.state.contacts.map(key => (
-                    <Item key={key._id}>
+                    <Item key={key._id} onClick={() => {
+                        localStorage.setItem('@CacheGrillo:Chat', key._id)
+                        localStorage.setItem('@CacheGrillo:ChatTitle', key.nome)
+                    }}>
                         <Image>
                             <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} alt="profile"/>
                         </Image>
                         <Friends>
                             <h3> {key.nome} </h3>
-                            <span> Mensagem recebida</span>
+                            <span> Conversa Iniciada</span>
                         </Friends>
                     </Item>
                 ))
