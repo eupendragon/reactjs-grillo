@@ -36,15 +36,15 @@ export default class Contacts extends Component {
 
         this.state = {
             message: [],
-            newmessage: ''
+            newmessage: '',
         }
 
         this.socket = io.connect('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/')
-        this.socket.emit('subscribe', localStorage.getItem('@CacheGrillo:Room'))
+        this.socket.emit('subscribe', this.user._id)
 
         this.socket.on('conversation private post', data => {
             this.setState(state => {
-                const message = state.message.push(data.message)
+                const message = state.message.push(data)
                 return message
             })
         })
@@ -82,11 +82,16 @@ export default class Contacts extends Component {
         let input = document.getElementById('mensagem').value;
         if (input !== '') {
             this.socket.emit('send message', {
-                room: localStorage.getItem('@CacheGrillo:Room'),
-                message: this.state.newmessage
+                room: localStorage.getItem('@CacheGrillo:Chat'),
+                message: this.state.newmessage,
+                author: this.user.nome
             })
             this.setState({
-                newmessage: ''
+                message: [...this.state.message, {
+                    message: this.state.newmessage,
+                    author: this.user.nome
+                }],
+                newmessage: '',
             })
         }
         let hour = new Date().getHours();
@@ -117,14 +122,15 @@ export default class Contacts extends Component {
                     <Messages>
                         <Search />
                         <Title>
-                            <h3>RIHANNA</h3>
+                            <h3>{localStorage.getItem('@CacheGrillo:ChatTitle')}</h3>
                             <button onClick={this.handleDeleteStorage}> L</button>
                         </Title>
                         <Chat>
                             <MessageSent>
                                 {this.state.message.map((key, index) => (
                                     <BoxSent key={index}>
-                                        {key}
+                                        <b>{key.author}:&nbsp;</b>
+                                        {key.message}
                                     </BoxSent>
                                 ))}
                             </MessageSent>
