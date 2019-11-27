@@ -33,11 +33,11 @@ export default class Musics extends Component {
         let Title = document.getElementById('musicTitle')
         let Banner = document.getElementById('musicBanner')
         let Player = document.getElementById('musicPlayer')
-        let Image = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${itemMap.image}`
+        let Image = `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${itemMap.image}`
         
         Title.textContent = itemMap.musicName
         Banner.style.backgroundImage = "url(" + Image + ")"
-        Player.src = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/musics/${itemMap.audio}`
+        Player.src = `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/musics/${itemMap.audio}`
     }
 
     async componentDidMount() {
@@ -56,9 +56,9 @@ export default class Musics extends Component {
             console.log("Sem músicas cadastradas")
         }
         else{
-            let Image = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${musics[0].image}`
+            let Image = `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${musics[0].image}`
             Title.textContent = musics[0].musicName
-            Player.src = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/musics/${musics[0].audio}`
+            Player.src = `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/musics/${musics[0].audio}`
             Banner.style.backgroundImage = "url(" + Image + ")"
         }
     }

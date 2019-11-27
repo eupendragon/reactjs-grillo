@@ -42,6 +42,10 @@ class SearchResults extends Component {
         await this.setState({ query: results })
     }
     
+    async getprofile(profile){
+        await localStorage.setItem('@CacheGrillo:Results', JSON.stringify(profile))
+        window.location.href = '/results'
+    }
 
     render() {
         return (
@@ -51,11 +55,11 @@ class SearchResults extends Component {
                 </TypeRes>
                 {this.state.query.map(musics => (
                     <Estrutura key={musics._id}>
-                        <div style={{ backgroundImage: `url(http://localhost:3333/files/${musics.image})` }} className="prof">
+                        <div style={{ backgroundImage: `url(https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${musics.image})` }} className="prof">
                         </div>
                         <div className="back">
                             <p>{musics.nome}</p>
-                            <Link to="./results" className="Link"><button>VER PERFIL</button></Link>
+                            <button onClick={() => this.getprofile(musics)}>VER PERFIL</button>
                         </div>
                     </Estrutura>
                 ))}

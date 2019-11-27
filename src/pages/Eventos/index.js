@@ -46,7 +46,7 @@ export default class Events extends Component {
     }
 
     registerToSocket() {
-        const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
+        const socket = io('https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/');
 
         socket.on('participants', newParticipant => {
             console.log(newParticipant)
@@ -75,7 +75,7 @@ export default class Events extends Component {
                                     console.log(this.state.participants)
                                 }}>
                                     <Image>
-                                        <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
+                                        <img src={`https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${key.image}`} />
                                     </Image>
                                     <Friends>
                                         <h3> {key.postTitle} </h3>
@@ -94,7 +94,7 @@ export default class Events extends Component {
                                 <Inscribe key={key._id}>
                                     <div>
                                         <ImageInscribe>
-                                            <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
+                                            <img src={`https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${key.image}`} />
                                         </ImageInscribe>
                                         <Name>{key.nome}</Name>
                                     </div>

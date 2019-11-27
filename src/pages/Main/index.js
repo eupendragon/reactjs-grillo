@@ -39,10 +39,9 @@ export default class Main extends Component {
 
     async componentDidMount() {
         this.registerToSocket();
-
         const response = await api.get('posts');
         this.setState({ feed: response.data })
-
+        console.log(this.state.feed)
     }
 
     eventPartipate(postId) {
@@ -58,7 +57,7 @@ export default class Main extends Component {
     }
 
     registerToSocket() {
-        const socket = io('https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/');
+        const socket = io('https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/');
 
         socket.on('post', newPost => {
             this.setState({ feed: [newPost, ...this.state.feed] });
@@ -133,7 +132,7 @@ export default class Main extends Component {
                                 <PostContainer>
                                     <Head>
                                         <section>
-                                            <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.user.image}` + ")" }} className="circle">
+                                            <div style={{ backgroundImage: `url(https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${postMap.user.image})`}} className="circle">
                                             </div>
                                             <div>
                                                 <span>{postMap.user.nome}</span>
@@ -153,7 +152,7 @@ export default class Main extends Component {
                                         </div>
                                     </Body>
                                     <Post>
-                                        <div style={{ backgroundImage: "url(" + `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${postMap.image}` + ")" }}>
+                                        <div style={{ backgroundImage: `url(https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${postMap.image})`}}>
                                             <aside className="local">
                                                 <img src={Place} alt="" />
                                                 <p>{postMap.placeEvent}</p>
@@ -190,7 +189,7 @@ class NewPost extends Component {
         const token = await localStorage.getItem('@CacheGrillo:Token')
         const user = JSON.parse(await localStorage.getItem('@CacheGrillo:User'))
 
-        const userImage = `https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${user.image}`
+        const userImage = `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${user.image}`
         this.setState({ imageProfile: userImage })
 
         if (token && user) {
@@ -329,7 +328,7 @@ class NewPost extends Component {
                                     value={this.state.date}
                                     type="date"
                                     name="date"
-                                    min=""
+                                    min="2019-11-27"
                                     required
                                 />
                             </section>

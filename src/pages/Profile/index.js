@@ -30,7 +30,7 @@ export default class Profile extends Component {
     async componentDidMount() {
         const user = await JSON.parse(localStorage.getItem('@CacheGrillo:User'))
         this.setState({
-            image: `http://localhost:3333/files/${user.image}`,
+            image: `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/files/${user.image}`,
             nome: user.nome,
             estado: user.estado,
             instrumento: user.instrumento,
