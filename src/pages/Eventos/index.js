@@ -27,26 +27,18 @@ import Send from '../../assets/images/icon_sendMsg.svg';
 import { api } from '../../api/APIUtils'
 import io from 'socket.io-client'
 
-class Events extends Component {
+export default class Events extends Component {
 
     state = {
         participants: [],
         postTitle: 'Selecione um evento',
+        events: [],
         user: JSON.parse(localStorage.getItem('@CacheGrillo:User'))
     }
 
     async componentDidMount() {
-        const response = await api.get('events');
-        this.setState({ feed: response.data })
-        console.log(response.data)
-        console.log(this.state.postTitle)
-    }
-
-    componentDidUpdate() {
-        const currentTitle = localStorage.getItem('@CacheGrillo:Post')
-        this.setState({
-            postTitle: localStorage.getItem('@CacheGrillo:Post')
-        })
+        const response = await api.get(`events?userId=${this.state.user._id}`);
+        this.setState({ events: response.data })
     }
 
     render() {
@@ -60,7 +52,19 @@ class Events extends Component {
                             <h4>EVENTOS</h4>
                         </Local>
                         <ListContent>
-                            <EventItem />
+                            {this.state.events.map(key => (
+                                <Item key={key._id} onClick={() => {
+                                    this.setState({ postTitle: key.postTitle })
+                                }}>
+                                    <Image>
+                                        <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
+                                    </Image>
+                                    <Friends>
+                                        <h3> {key.postTitle} </h3>
+                                        <span> {key.date} </span>
+                                    </Friends>
+                                </Item>
+                            ))}
                         </ListContent>
                     </Chats>
                     <Messages>
@@ -70,44 +74,6 @@ class Events extends Component {
                     </Messages>
                 </Content>
             </Container>
-        )
-    }
-}
-
-export default Events;
-
-class EventItem extends Component {
-
-    state = {
-        events: [],
-        user: JSON.parse(localStorage.getItem('@CacheGrillo:User'))
-    }
-
-    async componentDidMount() {
-        const response = await api.get(`events?userId=${this.state.user._id}`);
-        this.setState({ events: response.data })
-        console.log(response.data)
-    }
-
-    render() {
-        return (
-            <>
-                {
-                    this.state.events.map(key => (
-                        <Item key={key._id} onClick={() => {
-                            localStorage.setItem('@CacheGrillo:Post', key.postTitle)
-                        }}>
-                            <Image>
-                                <img src={`https://3333-a6ed127b-4d1f-4137-ae95-f5bd4566c8b0.ws-us02.gitpod.io/files/${key.image}`} />
-                            </Image>
-                            <Friends>
-                                <h3> {key.postTitle} </h3>
-                                <span> {key.date} </span>
-                            </Friends>
-                        </Item>
-                    ))
-                }
-            </>
         )
     }
 }

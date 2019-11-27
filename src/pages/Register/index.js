@@ -229,7 +229,6 @@ class Register extends Component {
                     </Stage>
 
                     <FormOla>
-
                         <FormAll>
                             <Photo>
                                 <div id="imagePerfil">
