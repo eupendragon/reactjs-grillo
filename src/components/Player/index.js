@@ -34,7 +34,7 @@ export default class Player extends Component {
             audio: document.querySelector("audio")
         }
 
-        player.audio.src =  `http://localhost:3333/musics/${playlist[0].audio}`
+        player.audio.src =  `https://3333-dfd00ddf-cd28-4c87-acca-6c3ec15debdb.ws-us02.gitpod.io/musics/${playlist[0].audio}`
         
         // Play - Pause
         if (action == 1) {

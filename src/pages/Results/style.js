@@ -19,8 +19,7 @@ export const Content = styled.div`
     background-image: 
     linear-gradient(to top,
      #182026 25%,
-     transparent 100% ),
-     url(${Capa});
+     transparent 100% ),;
     background-repeat: no-repeat;
     background-size: 100%;
     padding: 40px 40px 0 40px;
